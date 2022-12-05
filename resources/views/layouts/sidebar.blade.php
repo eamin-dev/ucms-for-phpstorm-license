@@ -38,7 +38,7 @@
 
                 @can('rapid_pro')
                 <li>
-                    <a href="#" class="waves-effect">
+                    <a href="{{route('rapid.pro.create') }}" class="waves-effect">
                         <i class="mdi mdi-box-shadow"></i>
                         <span> RapidPro </span>
                     </a>

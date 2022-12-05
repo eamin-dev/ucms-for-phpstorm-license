@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RapidProController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -38,5 +39,14 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::get('/role-edit/{role_id}', 'getRolePermissions')->name('role.edit');
         Route::post('/role-update', 'updateRoleInfo')->name('role.update');
     });
+
+
+    Route::controller(RapidProController::class)->group(function(){
+
+        Route::get('rapid-pro','createRapidPro')->name('rapid.pro.create');
+
+    });
+
+
 });
 
