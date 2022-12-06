@@ -55,6 +55,7 @@
 
                                     <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Question title">
                                 </div>
+                                
                                 <div class="btn-group mt-1 mr-1">
                                     <button type="button" class="btn btn-white dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                        ...
@@ -67,6 +68,34 @@
                         
                                     </ul>
                                 </div>
+
+    
+                                {{-- add more question --}}
+                                <div class="col-lg-12" style="visibility: hidden">
+                                    <div class="whole_extra_item_add" id="whole_extra_item_add">
+                                        <div class="delete_whole_extra_item" id="delete_whole_extra_item">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-10" >
+
+                                            <input type="email" name="question_title[]" class="form-control" id="exampleInputEmail2" placeholder="Question title">
+                                        </div>
+    
+                                        <div class="form-group col-md-1">
+                                            <div class="form-row">
+                                              <span class="btn btn-success addQuestion"> <i class="fa fa-plus-circle"></i> </span>
+                                              <span class="btn btn-danger removeQuestion"> <i class="fa fa-minus-circle"></i> </span>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    
+                                </div>
+
+                                {{-- END question --}}
+
+
+                                
                                 <div class="form-group col-md-2">
                                     <button type="submit" class="btn btn-primary">Add Question</button>
                                 </div>
@@ -120,19 +149,20 @@
     @include('rolePermission.script')
 
     <!-- script tag for addevent items -->
-<script type="text/javascript">
-    $(document).ready(function(){
-        
-       var counter =0;
-       $(document).on("click",".addevent",function(){
-          var whole_extra_item_add =$("#whole_extra_item_add").html();
-          $(this).closest(".add_item").append(whole_extra_item_add);
-          counter ++;
-       });
-         $(document).on("click",".removeevent",function(){
-           $(this).closest(".delete_whole_extra_item").remove();
-           counter -= 1;
-       });
-    });
-    </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+           var counter =0;
+           $(document).on("click",".addQuestion",function(){
+              var whole_extra_item_add =$("#whole_extra_item_add").html();
+              $(this).closest(".add_item").append(whole_extra_item_add);
+              counter ++;
+           });
+             $(document).on("click",".removeQuestion",function(){
+                alert(delete_whole_extra_item);
+               $(this).closest(".delete_whole_extra_item").remove();
+               
+               counter -= 1;
+           });
+        });
+        </script>
 @endsection
