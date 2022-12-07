@@ -30,7 +30,7 @@
                         </div>
                         <div class="media-body align-self-center">
                             <div class="text-right">
-                                <h4 class="font-20 my-0 font-weight-bold"><span data-plugin="counterup">15852</span></h4>
+                                <h4 class="font-20 my-0 font-weight-bold"><span data-plugin="counterup">0</span></h4>
                                 <p class="mb-0 mt-1 text-truncate">Rapid-Pro</p>
                             </div>
                         </div>
@@ -55,7 +55,7 @@
                         </div>
                         <div class="media-body align-self-center">
                             <div class="text-right">
-                                <h4 class="font-20 my-0 font-weight-bold"><span data-plugin="counterup">956</span></h4>
+                                <h4 class="font-20 my-0 font-weight-bold"><span data-plugin="counterup">0</span></h4>
                                 <p class="mb-0 mt-1 text-truncate">IoGT</p>
                             </div>
                         </div>
@@ -80,7 +80,7 @@
                         </div>
                         <div class="media-body align-self-center">
                             <div class="text-right">
-                                <h4 class="font-20 my-0 font-weight-bold"><span data-plugin="counterup">5210</span></h4>
+                                <h4 class="font-20 my-0 font-weight-bold"><span data-plugin="counterup">{{ $totalActiveUsers }}</span></h4>
                                 <p class="mb-0 mt-1 text-truncate">Total Users</p>
                             </div>
                         </div>
@@ -105,8 +105,8 @@
                         </div>
                         <div class="media-body align-self-center">
                             <div class="text-right">
-                                <h4 class="font-20 my-0 font-weight-bold"><span data-plugin="counterup">20544</span></h4>
-                                <p class="mb-0 mt-1 text-truncate">User Active</p>
+                                <h4 class="font-20 my-0 font-weight-bold"><span data-plugin="counterup">0</span></h4>
+                                <p class="mb-0 mt-1 text-truncate">No of documents</p>
                             </div>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                         <h6 class="text-uppercase">Target <span class="float-right">60%</span></h6>
                         <div class="progress progress-sm m-0">
                             <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                                <span class="sr-only">60% Complete</span>
+                                {{-- <span class="sr-only">60% Complete</span> --}}
                             </div>
                         </div>
                     </div>

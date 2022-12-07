@@ -54,7 +54,7 @@
 
                @can('iogt')
                 <li>
-                    <a href="#" class="waves-effect">
+                    <a href="{{route('iogt.index') }}" class="waves-effect">
                         <i class="mdi mdi-translate"></i>
                         <span> IoGT </span>
                     </a>

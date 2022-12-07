@@ -2,15 +2,28 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\IogtController;
 use App\Http\Controllers\RapidProController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+// Route::get('check', function(){
+//     return \App\Models\User::all();
+// });
 Route::view('/login', 'auth.login');
+
+Route::get('/clear-cache', function() {
+    $exitCode = Artisan::call('config:cache');
+    $exitCode = Artisan::call('cache:clear');
+    $exitCode = Artisan::call('optimize');
+    $exitCode = Artisan::call('view:clear');
+    $exitCode = Artisan::call('route:cache');
+    return '<h1>Cache facade value cleared</h1>';
+});
 
 
 Route::get('/', [AuthController::class,'loginPage'])->name('login');
@@ -47,6 +60,15 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::get('rapidpro/flow','rapidFlow')->name('rapid.pro.flow');
 
     });
+
+    Route::controller(IogtController::class)->group(function(){
+
+        Route::get('iogt','index')->name('iogt.index');
+       // Route::get('rapidpro/flow','rapidFlow')->name('rapid.pro.flow');
+
+    });
+
+
 
 
 });

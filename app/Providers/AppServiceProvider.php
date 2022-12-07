@@ -25,14 +25,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
-        view()->share([
-            'appName'=>'Admin Panel',
-            'locale'=>app()->getLocale(),
-            'charset'=>config('app.charset'),
-            'timezone'=>config('app.timezone'),
-            'favicon'=>asset('assets/images/favicon.ico'),
-            'logo'=>asset('assets/images/logo.png'),
-            'logoDark'=>asset('assets/images/logo-dark.png'),
-        ]);
+        // view()->share([
+        //     'appName'=>'Admin Panel',
+        //     'locale'=>app()->getLocale(),
+        //     'charset'=>config('app.charset'),
+        //     'timezone'=>config('app.timezone'),
+        //     'favicon'=>asset('assets/images/favicon.ico'),
+        //     'logo'=>asset('assets/images/logo.png'),
+        //     'logoDark'=>asset('assets/images/logo-dark.png'),
+        // ]);
     }
 }
