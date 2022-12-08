@@ -49,10 +49,11 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <form class="form-row">
-
+                            <form class="">
+                                <div class="add_item">
+                                <div class="form-row">
+                                   
                                 <div class="form-group col-md-10">
-
                                     <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Question title">
                                 </div>
                                 
@@ -68,10 +69,32 @@
                         
                                     </ul>
                                 </div>
+                               {{-- end add item --}}
+                                <div class="form-group col-md-1" >
+                                        <span class="btn btn-success addQuestion"> <i class="fa fa-plus-circle"></i></span>
+                                </div>
 
+                                <div class="form-group col-md-6">
+                                    <input type="checkbox" id="option1" name="option1" value="option1">
+                                    <label for="option1"> Option 1 </label><br>
+                                    <input type="checkbox" id="option2" name="option2" value="option2">
+                                    <label for="option2"> Option 2</label><br>
+                                    <input type="checkbox" id="option3" name="option3" value="option3">
+                                    <label for="option3"> Option 3</label><br><br>
     
+                            </div>
+
+                            </div>
+
+                               
+                             </div>     <div class="form-group col-md-2">
+                                <button type="submit" class="btn btn-primary">Save </button>
+                            </div>
+
+
+                             </form>
                                 {{-- add more question --}}
-                                <div class="col-lg-12" style="visibility: hidden">
+                                <div class="form-group col-lg-12" style="visibility: hidden">
                                     <div class="whole_extra_item_add" id="whole_extra_item_add">
                                         <div class="delete_whole_extra_item" id="delete_whole_extra_item">
                                     <div class="form-row">
@@ -79,13 +102,25 @@
 
                                             <input type="email" name="question_title[]" class="form-control" id="exampleInputEmail2" placeholder="Question title">
                                         </div>
-    
-                                        <div class="form-group col-md-1">
+
+                                    <div class="form-group col-md-1">
                                             <div class="form-row">
                                               <span class="btn btn-success addQuestion"> <i class="fa fa-plus-circle"></i> </span>
                                               <span class="btn btn-danger removeQuestion"> <i class="fa fa-minus-circle"></i> </span>
                                             </div>
-                                          </div>
+                                    </div>
+
+                                     <div class="form-group col-md-6">
+                                            <input type="checkbox" id="option1" name="option1" value="option1">
+                                            <label for="option1"> Option 1 </label><br>
+                                            <input type="checkbox" id="option2" name="option2" value="option2">
+                                            <label for="option2"> Option 2</label><br>
+                                            <input type="checkbox" id="option3" name="option3" value="option3">
+                                            <label for="option3"> Option 3</label><br><br>
+            
+                                    </div>
+    
+                                       
                                         </div>
                                     </div>
                                     </div>
@@ -93,13 +128,6 @@
                                 </div>
 
                                 {{-- END question --}}
-
-
-                                
-                                <div class="form-group col-md-2">
-                                    <button type="submit" class="btn btn-primary">Add Question</button>
-                                </div>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -158,7 +186,7 @@
               counter ++;
            });
              $(document).on("click",".removeQuestion",function(){
-                alert(delete_whole_extra_item);
+                //alert(delete_whole_extra_item);
                $(this).closest(".delete_whole_extra_item").remove();
                
                counter -= 1;
