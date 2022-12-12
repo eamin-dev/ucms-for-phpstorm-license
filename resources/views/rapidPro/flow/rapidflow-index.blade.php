@@ -16,7 +16,7 @@
                         <div class="page-title-right">
                             <ol class="breadcrumb p-0 m-0">
                                 <li class="breadcrumb-item">
-                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fas fa-user-plus"></i>Add Question</button>
+                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fas fa-plus"></i>Add Question</button>
                                 </li>
                             </ol>
                         </div>
@@ -74,28 +74,53 @@
         </div>
     </div>
 
-    <div id="role-edit-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog"><div class="col-md-12">
-            <div class="form-group">
-                <input name="date" type="datetime-local" class="form-control" id="field-1" placeholder="Date & Time">
-            </div>
-        </div>
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit Role & Permissions</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="formContent"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL end-->
 
 @endsection
 
 @section('script')
-    @include('rolePermission.script')
+    {{-- @include('rolePermission.script') --}}
+
+    <script>
+
+        $(document).on('change','#ans_Type',function(){
+
+            var ans_Type =$(this).val();
+
+            if(ans_Type =='check_Box'){
+
+                $('.selectCheck').show();
+            }else{
+                $('.selectCheck').hide();
+            }
+
+            if(ans_Type =='InputBox'){
+                $('.selectType').show();
+            }else{
+                $('.selectType').hide();
+            }
+
+            if(ans_Type =='multiple_Choice'){
+                $('.selectMultiple').show();
+            }else{
+                $('.selectMultiple').hide();
+            }
+            
+        });
+
+    </script>
+    {{-- <script>
+
+        $(document).on('change','#ans_Type',function(){
+
+            var ans_Type =$(this).val();
+
+            if(ans_Type =='InputBox'){
+                $('.selectType').show();
+            }else{
+                $('.selectType').hide();
+            }
+            
+        });
+
+    </script> --}}
 @endsection

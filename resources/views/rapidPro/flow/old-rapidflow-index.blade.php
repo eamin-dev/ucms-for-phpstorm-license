@@ -82,7 +82,7 @@
                                     <input type="checkbox" id="option3" name="option3" value="option3">
                                     <label for="option3"> Option 3</label><br><br>
     
-                            </div>
+                                </div>
 
                             </div>
 
