@@ -46,12 +46,8 @@
 
             </div>
 
-
-
         </div>
         
-        
-
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary waves-effect float-left" data-dismiss="modal">Close</button>
