@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class RapidFlow extends Model
 {
     use HasFactory;
+
+
+    protected $fillable =[ 'question_title',
+                            'ans_Type',
+                            'multiple_answer',
+                            'input_answer',
+                            'checkbox_answer'
+                        ];
 }
