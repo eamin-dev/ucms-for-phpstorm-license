@@ -1,16 +1,16 @@
-<form action="{{ route('store.rapid.pro.flow') }}" method="POST">
+<form action="{{ route('store.rapid.pro.flow') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="modal-body">
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <input name="text" name="question_title"  class="form-control" id="field-1" placeholder="Enter Question title">
+                    <input type="text" name="question_title" required  class="form-control" id="field-1" placeholder="Enter Question title">
                 </div>
             </div>
             
             <div class="col-md-12">
                 <label for="">Select Ans type</label>
-                <select name="ans_type" id="ans_Type" class="form-control">
+                <select name="ans_type" id="ans_type" required class="form-control">
                     <option value="">Select Ans Type</option>
                     <option value="multiple_Choice">Multiple Choice </option>
                     {{-- <option value="check_Box">Check Box</option> --}}
@@ -37,11 +37,11 @@
             </div> --}}
  
              <div class="form-group col-md-12 selectMultiple" style="display: none ;margin-top: 15px;">
-                <input type="radio" id="html" name="multiple_answer[]" value="1">
+                <input type="radio" id="html" name="multiple_answer" value="1">
                     <label for="html">Option 1</label><br>
-                    <input type="radio" id="css" name="multiple_answer[]" value="2">
+                    <input type="radio" id="css" name="multiple_answer" value="2">
                     <label for="css">Option 2</label><br>
-                    <input type="radio" id="javascript" name="multiple_answer[]" value="3">
+                    <input type="radio" id="javascript" name="multiple_answer" value="3">
                     <label for="javascript">Option 3</label>
             </div> 
 
