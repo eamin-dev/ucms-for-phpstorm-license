@@ -58,6 +58,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
         Route::get('rapidpro','createRapidPro')->name('rapid.pro.create');
         Route::get('rapidpro/flow','rapidFlow')->name('rapid.pro.flow');
+        Route::post('rapidpro/flow/store','storeTRapidFlow')->name('store.rapid.pro.flow');
 
     });
 

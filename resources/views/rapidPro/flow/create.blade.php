@@ -1,4 +1,5 @@
-<form id="">
+<form id="" method="POST">
+    @csrf
     <div class="modal-body">
         <div class="row">
             <div class="col-md-12">
@@ -12,7 +13,7 @@
                 <select name="ans_type" id="ans_Type" class="form-control">
                     <option value="">Select Ans Type</option>
                     <option value="multiple_Choice">Multiple Choice </option>
-                    <option value="check_Box">Check Box</option>
+                    {{-- <option value="check_Box">Check Box</option> --}}
                     <option value="InputBox">Input Box</option>
 
                 </select>
@@ -22,7 +23,7 @@
             <br>
             <br>
 
-            <div class="form-group col-md-12 selectCheck" style="display: none">
+            <div class="form-group col-md-8 selectMultiple" style="margin-top: 15px;">
                 <input type="checkbox" id="option1" name="option1" value="option1">
                 <label for="option1"> Option 1 </label><br>
                 <input type="checkbox" id="option2" name="option2" value="option2">
@@ -31,12 +32,16 @@
                 <label for="option3"> Option 3</label><br><br>
             </div>
 
+            {{-- <div class="form-group mt-1 mr-1" style="margin-top: 10px">
+                <span class="btn btn-sm btn-success addQuestion"> <i class="fa fa-plus-circle"></i></span>
+            </div> --}}
+
             <div class="form-group col-md-12 selectType" style="display: none">
                 <label for=""> Type Answer</label>
                 <input type="text" class="form-control" placeholder="Enter Answer here">
             </div>
 
-            <div class="form-group col-md-12 selectMultiple" style="display: none">
+            {{-- <div class="form-group col-md-12 selectMultiple" style="display: none">
                 <input type="radio" id="html" name="fav_language" value="HTML">
                     <label for="html">Option 1</label><br>
                     <input type="radio" id="css" name="fav_language" value="CSS">
@@ -44,7 +49,7 @@
                     <input type="radio" id="javascript" name="fav_language" value="JavaScript">
                     <label for="javascript">Option 3</label>
 
-            </div>
+            </div> --}}
 
         </div>
         

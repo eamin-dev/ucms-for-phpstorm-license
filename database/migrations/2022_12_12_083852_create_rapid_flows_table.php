@@ -14,7 +14,12 @@ class CreateRapidFlowsTable extends Migration
     public function up()
     {
         Schema::create('rapid_flows', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('question_title');
+            $table->integer('ans_Type');
+            $table->string('multiple_answer')->nullable();
+            $table->string('input_answer')->nullable();
+            $table->string('checkbox_answer')->nullable();
             $table->timestamps();
         });
     }

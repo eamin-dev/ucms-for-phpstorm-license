@@ -108,19 +108,5 @@
         });
 
     </script>
-    {{-- <script>
-
-        $(document).on('change','#ans_Type',function(){
-
-            var ans_Type =$(this).val();
-
-            if(ans_Type =='InputBox'){
-                $('.selectType').show();
-            }else{
-                $('.selectType').hide();
-            }
-            
-        });
-
-    </script> --}}
+ 
 @endsection
