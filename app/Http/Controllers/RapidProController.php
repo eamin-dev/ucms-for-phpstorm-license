@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RapidflowRequest;
 use App\Models\RapidFlow;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class RapidProController extends Controller
 {
@@ -40,9 +41,15 @@ class RapidProController extends Controller
     public function rapidProJson(Request $request){
 
 
-        $rapidFlowjson = RapidFlow::where('id',$request->id)->first();
+    $rapidFlowjson = RapidFlow::where('id',$request->id)->first();
 
-        return response()->json($rapidFlowjson);
+      $test['token'] = time();
+      $test['data'] = json_encode($rapidFlowjson);
+      $fileName = $test['token']. '_datafile.json';
+      File::put(public_path('/upload/json/'.$fileName),$test);
+      return response()->download(public_path('/upload/json/'.$fileName));
+      
+      //return response()->download($pathToFile, $name, $headers);
 
 
     }
