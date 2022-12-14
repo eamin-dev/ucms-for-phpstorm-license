@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CountryOfficeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IogtController;
 use App\Http\Controllers\RapidProController;
@@ -69,6 +70,14 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
        // Route::get('rapidpro/flow','rapidFlow')->name('rapid.pro.flow');
 
     });
+
+    Route::controller(CountryOfficeController::class)->group(function(){
+
+        Route::get('country/office','index')->name('get.country.office');
+
+    });
+
+
 
 
 

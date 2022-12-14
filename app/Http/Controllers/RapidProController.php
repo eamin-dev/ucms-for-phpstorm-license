@@ -41,15 +41,14 @@ class RapidProController extends Controller
     public function rapidProJson(Request $request){
 
 
-    $rapidFlowjson = RapidFlow::where('id',$request->id)->first();
+    $rapidFlowData = RapidFlow::where('id',$request->id)->first();
 
-      $test['token'] = time();
-      $test['data'] = json_encode($rapidFlowjson);
-      $fileName = $test['token']. '_datafile.json';
-      File::put(public_path('/upload/json/'.$fileName),$test);
-      return response()->download(public_path('/upload/json/'.$fileName));
-      
-      //return response()->download($pathToFile, $name, $headers);
+    $jsonData=json_encode($rapidFlowData);
+
+    $fileName = time() . '_datafile.json';
+    $fileStorePath = public_path('/upload/json/'.$fileName);
+    File::put($fileStorePath, $jsonData);
+    return response()->download($fileStorePath);
 
 
     }

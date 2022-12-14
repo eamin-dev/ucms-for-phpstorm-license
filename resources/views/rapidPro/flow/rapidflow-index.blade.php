@@ -52,7 +52,7 @@
                                         <th class="text-center">{{ $data->question_title }}</th>   
                                         <th class="text-center">{{ $data->ans_type }}</th>   
                                         <th class="text-center">
-                                            <a href="{{route('store.rapid.pro.json',$data->id) }}" class="btn btn-primary btn-sm">Json format</a>
+                                            <a href="{{route('store.rapid.pro.json',$data->id) }}" class="btn btn-primary btn-sm">Export Json </a>
                                         </th>   
                                         
                                       <tr>
