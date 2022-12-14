@@ -52,21 +52,6 @@ class AuthController extends Controller
         } catch (\Exception $e) {
             return AppHelper::errorRedirect(null,$e);
         }
-        
-        // $input = $request->all();
-
-        // if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
-        // {
-        //     if (auth()->user()->status == 1)
-        //     {
-        //             return redirect()->route('dashboard');
-        //     }
-        // }
-        // else
-        // {
-        //     return redirect()->route('login')
-        //         ->with('error','UserName And Password Are Wrong.');
-        // }
     }
 
     /**

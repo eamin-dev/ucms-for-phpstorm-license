@@ -38,7 +38,7 @@
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                     <thead>
-                                      <tr style="background-color: #003366">
+                                      <tr style="background-color: #6aa8e7">
                                         <th class="text-center">#</th>
                                         <th class="text-center">Question Title </th>
                                         <th class="text-center">Answer Type</th>
@@ -52,7 +52,7 @@
                                         <th class="text-center">{{ $data->question_title }}</th>   
                                         <th class="text-center">{{ $data->ans_type }}</th>   
                                         <th class="text-center">
-                                            <a href="" class="btn btn-primary btn-sm">Json format</a>
+                                            <a href="{{route('store.rapid.pro.json',$data->id) }}" class="btn btn-primary btn-sm">Json format</a>
                                         </th>   
                                         
                                       <tr>

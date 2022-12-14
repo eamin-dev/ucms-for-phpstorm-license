@@ -1,16 +1,31 @@
 <form action="{{ route('store.rapid.pro.flow') }}" method="POST" enctype="multipart/form-data">
     @csrf
+        
     <div class="modal-body">
+
+        {{-- error show --}}
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <p><strong>Opps Something went wrong</strong></p>
+                <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+                </ul>
+            </div>
+        @endif
+        {{-- end error show --}}
+
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <input type="text" name="question_title" required  class="form-control" id="field-1" placeholder="Enter Question title">
+                    <input type="text" name="question_title"   class="form-control" id="field-1" placeholder="Enter Question title">
                 </div>
             </div>
             
             <div class="col-md-12">
                 <label for="">Select Ans type</label>
-                <select name="ans_type" id="ans_type" required class="form-control">
+                <select name="ans_type" id="ans_type"  class="form-control">
                     <option value="">Select Ans Type</option>
                     <option value="multiple_Choice">Multiple Choice </option>
                     {{-- <option value="check_Box">Check Box</option> --}}

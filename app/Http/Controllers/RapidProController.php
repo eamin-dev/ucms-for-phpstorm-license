@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RapidflowRequest;
 use App\Models\RapidFlow;
 use Illuminate\Http\Request;
 
@@ -22,13 +23,9 @@ class RapidProController extends Controller
         return view('rapidPro.flow.rapidflow-index',compact('allData'));
     }
 
-    public function storeTRapidFlow(Request $request){
+    public function storeTRapidFlow(RapidflowRequest $request){
 
-        $request->validate([
-            'question_title'=> 'required',
-            'ans_type' =>'required'
-        ]);
-        // $rapiadflow = new RapidFlow();
+        
          RapidFlow::create([
                 'question_title'=> $request->question_title,
                 'ans_type' => $request->ans_type,
@@ -38,5 +35,15 @@ class RapidProController extends Controller
 
       return redirect()->back();
         
+    }
+
+    public function rapidProJson(Request $request){
+
+
+        $rapidFlowjson = RapidFlow::where('id',$request->id)->first();
+
+        return response()->json($rapidFlowjson);
+
+
     }
 }
