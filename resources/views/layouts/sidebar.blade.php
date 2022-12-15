@@ -35,14 +35,9 @@
                     </a>
                 </li>
                 @endcan
+                
 
                 @can('rapid_pro')
-                <li>
-                    <a href="{{route('rapid.pro.create') }}" class="waves-effect">
-                        <i class="mdi mdi-box-shadow"></i>
-                        <span> RapidPro </span>
-                    </a>
-                </li>
                 <li>
                     <a href="{{route('rapid.pro.flow') }}" class="waves-effect">
                         <i class="mdi mdi-box-shadow"></i>
@@ -50,8 +45,26 @@
                     </a>
                 </li>
                @endcan
+            
+            @can('rapid_pro')
 
+            <li>
+                <a href="javascript: void(0);" class="waves-effect">
+                    <i class="mdi mdi-widgets"></i>
+                    <span> Rapid Pro </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="nav-second-level" aria-expanded="false">
+                    <li><a href="{{route('rapid.pro.create')}}">Rapid Pro</a></li>
+                    <li><a href="{{ route('get.country.office') }}">Country Office</a></li>
+                    <li><a href="#">Themefic Area</a></li>
 
+                </ul>
+            </li>
+                
+            @endcan
+               
+        
                @can('iogt')
                 <li>
                     <a href="{{route('iogt.index') }}" class="waves-effect">

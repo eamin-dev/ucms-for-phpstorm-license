@@ -9,6 +9,7 @@ class CountryOfficeController extends Controller
     
     public function index(){
 
+        return view('rapidPro.countryOffice.index');
         
     }
 }
