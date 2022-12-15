@@ -1,4 +1,4 @@
-<form action="{{ route('store.rapid.pro.flow') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('store.rapid.pro.flow') }}"  method="POST" enctype="multipart/form-data">
     @csrf
         
     <div class="modal-body">
@@ -6,7 +6,6 @@
         {{-- error show --}}
         @if($errors->any())
             <div class="alert alert-danger">
-                <p><strong>Opps Something went wrong</strong></p>
                 <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -19,7 +18,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <input type="text" name="question_title"   class="form-control" id="field-1" placeholder="Enter Question title">
+                    <input type="text" name="question_title" id="question_title"   class="form-control"  placeholder="Enter Question title">
                 </div>
             </div>
             

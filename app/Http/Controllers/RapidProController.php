@@ -4,16 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RapidflowRequest;
 use App\Models\RapidFlow;
+use App\Utilities\AppHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
 class RapidProController extends Controller
 {
     
-
     public function createRapidPro(){
 
-       
         return view('rapidPro.index-rapid');
 
     }
@@ -26,7 +25,6 @@ class RapidProController extends Controller
 
     public function storeTRapidFlow(RapidflowRequest $request){
 
-        
          RapidFlow::create([
                 'question_title'=> $request->question_title,
                 'ans_type' => $request->ans_type,
@@ -34,21 +32,21 @@ class RapidProController extends Controller
                 'input_answer'=> $request->input_answer,
             ]);
 
-      return redirect()->back();
+     return AppHelper::successResponse('Rapid Flow created successfully');
+
+      //return redirect()->back();
         
     }
 
     public function rapidProJson(Request $request){
 
+            $rapidFlowData = RapidFlow::where('id',$request->id)->first();
+            $jsonData=json_encode($rapidFlowData);
 
-    $rapidFlowData = RapidFlow::where('id',$request->id)->first();
-
-    $jsonData=json_encode($rapidFlowData);
-
-    $fileName = time() . '_datafile.json';
-    $fileStorePath = public_path('/upload/json/'.$fileName);
-    File::put($fileStorePath, $jsonData);
-    return response()->download($fileStorePath);
+            $fileName = time() . '_datafile.json';
+            $fileStorePath = public_path('/upload/json/'.$fileName);
+            File::put($fileStorePath, $jsonData);
+            return response()->download($fileStorePath);
 
 
     }

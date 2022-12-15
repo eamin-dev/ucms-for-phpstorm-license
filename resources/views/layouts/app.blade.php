@@ -13,6 +13,13 @@
     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" id="bootstrap-stylesheet" />
     <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css" id="app-stylesheet" />
+
+     <!-- Table datatable css -->
+     <link href="{{asset('assets')}}/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+     <link href="{{asset('assets')}}/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+     <link href="{{asset('assets')}}/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+     <link href="{{asset('assets')}}/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+     <link href="{{asset('assets')}}/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <!-- Plugins css-->
     <link href="{{asset('assets/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- summernote css/js -->
@@ -68,8 +75,18 @@
 <!-- END wrapper -->
 
 
+
+
 <!-- Vendor js -->
 <script src="{{asset('assets/js/vendor.min.js')}}"></script>
+
+
+  <!-- Vendor validation js -->
+
+  <script src="{{asset('assets/libs/jquery-validation/jquery.validate.min.js')}}"></script>
+
+  <!-- Validation init js-->
+  <script src="{{asset('assets/js/pages/form-validation.init.js')}}"></script>
 
 <script src="{{asset('assets/libs/moment/moment.min.js')}}"></script>
 <script src="{{asset('assets/libs/jquery-scrollto/jquery.scrollTo.min.js')}}"></script>
@@ -100,10 +117,63 @@
 <script src="{{asset('assets/js/pages/responsive-table.init.js')}}"></script>
 <!-- Modal-Effect -->
 <script src="{{asset('assets/libs/custombox/custombox.min.js')}}"></script>
+{{-- sweetalert --}}
+<script src="{{asset('assets/js/sweetalert2.js')}}"></script>
 <!-- Toastr js-->
 <script src="https://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
 
+
+
+
 {!! Toastr::message() !!}
+
+<script>
+    @if(Session::has('message'))
+      var type="{{Session::get('alert-type','info')}}"
+      switch(type){
+          case 'info':
+               toastr.info("{{ Session::get('message') }}");
+               break;
+          case 'success':
+              toastr.success("{{ Session::get('message') }}");
+              break;
+          case 'warning':
+             toastr.warning("{{ Session::get('message') }}");
+              break;
+          case 'error':
+              toastr.error("{{ Session::get('message') }}");
+              break;
+        case 'danger':
+              toastr.error("{{ Session::get('message') }}");
+              break;
+      }
+    @endif
+ </script>
+
+
+{{-- datatable js --}}
+<script src="{{asset('assets')}}/libs/datatables/jquery.dataTables.min.js"></script>
+<script src="{{asset('assets')}}/libs/datatables/dataTables.bootstrap4.min.js"></script>
+
+<script src="{{asset('assets')}}/libs/datatables/dataTables.responsive.min.js"></script>
+<script src="{{asset('assets')}}/libs/datatables/responsive.bootstrap4.min.js"></script>
+
+<script src="{{asset('assets')}}/libs/datatables/dataTables.buttons.min.js"></script>
+<script src="{{asset('assets')}}/libs/datatables/buttons.bootstrap4.min.js"></script>
+
+<script src="{{asset('assets')}}/libs/jszip/jszip.min.js"></script>
+<script src="{{asset('assets')}}/libs/pdfmake/pdfmake.min.js"></script>
+<script src="{{asset('assets')}}/libs/pdfmake/vfs_fonts.js"></script>
+
+<script src="{{asset('assets')}}/libs/datatables/buttons.html5.min.js"></script>
+<script src="{{asset('assets')}}/libs/datatables/buttons.print.min.js"></script>
+
+<script src="{{asset('assets')}}/libs/datatables/dataTables.fixedHeader.min.js"></script>
+<script src="{{asset('assets')}}/libs/datatables/dataTables.keyTable.min.js"></script>
+<script src="{{asset('assets')}}/libs/datatables/dataTables.scroller.min.js"></script>
+
+<!-- Datatables init -->
+<script src="{{asset('assets')}}/js/pages/datatables.init.js"></script>
 
 <!-- summernote css/js -->
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">

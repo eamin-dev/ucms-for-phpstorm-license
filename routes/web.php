@@ -5,6 +5,7 @@ use App\Http\Controllers\CountryOfficeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IogtController;
 use App\Http\Controllers\RapidProController;
+use App\Http\Controllers\ThemeficAreaController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -74,6 +75,20 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::controller(CountryOfficeController::class)->group(function(){
 
         Route::get('country/office','index')->name('get.country.office');
+        Route::post('country-office/store','store')->name('country.office.store');
+        Route::get('country-office/edit/{id}','edit')->name('country.office.edit');
+        Route::post('country-office/update/{id}','update')->name('country-office.update');
+        Route::get('country-office/delete/{id}','delete')->name('country.office.delete');
+
+    });
+
+    Route::controller(ThemeficAreaController::class)->group(function(){
+
+        Route::get('themefic/area','index')->name('get.themefic.area');
+        Route::post('themefic-area/store','store')->name('themefic.area.store');
+        Route::get('themefic-area/edit/{id}','edit')->name('themefic.area.edit');
+        Route::post('themefic-area/update/{id}','update')->name('themefic.area.update');
+        Route::get('themefic-area/delete/{id}','delete')->name('themefic.area.delete');
 
     });
 
