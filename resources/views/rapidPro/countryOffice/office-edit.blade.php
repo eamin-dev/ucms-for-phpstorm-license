@@ -79,6 +79,15 @@
                                 <div class="card-body">
                                     <form method="POST" action="{{ route('country-office.update',$editData->id) }}">
                                         @csrf
+                                        @if($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                            </ul>
+                                        </div>
+                                      @endif
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Country Office</label>
                                             <input type="text" class="form-control" name="name" value="{{$editData->name }}" id="name" required placeholder="Enter Country Office Name">

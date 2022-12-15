@@ -35,12 +35,12 @@ class ThemeficAreaController extends Controller
  
          $editData=ThemeficArea::findorFail($request->id);
          $officeNames = ThemeficArea::select('id','name')->orderBy('id','desc')->get();
-         return view('rapidPro.countryOffice.office-edit',compact('editData','officeNames'));
+         return view('rapidPro.themeficArea.edit-area',compact('editData','officeNames'));
  
        }
  
        public function update(Request $request){
- 
+
             $this->validate($request,[
                 'name'=>'required|unique:themefic_areas,name,'.$request->id,
             ]);

@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Country Office </h4>
+                        <h4 class="page-title">Themefic Area </h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb p-0 m-0">
                              
@@ -32,7 +32,7 @@
                         <div class="col-xl-6">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">View Country Office</h3>
+                                    <h3 class="card-title">View Themefic Area</h3>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
@@ -49,9 +49,10 @@
                                                     @foreach ($officeNames as $key=>$office)
                                                     <tr>
                                                         <td class="text-center">{{ $key +1  }} </td>
-                                                        <td class="text-center"> {{ $office->name }}</td>
+                                                        <td class="text-center"> <span class="badge badge-primary">{{ $office->name }}</span> </td>
                                                         <td class="text-center">
                                                             <a href="{{ route('country.office.edit',$office->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
+                                                            <a href="{{ route('country.office.delete',$office->id) }}" id="delete" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                                                         </td>
 
                                                     </tr>
@@ -73,14 +74,23 @@
                         <div class="col-xl-6">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Edit Country office</h3>
+                                    <h3 class="card-title">Edit Themefic Area</h3>
                                 </div>
+                                @if($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                    </ul>
+                                </div>
+                              @endif
                                 <div class="card-body">
-                                    <form method="POST" action="{{ route('country-office.update',$editData->id) }}">
+                                    <form method="POST" action="{{ route('themefic.area.update',$editData->id) }}">
                                         @csrf
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Country Office</label>
-                                            <input type="text" class="form-control" name="name" value="{{$editData->name }}" id="name" required placeholder="Enter Country Office Name">
+                                            <label for="exampleInputEmail1">Themefic Area</label>
+                                            <input type="text" class="form-control" name="name" value="{{$editData->name }}" id="name" required placeholder="Enter Themefic Area Name">
                                             
                                         </div>
                                         <div class="form-group">
@@ -112,5 +122,30 @@
 @endsection
 
 @section('script')
-    @include('rolePermission.script')
+    <script type="text/javascript">
+        $(function(){
+          $(document).on('click','#delete',function(e){
+          e.preventDefault();
+        var link = $(this).attr("href");
+                Swal.fire({
+            title: 'Are you sure?',
+            text: "delete Themefic Area!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Confirm it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+            window.location.href = link;
+              Swal.fire(
+                'approved!',
+                'Themefic Area has been deleted.',
+                'success'
+              )
+            }
+          })
+    });
+    });
+    </script>
 @endsection

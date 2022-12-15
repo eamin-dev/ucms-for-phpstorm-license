@@ -49,7 +49,7 @@
                                                     @foreach ($officeNames as $key=>$office)
                                                     <tr>
                                                         <td class="text-center">{{ $key +1  }} </td>
-                                                        <td class="text-center"> {{ $office->name }}</td>
+                                                        <td class="text-center"><span class="badge badge-primary"> {{ $office->name }}</span></td>
                                                         <td class="text-center">
                                                             <a href="{{ route('country.office.edit',$office->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
                                                             <a href="{{ route('country.office.delete',$office->id) }}" id="delete" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
