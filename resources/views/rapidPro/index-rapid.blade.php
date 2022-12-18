@@ -53,8 +53,19 @@
                                                 <td class="text-center"> File Id:<span class="badge badge-primary"> {{ $flow->file_id }} </span></td>
                                                 <td class="text-center">{{ date('d-M-Y',strtotime($flow->date)) }} </td>
                                                 <td class="text-center">
-                                                    <a href="#" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
-                                                    <a href="#" id="delete" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                                    {{-- <a href="#" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
+                                                    <a href="#" id="delete" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a> --}}
+
+                                                    <div class="dropdown show">
+                                                        <a class="btn btn-sm btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                          ....
+                                                        </a>
+                                                      
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                          <a class="dropdown-item" href="#">Edit</a>
+                                                          <a class="dropdown-item" id="delete" href="#">Delete</a>
+                                                        </div>
+                                                      </div>
                                                 </td>
 
                                             </tr>
@@ -106,5 +117,30 @@
 @endsection
 
 @section('script')
-    @include('rolePermission.script')
+<script type="text/javascript">
+    $(function(){
+      $(document).on('click','#delete',function(e){
+      e.preventDefault();
+    var link = $(this).attr("href");
+            Swal.fire({
+        title: 'Are you sure?',
+        text: "delete Rapid-Pro flow!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Confirm it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+        window.location.href = link;
+          Swal.fire(
+            'approved!',
+            'Rapid-Pro flow has been deleted.',
+            'success'
+          )
+        }
+      })
+});
+});
+</script>
 @endsection
