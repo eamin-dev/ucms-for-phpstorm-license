@@ -14,7 +14,11 @@ class CreateFlowsTable extends Migration
     public function up()
     {
         Schema::create('flows', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('country_office_id');
+            $table->dateTime('datetime')->nullable();
+            $table->string('file_id');
+            $table->unsignedBigInteger('themefic_area_id');
             $table->timestamps();
         });
     }

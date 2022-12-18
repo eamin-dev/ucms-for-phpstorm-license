@@ -5,6 +5,7 @@ use App\Http\Controllers\CountryOfficeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IogtController;
 use App\Http\Controllers\RapidProController;
+use App\Http\Controllers\RapidProFlowController;
 use App\Http\Controllers\ThemeficAreaController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -58,7 +59,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::controller(RapidProController::class)->group(function(){
 
-        Route::get('rapidpro','createRapidPro')->name('rapid.pro.create');
+       // Route::get('rapidpro','createRapidPro')->name('rapid.pro.create');
         Route::get('rapidpro/flow','rapidFlow')->name('rapid.pro.flow');
         Route::post('rapidpro/flow/store','storeTRapidFlow')->name('store.rapid.pro.flow');
         Route::get('rapidpro/json/{id}','rapidProJson')->name('store.rapid.pro.json');
@@ -89,6 +90,14 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::get('themefic-area/edit/{id}','edit')->name('themefic.area.edit');
         Route::post('themefic-area/update/{id}','update')->name('themefic.area.update');
         Route::get('themefic-area/delete/{id}','delete')->name('themefic.area.delete');
+
+    });
+
+    Route::controller(RapidProFlowController::class)->group(function(){
+
+        Route::get('rapidpro-flow','createRapidPro')->name('rapid.pro.create');
+        Route::post('rapidpro-flow/store','storeFlow')->name('rapid.flow.store');
+
 
     });
 

@@ -35,10 +35,44 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                               
+                                <div class="col-md-12 col-sm-12 col-12">
+                                    <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">#</th>
+                                                <th class="text-center">File Id</th>
+                                                <th class="text-center">Date</th>
+                                                <th class="text-center">Actions</th>
+                                        </thead>
 
+                                        <tbody>
 
-                              
+                                            @forelse ($allFlows as $key=>$flow)
+                                            <tr>
+                                                <td class="text-center">{{ $key+1 }}</td>
+                                                <td class="text-center"> File Id:<span class="badge badge-primary"> {{ $flow->file_id }} </span></td>
+                                                <td class="text-center">{{ date('d-M-Y',strtotime($flow->date)) }} </td>
+                                                <td class="text-center">
+                                                    <a href="#" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
+                                                    <a href="#" id="delete" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                                </td>
+
+                                            </tr>
+                                                
+                                            @empty
+
+                                                <tr>
+                                                    <td class="text-center">No data found</td>
+                                                </tr>
+                                                
+                                            @endforelse
+                                           
+                                           
+                                       
+                                        </tbody>
+                                    </table>
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -67,21 +101,7 @@
         </div>
     </div>
 
-    <div id="role-edit-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit Role & Permissions</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="formContent"></div>
-            </div>
-        </div>
-    </div>
 
-    <!-- MODAL end-->
 
 @endsection
 
