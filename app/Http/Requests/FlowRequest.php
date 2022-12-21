@@ -26,7 +26,7 @@ class FlowRequest extends FormRequest
         return [
             'country_office_id' => 'required|integer',
             'date' =>'required',
-            'file_id'=>'required|string|max:100',
+            'file_id'=>'required|string|max:100|unique:flows,file_id',
             'themefic_area_id'=>'required|integer',
         ];
     }

@@ -14,7 +14,9 @@ class CreateFlowQuestionAnswersTable extends Migration
     public function up()
     {
         Schema::create('flow_question_answers', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('flow_question_id');
+            $table->string('answer')->nullable();
             $table->timestamps();
         });
     }
