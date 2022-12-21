@@ -10,11 +10,11 @@ class RapidFlow extends Model
     use HasFactory;
 
     protected $fillable =[ 
-        
-            'question_title',
-            'ans_type',
-            'multiple_answer',
-            'input_answer',
-            'checkbox_answer'
+
+        'question_title',
+        'ans_type',
+        'multiple_answer',
+        'input_answer',
+        'checkbox_answer'
     ];
 }

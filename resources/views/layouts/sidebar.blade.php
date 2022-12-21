@@ -57,7 +57,7 @@
                 <ul class="nav-second-level" aria-expanded="false">
                     <li><a href="{{route('rapid.pro.create')}}">Rapid Pro</a></li>
                     <li><a href="{{ route('get.country.office') }}">Country Office</a></li>
-                    <li><a href="{{ route('get.themefic.area') }}">Themefic Area</a></li>
+                    <li><a href="{{ route('themefic-area.view') }}">Themefic Area</a></li>
 
                 </ul>
             </li>

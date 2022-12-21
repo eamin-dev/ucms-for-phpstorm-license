@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CountryOfficeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IogtController;
+use App\Http\Controllers\NewThemeficController;
 use App\Http\Controllers\RapidProController;
 use App\Http\Controllers\RapidProFlowController;
 use App\Http\Controllers\ThemeficAreaController;
@@ -83,6 +84,24 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     });
 
+    // Route::controller(ZoneController::class)->group(function (){
+    //     Route::get('zones','view')->name('zone.view');
+    //     Route::get('zones/{zone}','getZoneById')->name('zones.getZoneById');
+    //     Route::post('zones','store')->name('zone.store');
+    //     Route::patch('zones/update/{zone}','update')->name('zone.update');
+    //     Route::delete('zones/zoneDeleteById','zoneDeleteById')->name('zone.zoneDeleteById');
+    // });
+
+
+    Route::controller(NewThemeficController::class)->group(function (){
+
+        Route::get('themefic-area','view')->name('themefic-area.view');
+        Route::get('themefic-area/{area}','getAreaById')->name('themefic-area.getAreaById');
+        Route::post('themefic-area','store')->name('themefic-area.store');
+        Route::patch('themefic-area/update/{area}','update')->name('themefic-area.update');
+        Route::delete('themefic-area/areaDeleteById','areaDeleteById')->name('themefic-area.areaDeleteById');
+    });
+
     Route::controller(ThemeficAreaController::class)->group(function(){
 
         Route::get('themefic/area','index')->name('get.themefic.area');
@@ -100,6 +119,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 
     });
+
+
+   
 
 
 
