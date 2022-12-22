@@ -81,7 +81,7 @@
                                                         <div class="row">
                                                             <div class="form-group col-12">
                                                                 <label for="name">Name <span class="text-danger">*</span></label>
-                                                                <input id="name" placeholder="Name" value="name" type="text" name="name" class="form-control">
+                                                                <input id="name" placeholder="Name" value="" type="text" name="name" class="form-control">
                                                             </div>
 
 

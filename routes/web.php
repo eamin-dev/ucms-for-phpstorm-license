@@ -84,14 +84,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     });
 
-    // Route::controller(ZoneController::class)->group(function (){
-    //     Route::get('zones','view')->name('zone.view');
-    //     Route::get('zones/{zone}','getZoneById')->name('zones.getZoneById');
-    //     Route::post('zones','store')->name('zone.store');
-    //     Route::patch('zones/update/{zone}','update')->name('zone.update');
-    //     Route::delete('zones/zoneDeleteById','zoneDeleteById')->name('zone.zoneDeleteById');
-    // });
-
 
     Route::controller(NewThemeficController::class)->group(function (){
 

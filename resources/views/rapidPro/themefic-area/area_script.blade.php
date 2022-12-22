@@ -66,12 +66,11 @@
 
             if ($('#action').val() === 'edit') {
                 let areaId = $('#area_id').val();
-              
+                url = "{{ route('themefic-area.update',['area'=> '__areaId']) }}"
                 url = url.replace("__areaId", areaId);
             }
 
             let formData = new FormData(this);
-
 
             $.ajax({
                 url: url,
