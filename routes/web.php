@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CountryOfficeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IogtController;
+use App\Http\Controllers\NewRapidFlowController;
 use App\Http\Controllers\NewThemeficController;
 use App\Http\Controllers\RapidProController;
 use App\Http\Controllers\RapidProFlowController;
@@ -84,23 +85,13 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     });
 
-
-    Route::controller(NewThemeficController::class)->group(function (){
+    Route::controller(ThemeficAreaController::class)->group(function(){
 
         Route::get('themefic-area','view')->name('themefic-area.view');
         Route::get('themefic-area/{area}','getAreaById')->name('themefic-area.getAreaById');
         Route::post('themefic-area','store')->name('themefic-area.store');
         Route::patch('themefic-area/update/{area}','update')->name('themefic-area.update');
         Route::delete('themefic-area/areaDeleteById','areaDeleteById')->name('themefic-area.areaDeleteById');
-    });
-
-    Route::controller(ThemeficAreaController::class)->group(function(){
-
-        Route::get('themefic/area','index')->name('get.themefic.area');
-        Route::post('themefic-area/store','store')->name('themefic.area.store');
-        Route::get('themefic-area/edit/{id}','edit')->name('themefic.area.edit');
-        Route::post('themefic-area/update/{id}','update')->name('themefic.area.update');
-        Route::get('themefic-area/delete/{id}','delete')->name('themefic.area.delete');
 
     });
 
@@ -109,6 +100,15 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::get('rapidpro-flow','createRapidPro')->name('rapid.pro.create');
         Route::post('rapidpro-flow/store','storeFlow')->name('rapid.flow.store');
 
+    });
+
+    Route::controller(NewRapidFlowController::class)->group(function(){
+
+        Route::get('rapid-pro/flow','view')->name('rapid.flow.view');
+        Route::get('rapid-pro/flow/{flow}','getRapidFlowId')->name('rapid.flow.getRapidFlowId');
+        Route::post('rapidpro/flow','store')->name('rapid.flow.store');
+        Route::patch('rapidpro/flow/update/{flow}','update')->name('rapid.flow.update');
+        Route::delete('rapidpro/flow/flowDeleteById','flowDeleteById')->name('rapid.flow.flowDeleteById');
 
     });
 
