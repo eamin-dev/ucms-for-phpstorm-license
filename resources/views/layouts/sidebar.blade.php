@@ -56,7 +56,7 @@
                 </a>
                 <ul class="nav-second-level" aria-expanded="false">
                     <li><a href="{{route('rapid.flow.view')}}">Rapid Pro</a></li>
-                    <li><a href="{{route('rapid.pro.create')}}">Rapid Pro(Old)</a></li>
+                    {{-- <li><a href="{{route('rapid.pro.create')}}">Rapid Pro(Old)</a></li> --}}
                     <li><a href="{{ route('get.country.office') }}">Country Office</a></li>
                     <li><a href="{{ route('themefic-area.view') }}">Themefic Area</a></li>
 

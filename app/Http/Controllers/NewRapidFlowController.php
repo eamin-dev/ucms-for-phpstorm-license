@@ -147,6 +147,12 @@ class NewRapidFlowController extends Controller
     }
 
     public function viewFlow($flow){
-        return $flow;
+       // return $flow;
+
+       $flowData = Flow::where('id',$flow)->first();
+
+       $allQuestions = FlowQuestion::where('id',$flow)->get();
+       return view('rapidflow.question.index',compact('flowData','allQuestions'));
+
     }
 }

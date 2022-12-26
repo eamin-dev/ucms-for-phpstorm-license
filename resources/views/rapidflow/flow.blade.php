@@ -40,7 +40,7 @@
                         <div class="card-tools float-right">
                             <ul class="nav nav-pills ml-auto">
                                 <li class="nav-item">
-                                  <button id="addNew" name="addNew" class="btn btn-primary  text-white"><i class="fa fa-plus-circle"></i> Add ThemeficArea</button>
+                                  <button id="addNew" name="addNew" class="btn btn-primary  text-white"><i class="fa fa-plus-circle"></i> Add Rapid-Pro</button>
                                 </li>
                             </ul>
                         </div>

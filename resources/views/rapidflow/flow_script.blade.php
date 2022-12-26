@@ -112,33 +112,33 @@
 
     }
 
-    // function showModalShow() {
-    //     $(document).on('click', '.showDetails', function() {
-    //         let flowId = $(this).data('flow-id');
-    //         myFormReset();
-    //         let showTable = $('#showTable');
-    //         showTable.html('');
-    //         let url = "{{ route('rapid.flow.getRapidFlowId',['flow' => '__flowId']) }}";
-    //         url = url.replace("__flowId", flowId);
+    function showModalShow() {
+        $(document).on('click', '.showDetails', function() {
+            let flowId = $(this).data('file-id');
+            myFormReset();
+            let showTable = $('#showTable');
+            showTable.html('');
+            let url = "{{ route('rapid.flow.getRapidFlowId',['flow' => '__flowId']) }}";
+            url = url.replace("__flowId", flowId);
 
-    //         $.ajax({
-    //             url: url,
-    //             type: "get",
-    //             dataType: "json",
-    //             complete: function(data) {
-    //                 var district = data.responseJSON.district;
-    //                 var html = '<tr><th>Zone </th><td>' + district.zone.name + '</td></tr>';
-    //                 html += '<tr><th> Name(En)</th><td>' + district.name + '</td></tr>';
-    //                 html += '<tr><th> Name(Bn)</th><td>' + district.bn_name + '</td></tr>';
-    //                 showTable.html(html);
+            $.ajax({
+                url: url,
+                type: "get",
+                dataType: "json",
+                complete: function(data) {
+                    var district = data.responseJSON.district;
+                    var html = '<tr><th>Zone </th><td>' + district.zone.name + '</td></tr>';
+                    html += '<tr><th> Name(En)</th><td>' + district.name + '</td></tr>';
+                    html += '<tr><th> Name(Bn)</th><td>' + district.bn_name + '</td></tr>';
+                    showTable.html(html);
 
-    //                 $('.modal-title').text('District Details');
-    //                 $('#showModal').modal('show');
-    //             }
-    //         })
-    //     });
+                    $('.modal-title').text('District Details');
+                    $('#showModal').modal('show');
+                }
+            })
+        });
 
-    // }
+    }
 
     function editModalShow() {
         $(document).on('click', '.edit', function() {
@@ -172,10 +172,10 @@
 
     function confirmDeleteModalShow() {
         $(document).on('click', '.delete', function() {
-            let districtId = $(this).data('flow-id');
-            let districtName = $(this).data('district-name');
-            $('#districtId').val(districtId);
-            $('#deleteValueName').html(districtName);
+            let flowId = $(this).data('file-id');
+            let fileName = $(this).data('file_id');
+            $('#districtId').val(flowId);
+            $('#deleteValueName').html(fileName);
             $('#deleteValueError').html('');
             $('.modal-title').text('Confirmation');
             $('#confirmModal').modal('show');

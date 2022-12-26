@@ -19,6 +19,7 @@ class RapidProController extends Controller
 
     public function rapidFlow(){
 
+       // dd('ok');
         $allData = RapidFlow::select('id','question_title','ans_type')->orderBy('id','asc')->get();
         return view('rapidPro.flow.rapidflow-index',compact('allData'));
     }
