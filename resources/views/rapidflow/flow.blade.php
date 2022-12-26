@@ -138,7 +138,7 @@
                                         </div>
                                         <div class="modal-body">
                                           <!--  <h4 align="center" style="margin:0;color: indianred;">Are you sure you want to remove this data?</h4> -->
-                                          <h5 align="center" style="margin:0;color: indianred;">Are you sure you want to remove <span id="deleteValueName" class="text-secondary"></span> Themefic-area ?</h5>
+                                          <h5 align="center" style="margin:0;color: indianred;">Are you sure you want to remove <span id="deleteValueName" class="text-secondary"></span> Rapid-Flow  ?</h5>
 
                                           <p id="deleteValueError" class="text-primary text-center text-16"></p>
                                         </div>

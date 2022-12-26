@@ -105,7 +105,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::controller(NewRapidFlowController::class)->group(function(){
 
         Route::get('rapid-pro/flow','view')->name('rapid.flow.view');
-        Route::get('rapid-pro/flow/{flow}','getRapidFlowId')->name('rapid.flow.getRapidFlowId');
+        Route::get('rapid/pro/flow/{flow}','getRapidFlowId')->name('rapid.flow.getRapidFlowId');
         Route::post('rapidpro/flow','store')->name('rapid.flow.store');
         Route::patch('rapidpro/flow/update/{flow}','update')->name('rapid.flow.update');
         Route::delete('rapidpro/flow/flowDeleteById','flowDeleteById')->name('rapid.flow.flowDeleteById');

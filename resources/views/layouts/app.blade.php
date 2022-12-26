@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {{-- <html lang="{{$locale}}"> --}}
+  
 <head>
     {{-- <meta charset="{{$charset}}" /> --}}
     <title>@yield('title')</title>
@@ -31,6 +32,12 @@
     <link href="{{asset('assets/libs/custombox/custombox.min.css')}}" rel="stylesheet">
     <!--Toastr CDN -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+    <style>
+        .navbar-custom {
+       background-color: #182941;
+
+   }
+       </style>
     @yield('css')
 
 </head>

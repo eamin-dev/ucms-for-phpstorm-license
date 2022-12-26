@@ -16,7 +16,7 @@ class ThemeficAreaController extends Controller
         if (!$request->ajax()) {
             return view('rapidPro.themefic-area.area');
         }
-        $data = ThemeficArea::query();
+        $data = ThemeficArea::query()->select('id','name');
         return $this->renderViewDataTable($data);
     }
 

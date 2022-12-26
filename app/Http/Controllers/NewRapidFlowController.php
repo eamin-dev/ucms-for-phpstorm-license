@@ -106,10 +106,10 @@ class NewRapidFlowController extends Controller
             return response()->json(['errors' => $error->errors()->all()], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        $flow->country_office_id = $request->country_office_id;
-        $flow->date = $request->date;
-        $flow->file_id = $request->file_id;
-        $flow->themefic_area_id = $request->themefic_area_id;
+            $flow->country_office_id = $request->country_office_id;
+            $flow->date = $request->date;
+            $flow->file_id = $request->file_id;
+            $flow->themefic_area_id = $request->themefic_area_id;
 
         if (!$flow->save())
             return  response()->json(['message' => 'Rapid Pro Flow Failed to Update!'], Response::HTTP_BAD_REQUEST);
@@ -119,8 +119,16 @@ class NewRapidFlowController extends Controller
 
     public function getRapidFlowId(Flow $flow)
     {
+        $flow->load(['flow']);
         return response()->json(['flow' => $flow]);
     }
+
+    // public function getUpazilatById(Upazila $upazila)
+    // {
+    //     $upazila->load(['district']);
+    //     $upazila->zoneName = optional($upazila->district->zone)->name;
+    //     return response()->json(['upazila' => $upazila]);
+    // }
 
     public function flowDeleteById(Request $request)
     {
