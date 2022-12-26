@@ -84,6 +84,7 @@
                                                 
                                                                 <select name="country_office_id" class="form-control" id="country_office_id">
                                                                         <option value="">Select Country office</option>
+                                                                        <option  value="nasim" selected >Select Nasim</option>
                                                                         @forelse ($countryOffices as $office)
                                                                         <option value="{{$office->id}}">{{ $office->name }}</option>
                                                                         @empty

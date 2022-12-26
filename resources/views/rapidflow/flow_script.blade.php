@@ -112,37 +112,37 @@
 
     }
 
-    function showModalShow() {
-        $(document).on('click', '.showDetails', function() {
-            let flowId = $(this).data('flow-id');
-            myFormReset();
-            let showTable = $('#showTable');
-            showTable.html('');
-            let url = "{{ route('rapid.flow.getRapidFlowId',['flow' => '__flowId']) }}";
-            url = url.replace("__flowId", flowId);
+    // function showModalShow() {
+    //     $(document).on('click', '.showDetails', function() {
+    //         let flowId = $(this).data('flow-id');
+    //         myFormReset();
+    //         let showTable = $('#showTable');
+    //         showTable.html('');
+    //         let url = "{{ route('rapid.flow.getRapidFlowId',['flow' => '__flowId']) }}";
+    //         url = url.replace("__flowId", flowId);
 
-            $.ajax({
-                url: url,
-                type: "get",
-                dataType: "json",
-                complete: function(data) {
-                    var district = data.responseJSON.district;
-                    var html = '<tr><th>Zone </th><td>' + district.zone.name + '</td></tr>';
-                    html += '<tr><th> Name(En)</th><td>' + district.name + '</td></tr>';
-                    html += '<tr><th> Name(Bn)</th><td>' + district.bn_name + '</td></tr>';
-                    showTable.html(html);
+    //         $.ajax({
+    //             url: url,
+    //             type: "get",
+    //             dataType: "json",
+    //             complete: function(data) {
+    //                 var district = data.responseJSON.district;
+    //                 var html = '<tr><th>Zone </th><td>' + district.zone.name + '</td></tr>';
+    //                 html += '<tr><th> Name(En)</th><td>' + district.name + '</td></tr>';
+    //                 html += '<tr><th> Name(Bn)</th><td>' + district.bn_name + '</td></tr>';
+    //                 showTable.html(html);
 
-                    $('.modal-title').text('District Details');
-                    $('#showModal').modal('show');
-                }
-            })
-        });
+    //                 $('.modal-title').text('District Details');
+    //                 $('#showModal').modal('show');
+    //             }
+    //         })
+    //     });
 
-    }
+    // }
 
     function editModalShow() {
         $(document).on('click', '.edit', function() {
-            let flowId = $(this).data('flow-id');
+            let flowId = $(this).data('file-id');
 
             let url = "{{ route('rapid.flow.getRapidFlowId',['flow' => '__flowId']) }}";
             url = url.replace("__flowId", flowId);
@@ -154,14 +154,15 @@
                 complete: function(data) {
                     let flow = data.responseJSON.flow;
                     $('#myForm input[name="_method"]').val('PATCH');
-                    $('#country_office_id').val(flow.country_office_id);
-                    $('#themefic_area_id').val(flow.themefic_area_id);
-                    $('#date').val(flow.date).trigger('change');
-                    $('#file_id').val(flow.file_id).trigger('change');
-                    $('#flow_id').val(districtId);
+                    $('#country_office_id').val(flow.country_office_id).trigger('change');
+                    $('#themefic_area_id').val(flow.themefic_area_id).trigger('change');
+                    $('#date').val(flow.date);
+                    $('#file_id').val(flow.file_id);
+                    $('#flow_id').val(flowId);
                     $('#action').val('edit');
                     $('.modal-title').text('Edit RapidPro Flow Data');
                     $('#myModal').modal('show');
+                   // console.log(flow);
                 }
             })
         });
@@ -210,6 +211,16 @@
             })
 
         });
+    }
+
+    function newPage($id){
+        
+        //let flowId = $(this).data('file-id');
+        //alert($id);
+
+        let url = "{{ route('rapid.view-flow',['flow' => '__flowId']) }}";
+            url = url.replace("__flowId", $id);
+        window.location.href = url;
     }
 
     function successMessage(message) {

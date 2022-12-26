@@ -119,7 +119,9 @@ class NewRapidFlowController extends Controller
 
     public function getRapidFlowId(Flow $flow)
     {
-        $flow->load(['flow']);
+        
+        //dd('hi');
+        //$flow->load(['flow']);
         return response()->json(['flow' => $flow]);
     }
 
@@ -142,5 +144,9 @@ class NewRapidFlowController extends Controller
             return  response()->json(['message' => 'Rapid Pro Flow Failed to Delete!'], Response::HTTP_BAD_REQUEST);
 
        return  response()->json(['message' => 'Rapid Pro Flow Deleted Successfully!']);
+    }
+
+    public function viewFlow($flow){
+        return $flow;
     }
 }
