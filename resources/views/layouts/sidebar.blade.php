@@ -38,12 +38,12 @@
                 
 
                 @can('rapid_pro')
-                <li>
+                {{-- <li>
                     <a href="{{route('rapid.pro.flow') }}" class="waves-effect">
                         <i class="mdi mdi-box-shadow"></i>
                         <span> RapidPro Flow </span>
                     </a>
-                </li>
+                </li> --}}
                @endcan
             
             @can('rapid_pro')

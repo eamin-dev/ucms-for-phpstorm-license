@@ -30,8 +30,9 @@
                 <div class="col-lg-12">
                     <div class="card card-border card-primary">
                         <div class="card-header border-primary bg-transparent pb-0">
-                            <h3 class="card-title text-secondary">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-                                 and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</h3>-
+                            <h3 class="card-title text-secondary">
+                                
+                            <a href="#" class="btn btn-success btn-sm float-left"> Export Json</a></h3>-
                      </div>
                         <div class="card-body">
                             
@@ -97,7 +98,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                @include('rapidPro.flow.create')
+                @include('rapidflow.question.question-create')
             </div>
         </div>
     </div>
@@ -114,13 +115,6 @@
 
             var ans_type =$(this).val();
 
-            if(ans_type =='check_Box'){
-
-                $('.selectCheck').show();
-            }else{
-                $('.selectCheck').hide();
-            }
-
             if(ans_type =='InputBox'){
                 $('.selectType').show();
             }else{
@@ -136,6 +130,25 @@
         });
 
     </script>
+
+      <!-- script tag for addevent items -->
+      <script type="text/javascript">
+        $(document).ready(function(){
+           var counter =0;
+           $(document).on("click",".addQuestion",function(){
+            //alert('ok');
+              var whole_extra_item_add =$("#whole_extra_item_add").html();
+              $(this).closest(".add_item").append(whole_extra_item_add);
+              counter ++;
+           });
+             $(document).on("click",".removeQuestion",function(){
+                //alert(delete_whole_extra_item);
+               $(this).closest(".delete_whole_extra_item").remove();
+               
+               counter -= 1;
+           });
+        });
+</script>
 
 
  
