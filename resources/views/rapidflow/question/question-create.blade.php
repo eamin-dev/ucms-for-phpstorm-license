@@ -78,7 +78,7 @@
                 </div> 
                 <div class="form-group col-md-1" style="margin-top: 30px">
                      <div class="form-row">
-                        <span class="btn btn-success addQuestion"> <i class="fa fa-plus-circle"></i> </span>
+                        {{-- <span class="btn btn-success addQuestion"> <i class="fa fa-plus-circle"></i> </span> --}}
                         <span class="btn btn-danger removeQuestion"> <i class="fa fa-minus-circle"></i> </span>
                       </div>
                 </div>
