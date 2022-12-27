@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\FlowRequest;
 use App\Models\CountryOffice;
 use App\Models\Flow;
 use App\Models\FlowQuestion;
@@ -15,13 +14,14 @@ use Yajra\DataTables\Facades\DataTables;
 
 class NewRapidFlowController extends Controller
 {
-    public function view(Request $request){
+    public function view(Request $request)
+    {
         if (!$request->ajax()) {
-            $countryOffices= CountryOffice::select('id','name')->get();
-            $themeficAreas= ThemeficArea::select('id','name')->get();
-            return view('rapidflow.flow',compact('countryOffices','themeficAreas'));
+            $countryOffices = CountryOffice::select('id', 'name')->get();
+            $themeficAreas = ThemeficArea::select('id', 'name')->get();
+            return view('rapidflow.flow', compact('countryOffices', 'themeficAreas'));
         }
-        $data = Flow::query();
+        $data = Flow::latest();
         return $this->renderViewDataTable($data);
     }
 
@@ -29,14 +29,14 @@ class NewRapidFlowController extends Controller
     {
         return DataTables::eloquent($data)
             ->addIndexColumn()
-            ->addColumn('actionBtn','rapidflow.actionBtn')
+            ->addColumn('actionBtn', 'rapidflow.actionBtn')
             ->rawColumns(['actionBtn'])
             ->toJson();
     }
 
     public function store(Request $request)
     {
-        list($rules, $customMessages) = $this->validationRulesAndMessages('add',null);
+        list($rules, $customMessages) = $this->validationRulesAndMessages('add', null);
 
         $error = Validator::make($request->all(), $rules, $customMessages);
 
@@ -50,19 +50,18 @@ class NewRapidFlowController extends Controller
         $flow->file_id = $request->file_id;
         $flow->themefic_area_id = $request->themefic_area_id;
         if (!$flow->save())
-            return  response()->json(['message' => 'Rapid-Pro Flow Failed to Save!'], Response::HTTP_BAD_REQUEST);
+            return response()->json(['message' => 'Rapid-Pro Flow Failed to Save!'], Response::HTTP_BAD_REQUEST);
 
-        return  response()->json(['message' => 'Rapid-Pro Flow Saved Successfully!']);
+        return response()->json(['message' => 'Rapid-Pro Flow Saved Successfully!']);
     }
 
-    private function validationRulesAndMessages($type,$id)
+    private function validationRulesAndMessages($type, $id)
     {
-
         if ($type === 'add') {
             $rules = [
-                'country_office_id'=> 'required',
-                'date'=> 'required',
-                'themefic_area_id'=> 'required',
+                'country_office_id' => 'required',
+                'date' => 'required',
+                'themefic_area_id' => 'required',
                 'file_id' => ['required', Rule::unique('flows')],
             ];
 
@@ -78,9 +77,9 @@ class NewRapidFlowController extends Controller
         if (!is_null($id)) {
 
             $rules = [
-                'country_office_id'=> 'required',
-                'date'=> 'required',
-                'themefic_area_id'=> 'required',
+                'country_office_id' => 'required',
+                'date' => 'required',
+                'themefic_area_id' => 'required',
                 'file_id' => ['required', Rule::unique('flows')->ignore($id)],
             ];
 
@@ -98,7 +97,7 @@ class NewRapidFlowController extends Controller
 
     public function update(Request $request, Flow $flow)
     {
-        list($rules, $customMessages) = $this->validationRulesAndMessages(null,$flow->id);
+        list($rules, $customMessages) = $this->validationRulesAndMessages(null, $flow->id);
 
         $error = Validator::make($request->all(), $rules, $customMessages);
 
@@ -106,20 +105,20 @@ class NewRapidFlowController extends Controller
             return response()->json(['errors' => $error->errors()->all()], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-            $flow->country_office_id = $request->country_office_id;
-            $flow->date = $request->date;
-            $flow->file_id = $request->file_id;
-            $flow->themefic_area_id = $request->themefic_area_id;
+        $flow->country_office_id = $request->country_office_id;
+        $flow->date = $request->date;
+        $flow->file_id = $request->file_id;
+        $flow->themefic_area_id = $request->themefic_area_id;
 
         if (!$flow->save())
-            return  response()->json(['message' => 'Rapid Pro Flow Failed to Update!'], Response::HTTP_BAD_REQUEST);
+            return response()->json(['message' => 'Rapid Pro Flow Failed to Update!'], Response::HTTP_BAD_REQUEST);
 
-        return  response()->json(['message' => 'Rapid Pro Flow Updated Successfully!']);
+        return response()->json(['message' => 'Rapid Pro Flow Updated Successfully!']);
     }
 
     public function getRapidFlowId(Flow $flow)
     {
-        
+
         //dd('hi');
         //$flow->load(['flow']);
         return response()->json(['flow' => $flow]);
@@ -134,25 +133,26 @@ class NewRapidFlowController extends Controller
 
     public function flowDeleteById(Request $request)
     {
-       $flow = Flow::findOrFail($request->flowId);
+        $flow = Flow::findOrFail($request->flowId);
 
-       $question = FlowQuestion::where('flow_id',$flow->id)->first();
-       if (!empty($question)){
-           return  response()->json(['message' => 'This Area can not be delete,this Area attached with Flow'], Response::HTTP_BAD_REQUEST);
-       }
-       if (!$flow->delete())
-            return  response()->json(['message' => 'Rapid Pro Flow Failed to Delete!'], Response::HTTP_BAD_REQUEST);
+        $question = FlowQuestion::where('flow_id', $flow->id)->first();
+        if (!empty($question)) {
+            return response()->json(['message' => 'This Area can not be delete,this Area attached with Flow'], Response::HTTP_BAD_REQUEST);
+        }
+        if (!$flow->delete())
+            return response()->json(['message' => 'Rapid Pro Flow Failed to Delete!'], Response::HTTP_BAD_REQUEST);
 
-       return  response()->json(['message' => 'Rapid Pro Flow Deleted Successfully!']);
+        return response()->json(['message' => 'Rapid Pro Flow Deleted Successfully!']);
     }
 
-    public function viewFlow($flow){
-       // return $flow;
+    public function viewFlow($flow)
+    {
+        // return $flow;
 
-       $flowData = Flow::where('id',$flow)->first();
+        $flowData = Flow::where('id', $flow)->first();
 
-       $allQuestions = FlowQuestion::where('id',$flow)->get();
-       return view('rapidflow.question.index',compact('flowData','allQuestions'));
+        $allQuestions = FlowQuestion::where('id', $flow)->get();
+        return view('rapidflow.question.index', compact('flowData', 'allQuestions'));
 
     }
 }
