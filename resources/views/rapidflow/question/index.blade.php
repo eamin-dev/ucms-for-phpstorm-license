@@ -31,8 +31,8 @@
                     <div class="card card-border card-primary">
                         <div class="card-header border-primary bg-transparent pb-0">
                             <h3 class="card-title text-secondary">
-                                
-                            <a href="#" class="btn btn-success btn-sm float-left"> Export Json</a></h3>-
+                                <input type="hidden" name="flow_id" id="flow_id" value="{{ $flowData->id }}"  id="">
+                            <a href="{{ route('rapidpro.question.json',$flowData->id) }}" class="btn btn-success btn-sm float-left"> Export Json</a></h3>-
                      </div>
                         <div class="card-body">
                             
@@ -51,7 +51,7 @@
                                         <tr>
                                             <th class="text-center">{{ $key+1 }}</th>
                                             <th class="text-center">{{ $data->question_title }}</th>   
-                                            <th class="text-center">{{ $data->ans_Type }}</th>   
+                                            <th class="text-center"><span class="bg bg-success badge-pill">{{ $data->ans_Type }}</span> </th>   
                                             {{-- <th class="text-center">
                                                 <a href="{{route('store.rapid.pro.json',$data->id) }}" class="btn btn-primary btn-sm">Export Json </a>
                                             </th>    --}}

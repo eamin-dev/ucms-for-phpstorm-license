@@ -11,6 +11,7 @@ use App\Models\ThemeficArea;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Yajra\DataTables\Facades\DataTables;
@@ -155,8 +156,6 @@ class NewRapidFlowController extends Controller
     }
 
     public function storeQuestion(Request $request){
-
-        //return $request->toArray();
             
             DB::beginTransaction();
 
@@ -183,16 +182,32 @@ class NewRapidFlowController extends Controller
                         }
                     }
                
-
                 DB::commit();
 
-                return redirect()->back();
-
+                $notification=array(
+                    'message'=>'Question  Successfully Added',
+                    'alert-type'=>'success'
+                     );
+                return redirect()->back()->with($notification);
 
             } catch (\Throwable $th) {
                 throw $th;
                 DB::rollBack();
             }
+    }
+
+    public function exportJson(Request $request,$id){
+
+        $questionJson = FlowQuestion::with('questionanswer')->where('flow_id',$id)->get();
+
+       // return $questionJson;
+
+        $jsonData=json_encode($questionJson);
+
+        $fileName = time() . '_datafile.json';
+        $fileStorePath = public_path('/upload/json/'.$fileName);
+        File::put($fileStorePath, $jsonData);
+        return response()->download($fileStorePath);
 
     }
 }

@@ -113,6 +113,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
         Route::get('rapid-pro/view/{flow}','viewFlow')->name('rapid.view-flow');    
         Route::post('rapid-pro/question','storeQuestion')->name('rapidpro.question.store');
+        Route::get('rapidpro/json/{id}','exportJson')->name('rapidpro.question.json');
+
 
     });
 

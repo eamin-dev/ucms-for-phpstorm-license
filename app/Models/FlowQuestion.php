@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class FlowQuestion extends Model
 {
     use HasFactory;
+
+    public function questionanswer(){
+
+        return $this->hasMany(FlowQuestionAnswer::class,'flow_question_id','id');
+    }
 }
