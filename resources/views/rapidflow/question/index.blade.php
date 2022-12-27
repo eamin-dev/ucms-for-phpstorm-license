@@ -39,7 +39,7 @@
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                     <thead>
-                                      <tr style="background-color: #6aa8e7">
+                                      <tr style="background-color: #a4bad0">
                                         <th class="text-center">#</th>
                                         <th class="text-center">Question Title </th>
                                         <th class="text-center">Answer Type</th>
@@ -51,7 +51,7 @@
                                         <tr>
                                             <th class="text-center">{{ $key+1 }}</th>
                                             <th class="text-center">{{ $data->question_title }}</th>   
-                                            <th class="text-center">{{ $data->ans_type }}</th>   
+                                            <th class="text-center">{{ $data->ans_Type }}</th>   
                                             {{-- <th class="text-center">
                                                 <a href="{{route('store.rapid.pro.json',$data->id) }}" class="btn btn-primary btn-sm">Export Json </a>
                                             </th>    --}}
@@ -115,7 +115,7 @@
 
             var ans_type =$(this).val();
 
-            if(ans_type =='InputBox'){
+            if(ans_type =='Input_answer'){
                 $('.selectType').show();
             }else{
                 $('.selectType').hide();

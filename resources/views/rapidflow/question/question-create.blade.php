@@ -1,8 +1,9 @@
-<form action="{{ route('store.rapid.pro.flow') }}"  method="POST" enctype="multipart/form-data">
+<form action="{{ route('rapidpro.question.store') }}"  method="POST" enctype="multipart/form-data">
     @csrf
         
     <div class="modal-body">
 
+        <input type="hidden" name="flow_id" id="flow_id" value="{{ $flowData->id }}"  id="">
         {{-- error show --}}
         @if($errors->any())
             <div class="alert alert-danger">
@@ -28,7 +29,7 @@
                     <option value="">Select Ans Type</option>
                     <option value="multiple_Choice">Multiple Choice </option>
                     {{-- <option value="check_Box">Check Box</option> --}}
-                    <option value="InputBox">Input Box</option>
+                    <option value="Input_answer">Input Box</option>
 
                 </select>
             </div>
@@ -42,7 +43,7 @@
                         <div class="row">
                             <div class="form-group col-md-11">
                                 <label for="">Multiple Answer</label>
-                                <input type="text" name="Multiple_answer" class="form-control" placeholder="Enter Multiple Answer">
+                                <input type="text" name="answer[]" class="form-control" placeholder="Enter Multiple Answer">
                             </div> 
                             <div class="form-group col-md-1" style="margin-top: 30px">
                                 <span class="btn btn-success addQuestion"><i class="fa fa-plus-circle"></i></span>
@@ -74,7 +75,7 @@
             <div class="form-row">
                 <div class="form-group col-md-11">
                     <label for="">Multiple Answer</label>
-                    <input type="text" name="Multiple_answer" class="form-control" placeholder="Enter Multiple Answer">
+                    <input type="text" name="answer[]" class="form-control" placeholder="Enter Multiple Answer">
                 </div> 
                 <div class="form-group col-md-1" style="margin-top: 30px">
                      <div class="form-row">

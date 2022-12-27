@@ -6,9 +6,11 @@ use App\Http\Requests\FlowRequest;
 use App\Models\CountryOffice;
 use App\Models\Flow;
 use App\Models\FlowQuestion;
+use App\Models\FlowQuestionAnswer;
 use App\Models\ThemeficArea;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Yajra\DataTables\Facades\DataTables;
@@ -120,17 +122,11 @@ class NewRapidFlowController extends Controller
     public function getRapidFlowId(Flow $flow)
     {
         
-        //dd('hi');
-        //$flow->load(['flow']);
+
         return response()->json(['flow' => $flow]);
     }
 
-    // public function getUpazilatById(Upazila $upazila)
-    // {
-    //     $upazila->load(['district']);
-    //     $upazila->zoneName = optional($upazila->district->zone)->name;
-    //     return response()->json(['upazila' => $upazila]);
-    // }
+  
 
     public function flowDeleteById(Request $request)
     {
@@ -151,8 +147,52 @@ class NewRapidFlowController extends Controller
 
        $flowData = Flow::where('id',$flow)->first();
 
-       $allQuestions = FlowQuestion::where('id',$flow)->get();
+       $allQuestions = FlowQuestion::where('flow_id',$flow)->get();
+       //return $allQuestions;
+       
        return view('rapidflow.question.index',compact('flowData','allQuestions'));
+
+    }
+
+    public function storeQuestion(Request $request){
+
+        //return $request->toArray();
+            
+            DB::beginTransaction();
+
+            try {
+              
+                $flowQuestion = new FlowQuestion();
+                $flowQuestion->flow_id =$request->flow_id;
+                $flowQuestion->question_title =$request->question_title;
+                $flowQuestion->ans_Type =$request->ans_type;
+                $flowQuestion->input_answer =$request->input_answer;
+                $flowQuestion->save();
+
+                    if($request->ans_type =="multiple_Choice"){
+
+                        $length= count($request->answer);
+                        //return $length;
+
+                        for($i=0;$i<$length;$i++){
+                            
+                            $ans= new FlowQuestionAnswer();
+                            $ans->flow_question_id=$flowQuestion->id;
+                            $ans->answer =$request->answer[$i];
+                            $ans->save();
+                        }
+                    }
+               
+
+                DB::commit();
+
+                return redirect()->back();
+
+
+            } catch (\Throwable $th) {
+                throw $th;
+                DB::rollBack();
+            }
 
     }
 }
