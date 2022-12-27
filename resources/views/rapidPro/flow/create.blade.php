@@ -51,12 +51,8 @@
             </div> --}}
  
              <div class="form-group col-md-12 selectMultiple" style="display: none ;margin-top: 15px;">
-                <input type="radio" id="html" name="multiple_answer" value="1">
-                    <label for="html">Option 1</label><br>
-                    <input type="radio" id="css" name="multiple_answer" value="2">
-                    <label for="css">Option 2</label><br>
-                    <input type="radio" id="javascript" name="multiple_answer" value="3">
-                    <label for="javascript">Option 3</label>
+                <label for=""> Multiple Answer</label>
+                <input type="text" placeholder="Enter Multiple Answer">
             </div> 
 
             <div class="form-group col-md-12 selectType" style="display: none">

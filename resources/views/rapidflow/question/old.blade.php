@@ -55,7 +55,7 @@
                                    
                                 <div class="form-group col-md-10">
                                     <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Question title">
-                                </div>  
+                                </div>
                                 
                                 <div class="btn-group mt-1 mr-1">
                                     <button type="button" class="btn btn-white dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -87,7 +87,9 @@
                             </div>
 
                                
-                             </div>     <div class="form-group col-md-2">
+                             </div>     
+                             {{-- end add item --}}
+                             <div class="form-group col-md-2">
                                 <button type="submit" class="btn btn-primary">Save </button>
                             </div>
 
@@ -150,7 +152,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                @include('rapidPro.rapidflow-create')
+                {{-- @include('rapidPro.rapidflow-create') --}}
             </div>
         </div>
     </div>
@@ -174,7 +176,6 @@
 @endsection
 
 @section('script')
-    @include('rolePermission.script')
 
     <!-- script tag for addevent items -->
     <script type="text/javascript">
