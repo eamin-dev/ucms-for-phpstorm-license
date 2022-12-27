@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\FlowResource;
 use App\Models\CountryOffice;
 use App\Models\Flow;
 use App\Models\FlowQuestion;
+use App\Models\FlowQuestionAnswer;
 use App\Models\ThemeficArea;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Yajra\DataTables\Facades\DataTables;
@@ -147,12 +150,68 @@ class NewRapidFlowController extends Controller
 
     public function viewFlow($flow)
     {
-        // return $flow;
-
         $flowData = Flow::where('id', $flow)->first();
+        $allQuestions = FlowQuestion::where('flow_id', $flow)->get();
 
-        $allQuestions = FlowQuestion::where('id', $flow)->get();
         return view('rapidflow.question.index', compact('flowData', 'allQuestions'));
+    }
+
+    public function storeQuestion(Request $request)
+    {
+
+        //return $request->toArray();
+
+        DB::beginTransaction();
+
+        try {
+
+            $flowQuestion = new FlowQuestion();
+            $flowQuestion->flow_id = $request->flow_id;
+            $flowQuestion->question_title = $request->question_title;
+            $flowQuestion->ans_Type = $request->ans_type;
+            $flowQuestion->input_answer = $request->input_answer;
+            $flowQuestion->save();
+
+            if ($request->ans_type == "multiple_Choice") {
+
+                $length = count($request->answer);
+                //return $length;
+
+                for ($i = 0; $i < $length; $i++) {
+
+                    $ans = new FlowQuestionAnswer();
+                    $ans->flow_question_id = $flowQuestion->id;
+                    $ans->answer = $request->answer[$i];
+                    $ans->save();
+                }
+            }
+
+
+            DB::commit();
+
+            return redirect()->back();
+
+
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
+
+    }
+
+    public function exportJson($rapidId)
+    {
+        $flows = Flow::with('questions.answers')->where('id', $rapidId)->get();
+
+        return response()->json([
+            'version' => 13,
+            'site' => config('app.url'),
+            'flows' => FlowResource::collection($flows),
+            'campaigns' => [],
+            'triggers' => [],
+            'fields' => [],
+            'groups' => [],
+        ]);
 
     }
 }
