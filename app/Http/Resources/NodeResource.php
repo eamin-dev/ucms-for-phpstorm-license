@@ -16,12 +16,13 @@ class NodeResource extends JsonResource
     {
         return [
             'actions' => [
-                'text'=> $this->question_title,
-                'type'=> 'send_msg',
-                'uuid'=> encrypt($this->id)
+                'quick_replies' => $this->when($this->answers->isNotEmpty(), $this->answers->pluck('answer')),
+                'text' => $this->question_title,
+                'type' => 'send_msg',
+                'uuid' => $this->uuid,
             ],
-            'exits' => [],
-            'uuid' => encrypt($this->id)
+//            'exits' => [],
+            'uuid' => $this->uuid,
         ];
     }
 }

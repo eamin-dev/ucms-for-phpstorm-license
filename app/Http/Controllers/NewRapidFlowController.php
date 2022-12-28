@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -52,6 +53,7 @@ class NewRapidFlowController extends Controller
         $flow->date = $request->date;
         $flow->file_id = $request->file_id;
         $flow->themefic_area_id = $request->themefic_area_id;
+        $flow->uuid = Str::uuid();
         if (!$flow->save())
             return response()->json(['message' => 'Rapid-Pro Flow Failed to Save!'], Response::HTTP_BAD_REQUEST);
 
@@ -166,6 +168,7 @@ class NewRapidFlowController extends Controller
         try {
 
             $flowQuestion = new FlowQuestion();
+            $flowQuestion->uuid = Str::uuid();
             $flowQuestion->flow_id = $request->flow_id;
             $flowQuestion->question_title = $request->question_title;
             $flowQuestion->ans_Type = $request->ans_type;
@@ -203,6 +206,7 @@ class NewRapidFlowController extends Controller
     {
         $flows = Flow::with('questions.answers')->where('id', $rapidId)->get();
 
+//        return \response()->download()
         return response()->json([
             'version' => 13,
             'site' => config('app.url'),

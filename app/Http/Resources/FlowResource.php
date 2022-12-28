@@ -16,7 +16,7 @@ class FlowResource extends JsonResource
     {
         return [
             'name' => $this->file_id,
-            'uuid' => encrypt($this->id),
+            'uuid' => $this->uuid,
             'language' => 'base',
             'nodes' => NodeResource::collection($this->questions),
         ];
