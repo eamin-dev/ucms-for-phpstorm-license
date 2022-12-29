@@ -173,7 +173,7 @@ class NewRapidFlowController extends Controller
             $flowQuestion->input_answer = $request->input_answer;
             $flowQuestion->save();
 
-                        for($i=0;$i<$length;$i++){
+                        for($i=0;$i<count($request->answer);$i++){
                             
                             $ans= new FlowQuestionAnswer();
                             $ans->flow_question_id=$flowQuestion->id;
