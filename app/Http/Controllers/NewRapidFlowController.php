@@ -11,6 +11,7 @@ use App\Models\ThemeficArea;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -204,30 +205,89 @@ class NewRapidFlowController extends Controller
 
     public function exportJson($rapidId)
     {
-//        return Str::uuid();
-        $flows = Flow::with('questions.answers')->where('id', $rapidId)->first();
+        $flows = Flow::with('questions.answers')->where('id', $rapidId)->get();
 
-        $nodeClass = new \stdClass();
-        $nodeArray = [];
-        foreach ($flows->questions as $index => $node) {
-            $uiNode = [];
-            $stdClass['position'] = [
-                'left' => 120,
-                'top' => $index == 0 ? 0 : $index * 120,
-            ];
-            $stdClass['type'] = 'execute_actions';
+        $flowArray = [];
 
-            $nodeArray[$node->uuid] = $stdClass;
+        /* flow loop start */
+        foreach ($flows as $flow) {
+            $nodeUUIDlist = $flow->questions->pluck('uuid');
+
+            $flowArray2 = [];
+            $flowArray2['name'] = $flow->file_id;
+            $flowArray2['uuid'] = $flow->uuid;
+            $flowArray2['spec_version'] = '13.1.0';
+            $flowArray2['language'] = 'eng';
+            $flowArray2['type'] = 'messaging';
+            $flowArray2['nodes'] = [];
+
+            /* nodes loop start */
+            $allNodeArray = [];
+            foreach ($flow->questions as $index => $node) {
+                $routerNodeUUID = Str::uuid();
+                $default_category_uuid = Str::uuid();
+                $routerNodeArrayExitUUID = Str::uuid();
+
+                //database node loop start
+                $nodeArray = [];
+                $nodeArray['uuid'] = $node->uuid;
+
+                $nodeArray['actions'] = [[
+                    'uuid' => Str::uuid(),
+                    'quick_replies' => $node->answers->pluck('answer'),
+                    'text' => $node->question_title,
+                    'type' => 'send_msg',
+                ]];
+
+                $nodeArray['exits'] = [[
+                    'uuid' => Str::uuid(),
+                    'destination_uuid' => $routerNodeUUID
+                ]];
+                //database node loop end
+
+                //router node loop start
+                $routerNodeArray = [];
+                $routerNodeArray['uuid'] = $routerNodeUUID;
+                $routerNodeArray['actions'] = [];
+
+                $routerNodeArrayCategories = [
+                    "exit_uuid" => $routerNodeArrayExitUUID,
+                    "name" => "All Responses",
+                    "uuid" => $default_category_uuid
+                ];
+                $routerNodeArray['router'] = [
+                    "default_category_uuid" => $default_category_uuid,
+                    "cases" => [],
+                    "categories" => [$routerNodeArrayCategories],
+                    "operand" => "@input.text",
+                    "result_name" => "result_$index",
+                    "type" => "switch",
+                    "wait" => ['type' => 'msg']
+                ];
+                $routerNodeArray['exits'] = [[
+                    'uuid' => $routerNodeArrayExitUUID,
+                    'destination_uuid' => $nodeUUIDlist[$index + 1] ?? null,
+                ]];
+                array_push($allNodeArray, $nodeArray);
+                array_push($allNodeArray, $routerNodeArray);
+
+                //router node loop end
+            }
+            $flowArray2['nodes'] = $allNodeArray;
+            /* nodes loop end */
+
+            array_push($flowArray, $flowArray2);
         }
+        /* flows loop end */
 
-        $_ui = ['nodes' => $nodeArray];
-        $flows->ui = $_ui;
-
-        return response()->json([
+        $jsonData = json_encode([
             'version' => 13,
-            'flows' => [
-                new FlowResource($flows)
-            ],
+            'flows' => $flowArray,
         ]);
+
+        $fileName = time() . '_datafile.json';
+        $fileStorePath = public_path('/upload/json/' . $fileName);
+        File::put($fileStorePath, $jsonData);
+        return response()->download($fileStorePath);
     }
 }

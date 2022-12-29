@@ -18,7 +18,6 @@ class ActionResource extends JsonResource
     {
         return [
             'uuid' => Str::uuid(),
-//            'quick_replies' => $this->when($this->answers->isNotEmpty(), $this->answers->pluck('answer')),
             'quick_replies' => $this->answers->pluck('answer'),
             'text' => $this->question_title,
             'type' => 'send_msg',
