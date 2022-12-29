@@ -153,6 +153,7 @@ class NewRapidFlowController extends Controller
 
     public function viewFlow($flow)
     {
+
         $flowData = Flow::where('id', $flow)->first();
         $allQuestions = FlowQuestion::where('flow_id', $flow)->get();
 
@@ -160,7 +161,7 @@ class NewRapidFlowController extends Controller
     }
 
     public function storeQuestion(Request $request){
-            
+
         DB::beginTransaction();
 
         try {
@@ -174,13 +175,13 @@ class NewRapidFlowController extends Controller
             $flowQuestion->save();
 
                         for($i=0;$i<count($request->answer);$i++){
-                            
+
                             $ans= new FlowQuestionAnswer();
                             $ans->flow_question_id=$flowQuestion->id;
                             $ans->answer =$request->answer[$i];
                             $ans->save();
                         }
-               
+
                 DB::commit();
 
                 $notification=array(
@@ -210,8 +211,8 @@ class NewRapidFlowController extends Controller
 
         return redirect()->back();
 
-        } 
-    
+        }
+
 
     public function exportJson($rapidId)
     {

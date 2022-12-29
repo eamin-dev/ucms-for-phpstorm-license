@@ -31,47 +31,45 @@
                     <div class="card card-border card-primary">
                         <div class="card-header border-primary bg-transparent pb-0">
                             <h3 class="card-title text-secondary">
-
-                            <a href="{{ route('rapidpro.exportJson', $flowData->id) }}" class="btn btn-success btn-sm float-left"> Export Json</a></h3>-
-                     </div>
+                                <input type="hidden" name="flow_id" id="flow_id" value="{{ $flowData->id }}"  id="">
+                                <a href="{{ route('rapidpro.question.json',$flowData->id) }}" class="btn btn-success btn-sm float-left"> Export Json</a></h3>-
+                        </div>
                         <div class="card-body">
 
-                                <div class="table-responsive">
-                                    <table class="table table-striped">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
                                     <thead>
-                                      <tr style="background-color: #a4bad0">
+                                    <tr style="background-color: #a4bad0">
                                         <th class="text-center">#</th>
                                         <th class="text-center">Question Title </th>
                                         <th class="text-center">Answer Type</th>
                                         {{-- <th class="text-center">Actions</th> --}}
-                                      </tr>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($allQuestions as $key=>$data )
+                                    @forelse ($allQuestions as $key=>$data )
                                         <tr>
                                             <th class="text-center">{{ $key+1 }}</th>
                                             <th class="text-center">{{ $data->question_title }}</th>
-                                            <th class="text-center">{{ $data->ans_Type }}</th>
-                                            {{-- <th class="text-center">
-                                                <a href="{{route('store.rapid.pro.json',$data->id) }}" class="btn btn-primary btn-sm">Export Json </a>
-                                            </th>    --}}
+                                            <th class="text-center"><span class="bg bg-success badge-pill">{{ $data->ans_Type }}</span> </th>
+                                        {{-- <th class="text-center">
+                                            <a href="{{route('store.rapid.pro.json',$data->id) }}" class="btn btn-primary btn-sm">Export Json </a>
+                                        </th>    --}}
 
-                                          <tr>
+                                        <tr>
 
-                                        @empty
+                                    @empty
                                         <tr class="text-center">
                                             <td  colspan="3"><span>No data found</span> </td>
                                             {{-- <td colspan="4"></td> --}}
                                         </tr>
 
                                         @endforelse
-                                         @foreach ($allQuestions as $key=>$data)
 
-                                        @endforeach
-                                      </tr>
+                                        </tr>
                                     </tbody>
-                                  </table>
-                                  </div>
+                                </table>
+                            </div>
 
                         </div>
                     </div>
@@ -88,7 +86,7 @@
 
     {{-- <div  class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;"> --}}
 
-        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
 
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -131,24 +129,24 @@
 
     </script>
 
-      <!-- script tag for addevent items -->
-      <script type="text/javascript">
+    <!-- script tag for addevent items -->
+    <script type="text/javascript">
         $(document).ready(function(){
-           var counter =0;
-           $(document).on("click",".addQuestion",function(){
-            //alert('ok');
-              var whole_extra_item_add =$("#whole_extra_item_add").html();
-              $(this).closest(".add_item").append(whole_extra_item_add);
-              counter ++;
-           });
-             $(document).on("click",".removeQuestion",function(){
+            var counter =0;
+            $(document).on("click",".addQuestion",function(){
+                //alert('ok');
+                var whole_extra_item_add =$("#whole_extra_item_add").html();
+                $(this).closest(".add_item").append(whole_extra_item_add);
+                counter ++;
+            });
+            $(document).on("click",".removeQuestion",function(){
                 //alert(delete_whole_extra_item);
-               $(this).closest(".delete_whole_extra_item").remove();
+                $(this).closest(".delete_whole_extra_item").remove();
 
-               counter -= 1;
-           });
+                counter -= 1;
+            });
         });
-</script>
+    </script>
 
 
 
