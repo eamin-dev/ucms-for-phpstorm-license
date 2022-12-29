@@ -204,18 +204,30 @@ class NewRapidFlowController extends Controller
 
     public function exportJson($rapidId)
     {
-        $flows = Flow::with('questions.answers')->where('id', $rapidId)->get();
+//        return Str::uuid();
+        $flows = Flow::with('questions.answers')->where('id', $rapidId)->first();
 
-//        return \response()->download()
+        $nodeClass = new \stdClass();
+        $nodeArray = [];
+        foreach ($flows->questions as $index => $node) {
+            $uiNode = [];
+            $stdClass['position'] = [
+                'left' => 120,
+                'top' => $index == 0 ? 0 : $index * 120,
+            ];
+            $stdClass['type'] = 'execute_actions';
+
+            $nodeArray[$node->uuid] = $stdClass;
+        }
+
+        $_ui = ['nodes' => $nodeArray];
+        $flows->ui = $_ui;
+
         return response()->json([
             'version' => 13,
-            'site' => config('app.url'),
-            'flows' => FlowResource::collection($flows),
-            'campaigns' => [],
-            'triggers' => [],
-            'fields' => [],
-            'groups' => [],
+            'flows' => [
+                new FlowResource($flows)
+            ],
         ]);
-
     }
 }

@@ -9,7 +9,7 @@ class FlowResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
     public function toArray($request)
@@ -17,8 +17,11 @@ class FlowResource extends JsonResource
         return [
             'name' => $this->file_id,
             'uuid' => $this->uuid,
-            'language' => 'base',
+            'spec_version' => '13.1.0',
+            'language' => 'eng',
+            'type' => 'messaging',
             'nodes' => NodeResource::collection($this->questions),
+//            '_ui' => $this->ui,
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Str;
 
 class NodeResource extends JsonResource
 {
@@ -14,15 +15,19 @@ class NodeResource extends JsonResource
      */
     public function toArray($request)
     {
+        $stdcls = new \stdClass();
+        $stdcls->uuid = Str::uuid();
+//        $stdcls->uuid = Str::uuid();
+
         return [
-            'actions' => [
-                'quick_replies' => $this->when($this->answers->isNotEmpty(), $this->answers->pluck('answer')),
-                'text' => $this->question_title,
-                'type' => 'send_msg',
-                'uuid' => $this->uuid,
-            ],
-//            'exits' => [],
             'uuid' => $this->uuid,
+//            'actions' => ActionResource::collection($this),
+            'actions' => [
+                new ActionResource($this)
+            ],
+            'exits' => [
+                $stdcls
+            ],
         ];
     }
 }
