@@ -41,34 +41,21 @@
                                     <h3 class="card-title">Basic example</h3>
                                 </div> --}}
                                 <div class="card-body">
-                                    <form method="POST" action="{{ route('user.profile.update') }}" enctype="multipart/form-data">
+                                    <form method="POST" action="{{ route('user.password.update') }}">
                                         @csrf
-
-                                        @if ($errors->any())
-                                            <div class="alert alert-danger">
-                                                <ul>
-                                                    @foreach ($errors->all() as $error)
-                                                        <li>{{ $error }}</li>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
-                                        @endif
+                                        
                                         
                                         <div class="form-group">
-                                            <img src="{{ !empty($authData->image)?url($authData->image):url('upload/user_image/no-image.png')}}" id="showImage"  width="200" height="200" class="img-rounded" alt="">
-                                        </div>
-                                     
-                                        <div class="form-group">
-                                              <input type="file" name="image" class="form-control"  placeholder="select Image">
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">Full Name</label>
-                                            <input type="text" class="form-control" name="name" value="{{ $authData->name }}" id="" placeholder="Full Name">
+                                            <label for="exampleInputPassword1">Current Password</label>
+                                            <input type="password" class="form-control" name="current_password"  id="current_password" placeholder="Old Password">
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleInputPassword1">Email</label>
-                                            <input type="text" class="form-control" name="email" value="{{$authData->email }}" id="" placeholder="Ener Email">
+                                            <label for="exampleInputPassword1">New Password</label>
+                                            <input type="password" class="form-control" name="new_password" id="new_password" placeholder="New Password">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Confirm Password</label>
+                                            <input type="password" class="form-control" name="confirm_new_password" id="confirm_new_password" placeholder="Confirm Password">
                                         </div>
                                        
                                         <button type="submit" class="btn btn-purple waves-effect waves-light">Update </button>
@@ -97,37 +84,47 @@
 
 @section('script')
 
-<script>
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                $('#imagePreview').css('background-image', 'url('+e.target.result +')');
-                $('#imagePreview').hide();
-                $('#imagePreview').fadeIn(650);
-            }
-            $("#avatar-btn").css('display','block');
-            reader.readAsDataURL(input.files[0]);
+<script type="text/javascript">
+    $(document).ready(function () {
+      $('#myform').validate({
+        rules: {
+          current_password: {
+            required: true,
+          },
+          new_password: {
+            required: true,
+          },
+          confirm_new_password: {
+            required: true,
+            equalTo:'#new_password'
+          }
+        },
+        messages: {
+          current_password: {
+            required: "Please enter Current password",
+          },
+          new_password: {
+            required: "Please provide a new password",
+            minlength: "Your password must be at least 6 characters long"
+          },
+          confirm_new_password: {
+            required: "Please provide confirm password",
+            equalTo: "Your password didnot match with new password"
+          },
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+          error.addClass('invalid-feedback');
+          element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+          $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+          $(element).removeClass('is-invalid');
         }
-    }
-
-    //Image upload (Profile image- user)
-    $("#imageUpload").change(function() {
-        readURL(this);
+      });
     });
-</script>
-
-
-<script>
-    $(document).ready(function(){
-            $('#image').change(function(e){
-                var reader =new FileReader();
-                reader.onload =function(e){
-                $('#showImage').attr('src',e.target.result);
-                }
-                reader.readAsDataURL(e.target.files['0']);
-            });
-            });
-</script>
+    </script>
     
 @endsection
