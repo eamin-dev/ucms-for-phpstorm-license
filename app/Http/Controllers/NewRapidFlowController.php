@@ -170,12 +170,16 @@ class NewRapidFlowController extends Controller
             $flowQuestion->input_answer = $request->input_answer;
             $flowQuestion->save();
 
-            for ($i = 0; $i < count($request->answer); $i++) {
+            if($request->ans_Type =='multiple_answer'){
 
-                $ans = new FlowQuestionAnswer();
-                $ans->flow_question_id = $flowQuestion->id;
-                $ans->answer = $request->answer[$i];
-                $ans->save();
+                for ($i = 0; $i < count($request->answer); $i++) {
+
+                    $ans = new FlowQuestionAnswer();
+                    $ans->flow_question_id = $flowQuestion->id;
+                    $ans->answer = $request->answer[$i];
+                    $ans->save();
+                }
+
             }
 
             DB::commit();
@@ -188,11 +192,11 @@ class NewRapidFlowController extends Controller
 
         } catch (\Throwable $th) {
             throw $th;
-            // DB::rollBack();
+             DB::rollBack();
         }
     }
 
-    public function exporsstJson(Request $request, $id)
+    public function exportDatatJson(Request $request, $id)
     {
 
         $questionJson = FlowQuestion::with('questionanswer')->where('flow_id', $id)->get();
@@ -205,8 +209,6 @@ class NewRapidFlowController extends Controller
         $fileStorePath = public_path('/upload/json/' . $fileName);
         File::put($fileStorePath, $jsonData);
         return response()->download($fileStorePath);
-
-        return redirect()->back();
 
     }
 
