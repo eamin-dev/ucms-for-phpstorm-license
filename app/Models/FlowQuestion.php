@@ -9,8 +9,13 @@ class FlowQuestion extends Model
 {
     use HasFactory;
 
-    public function questionanswer(){
+    public function questionanswer()
+    {
+        return $this->hasMany(FlowQuestionAnswer::class, 'flow_question_id', 'id');
+    }
 
-        return $this->hasMany(FlowQuestionAnswer::class,'flow_question_id','id');
+    public function answers()
+    {
+        return $this->hasMany(FlowQuestionAnswer::class, 'flow_question_id', 'id');
     }
 }

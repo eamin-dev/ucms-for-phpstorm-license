@@ -18,4 +18,9 @@ class Flow extends Model
 
         return $this->belongsTo(ThemeficArea::class,'themefic_area_id','id')->select('id','name');
     }
+
+    public function questions()
+    {
+        return $this->hasMany(FlowQuestion::class,'flow_id');
+    }
 }

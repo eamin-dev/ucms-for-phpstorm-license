@@ -1,43 +1,43 @@
 <!DOCTYPE html>
 {{-- <html lang="{{$locale}}"> --}}
-  
+
 <head>
     {{-- <meta charset="{{$charset}}" /> --}}
     <title>@yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Responsive bootstrap 4 admin template" name="description" />
-    <meta content="Coderthemes" name="author" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta content="Responsive bootstrap 4 admin template" name="description"/>
+    <meta content="Coderthemes" name="author"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <!-- App favicon -->
-    {{-- <link rel="shortcut icon" href="{{$favicon}}"> --}}
+     <link rel="shortcut icon" href="{{ asset('assets/images/rapidpro.jpeg') }}">
     <!-- App css -->
-    <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" id="bootstrap-stylesheet" />
-    <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css" id="app-stylesheet" />
+    <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" id="bootstrap-stylesheet"/>
+    <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css" id="app-stylesheet"/>
 
-     <!-- Table datatable css -->
-     <link href="{{asset('assets')}}/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-     <link href="{{asset('assets')}}/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-     <link href="{{asset('assets')}}/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-     <link href="{{asset('assets')}}/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-     <link href="{{asset('assets')}}/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <!-- Table datatable css -->
+    <link href="{{asset('assets')}}/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('assets')}}/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('assets')}}/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('assets')}}/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('assets')}}/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
     <!-- Plugins css-->
-    <link href="{{asset('assets/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css"/>
     <!-- summernote css/js -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
     <!-- Responsive Table css -->
-    <link href="{{asset('assets/libs/rwd-table/rwd-table.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets/libs/rwd-table/rwd-table.min.css')}}" rel="stylesheet" type="text/css"/>
     <!-- Custom box css -->
     <link href="{{asset('assets/libs/custombox/custombox.min.css')}}" rel="stylesheet">
     <!--Toastr CDN -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
     <style>
         .navbar-custom {
-       background-color: #182941;
+            background-color: #182941;
 
-   }
-       </style>
+        }
+    </style>
     @yield('css')
 
 </head>
@@ -67,9 +67,8 @@
         <!-- end content -->
 
 
-
         <!-- Footer Start -->
-       @include('layouts.footer')
+        @include('layouts.footer')
         <!-- end Footer -->
 
     </div>
@@ -82,18 +81,16 @@
 <!-- END wrapper -->
 
 
-
-
 <!-- Vendor js -->
 <script src="{{asset('assets/js/vendor.min.js')}}"></script>
 
 
-  <!-- Vendor validation js -->
+<!-- Vendor validation js -->
 
-  <script src="{{asset('assets/libs/jquery-validation/jquery.validate.min.js')}}"></script>
+<script src="{{asset('assets/libs/jquery-validation/jquery.validate.min.js')}}"></script>
 
-  <!-- Validation init js-->
-  <script src="{{asset('assets/js/pages/form-validation.init.js')}}"></script>
+<!-- Validation init js-->
+<script src="{{asset('assets/js/pages/form-validation.init.js')}}"></script>
 
 <script src="{{asset('assets/libs/moment/moment.min.js')}}"></script>
 <script src="{{asset('assets/libs/jquery-scrollto/jquery.scrollTo.min.js')}}"></script>
@@ -130,32 +127,30 @@
 <script src="https://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
 
 
-
-
 {!! Toastr::message() !!}
 
 <script>
     @if(Session::has('message'))
-      var type="{{Session::get('alert-type','info')}}"
-      switch(type){
-          case 'info':
-               toastr.info("{{ Session::get('message') }}");
-               break;
-          case 'success':
-              toastr.success("{{ Session::get('message') }}");
-              break;
-          case 'warning':
-             toastr.warning("{{ Session::get('message') }}");
-              break;
-          case 'error':
-              toastr.error("{{ Session::get('message') }}");
-              break;
+    var type = "{{Session::get('alert-type','info')}}"
+    switch (type) {
+        case 'info':
+            toastr.info("{{ Session::get('message') }}");
+            break;
+        case 'success':
+            toastr.success("{{ Session::get('message') }}");
+            break;
+        case 'warning':
+            toastr.warning("{{ Session::get('message') }}");
+            break;
+        case 'error':
+            toastr.error("{{ Session::get('message') }}");
+            break;
         case 'danger':
-              toastr.error("{{ Session::get('message') }}");
-              break;
-      }
+            toastr.error("{{ Session::get('message') }}");
+            break;
+    }
     @endif
- </script>
+</script>
 
 
 {{-- datatable js --}}
@@ -189,15 +184,15 @@
     $('.summernote').summernote({
         height: 400,
         toolbar: [
-            [ 'style', [ 'style' ] ],
-            [ 'font', [ 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear'] ],
-            [ 'fontname', [ 'fontname' ] ],
-            [ 'fontsize', [ 'fontsize' ] ],
-            [ 'color', [ 'color' ] ],
-            [ 'para', [ 'ol', 'ul', 'paragraph', 'height' ] ],
-            [ 'table', [ 'table' ] ],
-            [ 'insert', [ 'link'] ],
-            [ 'view', [ 'undo', 'redo', 'fullscreen', 'codeview', 'help' ] ]
+            ['style', ['style']],
+            ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+            ['fontname', ['fontname']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ol', 'ul', 'paragraph', 'height']],
+            ['table', ['table']],
+            ['insert', ['link']],
+            ['view', ['undo', 'redo', 'fullscreen', 'codeview', 'help']]
         ]
     });
 </script>

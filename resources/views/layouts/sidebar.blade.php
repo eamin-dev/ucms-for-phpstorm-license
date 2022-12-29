@@ -94,7 +94,7 @@
                 @endcan
 
                 <li>
-                    <a href="{{route('user.settings',Auth::id())}}" class="waves-effect">
+                    <a href="{{route('user.profile.view')}}" class="waves-effect">
                         <i class="fas fa-wrench"></i>
                         <span> Settings </span>
                     </a>

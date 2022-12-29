@@ -15,6 +15,7 @@ class CreateFlowsTable extends Migration
     {
         Schema::create('flows', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->uuid('uuid')->nullable(false);
             $table->unsignedBigInteger('country_office_id');
             $table->dateTime('datetime')->nullable();
             $table->string('file_id');
