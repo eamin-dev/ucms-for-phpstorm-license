@@ -5,6 +5,8 @@ use App\Http\Controllers\CountryOfficeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IogtController;
 use App\Http\Controllers\NewRapidFlowController;
+use App\Http\Controllers\NewThemeficController;
+use App\Http\Controllers\ProfileManageController;
 use App\Http\Controllers\RapidProController;
 use App\Http\Controllers\RapidProFlowController;
 use App\Http\Controllers\RolePermissionController;
@@ -36,9 +38,9 @@ Route::get('/', [AuthController::class, 'loginPage'])->name('login');
 Route::post('login', [AuthController::class, 'loginInUser'])->name('login.user');
 Route::get('logout', [AuthController::class, 'logOutUser'])->name('logout');
 
-Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::controller(DashboardController::class)->group(function () {
-        Route::get('dashboard', 'index')->name('dashboard');
+Route::group(['middleware' => ['auth']], function () {
+    Route::controller(DashboardController::class)->group(function (){
+        Route::get('dashboard','index')->name('dashboard');
     });
 
     Route::controller(UserController::class)->group(function () {
@@ -48,7 +50,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::get('/user-edit/{user_id}', 'editUser')->name('user.edit');
         Route::post('/user-update', 'updateUserInfo')->name('user.update');
         Route::get('/status-change/{user_id}/{status}', 'changeUserStatus')->name('user.status.change');
-        Route::get('/user-profile-settings/{user_id}', 'showUserSettings')->name('user.settings');
+        Route::get('/user-profile-settings', 'showUserSettings')->name('user.settings');
     });
 
     Route::controller(RolePermissionController::class)->group(function () {
@@ -105,16 +107,24 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::controller(NewRapidFlowController::class)->group(function () {
 
+        Route::get('rapid-pro/flow','view')->name('rapid.flow.view');
+        Route::get('rapid/pro/flow/{flow}','getRapidFlowId')->name('rapid.flow.getRapidFlowId');
+        Route::post('rapidpro/flow','store')->name('rapid.flow.store');
+        Route::patch('rapidpro/flow/update/{flow}','update')->name('rapid.flow.update');
+        Route::delete('rapidpro/flow/flowDeleteById','flowDeleteById')->name('rapid.flow.flowDeleteById');
+        Route::get('rapid-pro/view/{flow}','viewFlow')->name('rapid.view-flow');    
+        Route::post('rapid-pro/question','storeQuestion')->name('rapidpro.question.store');
+        Route::get('rapidpro/json/{id}','exportJson')->name('rapidpro.question.json');
 
-        Route::get('rapid-pro/flow', 'view')->name('rapid.flow.view');
-        Route::get('rapid/pro/flow/{flow}', 'getRapidFlowId')->name('rapid.flow.getRapidFlowId');
-        Route::post('rapidpro/flow', 'store')->name('rapid.flow.store');
-        Route::patch('rapidpro/flow/update/{flow}', 'update')->name('rapid.flow.update');
-        Route::delete('rapidpro/flow/flowDeleteById', 'flowDeleteById')->name('rapid.flow.flowDeleteById');
+    });
 
-        Route::get('rapid-pro/view/{flow}', 'viewFlow')->name('rapid.view-flow');
-        Route::post('rapid-pro/question', 'storeQuestion')->name('rapidpro.question.store');
-        Route::get('rapid-pro/export-json/{rapidId}', 'exportJson')->name('rapidpro.exportJson');
+
+    Route::controller(ProfileManageController::class)->group(function(){
+
+        Route::get('user-profile','viewProfile')->name('user.profile.view');
+        Route::post('profile-update','updateProfile')->name('user.profile.update');
+        Route::get('user/password/change','userPassword')->name('user.change.password');
+        Route::post('user/password/update','passwordUpdate')->name('user.password.update');
 
     });
 

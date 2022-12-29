@@ -159,11 +159,8 @@ class NewRapidFlowController extends Controller
         return view('rapidflow.question.index', compact('flowData', 'allQuestions'));
     }
 
-    public function storeQuestion(Request $request)
-    {
-
-        //return $request->toArray();
-
+    public function storeQuestion(Request $request){
+            
         DB::beginTransaction();
 
         try {
@@ -176,32 +173,45 @@ class NewRapidFlowController extends Controller
             $flowQuestion->input_answer = $request->input_answer;
             $flowQuestion->save();
 
-            if ($request->ans_type == "multiple_Choice") {
+                        for($i=0;$i<$length;$i++){
+                            
+                            $ans= new FlowQuestionAnswer();
+                            $ans->flow_question_id=$flowQuestion->id;
+                            $ans->answer =$request->answer[$i];
+                            $ans->save();
+                        }
+               
+                DB::commit();
 
-                $length = count($request->answer);
-                //return $length;
+                $notification=array(
+                    'message'=>'Question  Successfully Added',
+                    'alert-type'=>'success'
+                     );
+                return redirect()->back()->with($notification);
 
-                for ($i = 0; $i < $length; $i++) {
-
-                    $ans = new FlowQuestionAnswer();
-                    $ans->flow_question_id = $flowQuestion->id;
-                    $ans->answer = $request->answer[$i];
-                    $ans->save();
-                }
+            } catch (\Throwable $th) {
+                throw $th;
+                DB::rollBack();
             }
-
-
-            DB::commit();
-
-            return redirect()->back();
-
-
-        } catch (\Throwable $th) {
-            DB::rollBack();
-            throw $th;
-        }
-
     }
+
+    public function exporsstJson(Request $request,$id){
+
+        $questionJson = FlowQuestion::with('questionanswer')->where('flow_id',$id)->get();
+
+       // return $questionJson;
+
+        $jsonData=json_encode($questionJson);
+
+        $fileName = time() . '_datafile.json';
+        $fileStorePath = public_path('/upload/json/'.$fileName);
+        File::put($fileStorePath, $jsonData);
+        return response()->download($fileStorePath);
+
+        return redirect()->back();
+
+        } 
+    
 
     public function exportJson($rapidId)
     {
