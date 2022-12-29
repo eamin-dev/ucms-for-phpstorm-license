@@ -192,7 +192,7 @@ class NewRapidFlowController extends Controller
 
             } catch (\Throwable $th) {
                 throw $th;
-                DB::rollBack();
+               // DB::rollBack();
             }
     }
 

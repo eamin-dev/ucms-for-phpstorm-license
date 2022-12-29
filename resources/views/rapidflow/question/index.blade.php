@@ -56,7 +56,7 @@
                                                 <a href="{{route('store.rapid.pro.json',$data->id) }}" class="btn btn-primary btn-sm">Export Json </a>
                                             </th>    --}}
                                             
-                                          <tr>
+                                        </tr>
                                             
                                         @empty
                                         <tr class="text-center">
@@ -65,9 +65,7 @@
                                         </tr>
                                             
                                         @endforelse
-                                         @foreach ($allQuestions as $key=>$data)
-                                      
-                                        @endforeach 
+                                   
                                       </tr>
                                     </tbody>
                                   </table>
