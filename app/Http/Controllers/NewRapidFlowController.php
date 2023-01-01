@@ -135,7 +135,7 @@ class NewRapidFlowController extends Controller
 
         $question = FlowQuestion::where('flow_id', $flow->id)->first();
         if (!empty($question)) {
-            return response()->json(['message' => 'This Area can not be delete,this Area attached with Flow'], Response::HTTP_BAD_REQUEST);
+            return response()->json(['message' => 'Flow can not be delete,Flow Question attached with this Flow'], Response::HTTP_BAD_REQUEST);
         }
         if (!$flow->delete()) {
             return response()->json(['message' => 'Rapid Pro Flow Failed to Delete!'], Response::HTTP_BAD_REQUEST);
