@@ -126,8 +126,6 @@ class NewRapidFlowController extends Controller
     public function getRapidFlowId(Flow $flow)
     {
 
-        //dd('hi');
-        //$flow->load(['flow']);
         return response()->json(['flow' => $flow]);
     }
 
@@ -158,24 +156,28 @@ class NewRapidFlowController extends Controller
     public function storeQuestion(Request $request)
     {
 
+        // return $request->toArray();
+
         DB::beginTransaction();
 
         try {
 
             $flowQuestion = new FlowQuestion();
-            $flowQuestion->uuid = Str::uuid();
+            // $flowQuestion->uuid = Str::uuid();
             $flowQuestion->flow_id = $request->flow_id;
             $flowQuestion->question_title = $request->question_title;
             $flowQuestion->ans_Type = $request->ans_type;
             $flowQuestion->input_answer = $request->input_answer;
             $flowQuestion->save();
 
-            if($request->ans_Type =='multiple_answer'){
+            if ($request->ans_type == 'multiple_Choice') {
 
+                //$length = count($request->answer);
                 for ($i = 0; $i < count($request->answer); $i++) {
 
                     $ans = new FlowQuestionAnswer();
                     $ans->flow_question_id = $flowQuestion->id;
+                    // $ans->uuid = Str::uuid();
                     $ans->answer = $request->answer[$i];
                     $ans->save();
                 }
@@ -192,7 +194,7 @@ class NewRapidFlowController extends Controller
 
         } catch (\Throwable $th) {
             throw $th;
-             DB::rollBack();
+            DB::rollBack();
         }
     }
 
@@ -224,7 +226,8 @@ class NewRapidFlowController extends Controller
 
             $flowArray2 = [];
             $flowArray2['name'] = $flow->file_id;
-            $flowArray2['uuid'] = $flow->uuid;
+            // $flowArray2['uuid'] = $flow->uuid;
+            $flowArray2['uuid'] = Str::uuid();
             $flowArray2['spec_version'] = '13.1.0';
             $flowArray2['language'] = 'eng';
             $flowArray2['type'] = 'messaging';
@@ -239,7 +242,8 @@ class NewRapidFlowController extends Controller
 
                 //database node loop start
                 $nodeArray = [];
-                $nodeArray['uuid'] = $node->uuid;
+                // $nodeArray['uuid'] = $node->uuid;
+                $nodeArray['uuid'] = Str::uuid();
 
                 $nodeArray['actions'] = [[
                     'uuid' => Str::uuid(),

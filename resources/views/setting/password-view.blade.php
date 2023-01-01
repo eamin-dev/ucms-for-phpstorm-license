@@ -41,7 +41,7 @@
                                     <h3 class="card-title">Basic example</h3>
                                 </div> --}}
                                 <div class="card-body">
-                                    <form method="POST" action="{{ route('user.password.update') }}">
+                                    <form method="POST" action="{{ route('user.password.update') }}" id="myform">
                                         @csrf
                                         
                                         
