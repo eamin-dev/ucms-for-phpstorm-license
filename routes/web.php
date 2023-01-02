@@ -4,9 +4,11 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CountryOfficeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IogtController;
+use App\Http\Controllers\NewCountryOfficeController;
 use App\Http\Controllers\NewRapidFlowController;
 use App\Http\Controllers\NewThemeficController;
 use App\Http\Controllers\ProfileManageController;
+use App\Http\Controllers\QuestionManageController;
 use App\Http\Controllers\RapidProController;
 use App\Http\Controllers\RapidProFlowController;
 use App\Http\Controllers\RolePermissionController;
@@ -119,12 +121,31 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
 
+    Route::controller(QuestionManageController::class)->group(function () {
+
+        Route::get('flow/question/edit/{id}', 'editQuestion')->name('flow.question.edit');
+        Route::post('flow/question/update/{id}', 'updateQuestion')->name('flow.question.update');
+        Route::get('flow/question/delete/{id}', 'delete')->name('flow.question.delete');
+
+    });
+
+
     Route::controller(ProfileManageController::class)->group(function(){
 
         Route::get('user-profile','viewProfile')->name('user.profile.view');
         Route::post('profile-update','updateProfile')->name('user.profile.update');
         Route::get('user/password/change','userPassword')->name('user.change.password');
         Route::post('user/password/update','passwordUpdate')->name('user.password.update');
+
+    });
+
+    Route::controller(NewCountryOfficeController::class)->prefix('country-offices')->group(function () {
+
+        Route::get('/', 'view')->name('country.offices.view');
+        Route::get('/{area}', 'getCountryById')->name('country.offices.getCountryById');
+        Route::post('/store', 'store')->name('country.offices.store');
+        Route::patch('/update/{area}', 'update')->name('country.offices.update');
+        Route::delete('/officeDelete', 'officedeleteById')->name('country.offices.officedeleteById');
 
     });
 

@@ -47,7 +47,7 @@
                                             <th class="text-center">#</th>
                                             <th class="text-center">Question Title </th>
                                             <th class="text-center">Answer Type</th>
-                                            {{-- <th class="text-center">Actions</th> --}}
+                                            <th class="text-center">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -57,9 +57,13 @@
                                                 <th class="text-center">{{ $data->question_title }}</th>
                                                 <th class="text-center"><span
                                                         class="bg bg-success badge-pill">{{ $data->ans_Type }}</span> </th>
-                                                {{-- <th class="text-center">
-                                                <a href="{{route('store.rapid.pro.json',$data->id) }}" class="btn btn-primary btn-sm">Export Json </a>
-                                            </th>    --}}
+                                                <th class="text-center">
+
+                                                    <a href="{{route('flow.question.edit',$data->id) }}" class="btn btn-primary btn-sm"><i
+                                                            class="fa fa-edit"></i> </a>
+                                                    <a href="{{route('flow.question.delete',$data->id) }}" id="delete" class="btn btn-danger btn-sm"><i
+                                                            class="fa fa-trash"></i> </a>
+                                                </th>
 
                                             <tr>
 
@@ -152,6 +156,33 @@
         });
     </script>
 
+
+<script type="text/javascript">
+    $(function(){
+      $(document).on('click','#delete',function(e){
+      e.preventDefault();
+    var link = $(this).attr("href");
+            Swal.fire({
+        title: 'Are you sure?',
+        text: "delete Flow Question!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Confirm it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+        window.location.href = link;
+          Swal.fire(
+            'approved!',
+            'Question has been deleted.',
+            'success'
+          )
+        }
+      })
+});
+});
+</script>
 
 
 @endsection

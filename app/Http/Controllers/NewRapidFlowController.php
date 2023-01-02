@@ -148,7 +148,7 @@ class NewRapidFlowController extends Controller
     {
 
         $flowData = Flow::where('id', $flow)->first();
-        $allQuestions = FlowQuestion::where('flow_id', $flow)->get();
+        $allQuestions = FlowQuestion::where('flow_id', $flow)->orderBy('id','desc')->get();
 
         return view('rapidflow.question.index', compact('flowData', 'allQuestions'));
     }
