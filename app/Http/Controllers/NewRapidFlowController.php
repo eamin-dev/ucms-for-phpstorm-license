@@ -216,7 +216,11 @@ class NewRapidFlowController extends Controller
 
         /* flow loop start */
         foreach ($flows as $flow) {
-            $nodeUUIDlist = $flow->questions->pluck('uuid');
+            $nodeUUIDCount = $flow->questions->count();
+            $nodeUUIDlist = [];
+            for ($i =0; $i< $nodeUUIDCount; $i++){
+                $nodeUUIDlist[] = Str::uuid();
+            }
 
             $flowArray2 = [];
             $flowArray2['name'] = $flow->file_id;
@@ -236,8 +240,7 @@ class NewRapidFlowController extends Controller
 
                 //database node loop start
                 $nodeArray = [];
-                // $nodeArray['uuid'] = $node->uuid;
-                $nodeArray['uuid'] = Str::uuid();
+                $nodeArray['uuid'] = $nodeUUIDlist[$index];
 
                 $nodeArray['actions'] = [[
                     'uuid' => Str::uuid(),
