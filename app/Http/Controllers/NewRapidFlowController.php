@@ -146,18 +146,12 @@ class NewRapidFlowController extends Controller
 
     public function viewFlow($flow)
     {
-
-        $flowData = Flow::where('id', $flow)->first();
-        $allQuestions = FlowQuestion::where('flow_id', $flow)->get();
-
-        return view('rapidflow.question.index', compact('flowData', 'allQuestions'));
+        $flowData = Flow::with('questions.answers')->findOrFail($flow);
+        return view('rapidflow.question.index', compact('flowData'));
     }
 
     public function storeQuestion(Request $request)
     {
-
-        // return $request->toArray();
-
         DB::beginTransaction();
 
         try {
@@ -193,8 +187,8 @@ class NewRapidFlowController extends Controller
             return redirect()->back()->with($notification);
 
         } catch (\Throwable $th) {
-            throw $th;
             DB::rollBack();
+            throw $th;
         }
     }
 
@@ -302,5 +296,14 @@ class NewRapidFlowController extends Controller
         $fileStorePath = public_path('/upload/json/' . $fileName);
         File::put($fileStorePath, $jsonData);
         return response()->download($fileStorePath);
+    }
+
+    public function questionDelete($id)
+    {
+        $question = FlowQuestion::findOrFail($id);
+
+        $question->delete();
+        return back();
+//        return response()->json(['message' => 'Rapid Pro Flow Deleted Successfully!']);
     }
 }

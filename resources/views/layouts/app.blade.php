@@ -18,16 +18,15 @@
     <!-- Table datatable css -->
     <link href="{{asset('assets')}}/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
     <link href="{{asset('assets')}}/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
-    <link href="{{asset('assets')}}/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
+{{--    <link href="{{asset('assets')}}/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css"/>--}}
     <link href="{{asset('assets')}}/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
     <link href="{{asset('assets')}}/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
     <!-- Plugins css-->
     <link href="{{asset('assets/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css"/>
-    <!-- summernote css/js -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
-    <!-- Responsive Table css -->
-    <link href="{{asset('assets/libs/rwd-table/rwd-table.min.css')}}" rel="stylesheet" type="text/css"/>
+{{--    <!-- summernote css/js -->--}}
+{{--    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">--}}
+{{--    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>--}}
+
     <!-- Custom box css -->
     <link href="{{asset('assets/libs/custombox/custombox.min.css')}}" rel="stylesheet">
     <!--Toastr CDN -->
@@ -110,15 +109,12 @@
 <script src="{{asset('assets/libs/flot-charts/jquery.flot.pie.js')}}"></script>
 <script src="{{asset('assets/libs/flot-charts/jquery.flot.selection.js')}}"></script>
 <script src="{{asset('assets/libs/flot-charts/jquery.flot.stack.js')}}"></script>
-<script src="{{asset('assets/libs/flot-charts/jquery.flot.crosshair.js')}}'"></script>
+{{--<script src="{{asset('assets/libs/flot-charts/jquery.flot.crosshair.js')}}'"></script>--}}
 <!-- Dashboard init JS -->
 <script src="{{asset('assets/js/pages/dashboard.init.js')}}"></script>
 <!-- App js -->
 <script src="{{asset('assets/js/app.min.js')}}"></script>
-<!-- Responsive Table js -->
-<script src="{{asset('assets/libs/rwd-table/rwd-table.min.js')}}"></script>
-<!-- Init js -->
-<script src="{{asset('assets/js/pages/responsive-table.init.js')}}"></script>
+
 <!-- Modal-Effect -->
 <script src="{{asset('assets/libs/custombox/custombox.min.js')}}"></script>
 {{-- sweetalert --}}
@@ -170,7 +166,7 @@
 <script src="{{asset('assets')}}/libs/datatables/buttons.html5.min.js"></script>
 <script src="{{asset('assets')}}/libs/datatables/buttons.print.min.js"></script>
 
-<script src="{{asset('assets')}}/libs/datatables/dataTables.fixedHeader.min.js"></script>
+{{--<script src="{{asset('assets')}}/libs/datatables/dataTables.fixedHeader.min.js"></script>--}}
 <script src="{{asset('assets')}}/libs/datatables/dataTables.keyTable.min.js"></script>
 <script src="{{asset('assets')}}/libs/datatables/dataTables.scroller.min.js"></script>
 

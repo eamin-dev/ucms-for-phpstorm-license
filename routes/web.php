@@ -112,9 +112,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('rapidpro/flow','store')->name('rapid.flow.store');
         Route::patch('rapidpro/flow/update/{flow}','update')->name('rapid.flow.update');
         Route::delete('rapidpro/flow/flowDeleteById','flowDeleteById')->name('rapid.flow.flowDeleteById');
-        Route::get('rapid-pro/view/{flow}','viewFlow')->name('rapid.view-flow');    
+        Route::get('rapid-pro/view/{flow}','viewFlow')->name('rapid.view-flow');
         Route::post('rapid-pro/question','storeQuestion')->name('rapidpro.question.store');
         Route::get('rapidpro/json/{id}','exportJson')->name('rapidpro.question.json');
+        Route::delete('rapidpro/question/delete/{id}','questionDelete')->name('rapidpro.question.delete');
 
     });
 
