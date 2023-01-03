@@ -34,11 +34,11 @@
 {{--            </a>--}}
 {{--        </li>--}}
 
-        <li class="dropdown notification-list">
-            <a class="nav-link dropdown-toggle  waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                <i class="mdi mdi-bell noti-icon"></i>
-                <span class="badge badge-danger rounded-circle noti-icon-badge">3</span>
-            </a>
+{{--        <li class="dropdown notification-list">--}}
+{{--            <a class="nav-link dropdown-toggle  waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">--}}
+{{--                <i class="mdi mdi-bell noti-icon"></i>--}}
+{{--                <span class="badge badge-danger rounded-circle noti-icon-badge">3</span>--}}
+{{--            </a>--}}
 {{--            <div class="dropdown-menu dropdown-menu-right dropdown-lg">--}}
 
 {{--                <!-- item-->--}}
@@ -99,7 +99,7 @@
 
         <li class="dropdown notification-list">
             <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                <img src="assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
+                <img src="{{ asset('assets/images/users/avatar-1.jpg') }}" alt="user-image" class="rounded-circle">
             </a>
             <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
 {{--                <!-- item-->--}}
