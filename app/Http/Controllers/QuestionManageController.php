@@ -10,9 +10,11 @@ class QuestionManageController extends Controller
 {
     public function editQuestion(Request $request){
 
-        $editQuestion = FlowQuestion::where('id', $request->id)->with('answers')->get();
+        $editQuestion = FlowQuestion::with('answers')->findorFail($request->id);
 
-        return $editQuestion;
+       //return $editQuestion;
+
+        return view('rapidflow.question.edit',compact('editQuestion'));
 
     }
 
