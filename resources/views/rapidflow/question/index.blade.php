@@ -141,5 +141,32 @@
     </script>
 
 
+<script type="text/javascript">
+    $(function(){
+      $(document).on('click','#delete',function(e){
+      e.preventDefault();
+    var link = $(this).attr("href");
+            Swal.fire({
+        title: 'Are you sure?',
+        text: "delete Flow Question!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Confirm it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+        window.location.href = link;
+          Swal.fire(
+            'approved!',
+            'Question has been deleted.',
+            'success'
+          )
+        }
+      })
+});
+});
+</script>
+
 
 @endsection

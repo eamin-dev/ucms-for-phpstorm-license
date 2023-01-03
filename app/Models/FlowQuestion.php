@@ -16,6 +16,6 @@ class FlowQuestion extends Model
 
     public function answers()
     {
-        return $this->hasMany(FlowQuestionAnswer::class, 'flow_question_id', 'id');
+        return $this->hasMany(FlowQuestionAnswer::class, 'flow_question_id', 'id')->select('id','flow_question_id','answer');
     }
 }
