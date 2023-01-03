@@ -174,7 +174,7 @@
         $(document).on('click', '.delete', function() {
             let flowId = $(this).data('file-id');
             let fileName = $(this).data('file_id');
-            $('#districtId').val(flowId);
+            $('#flowId').val(flowId);
             $('#deleteValueName').html(fileName);
             $('#deleteValueError').html('');
             $('.modal-title').text('Confirmation');
