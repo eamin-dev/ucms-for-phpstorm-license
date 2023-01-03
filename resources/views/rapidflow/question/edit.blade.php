@@ -14,11 +14,7 @@
                     <div class="page-title-box">
                         <h4 class="page-title"></h4>
                         <div class="page-title-right">
-                            <ol class="breadcrumb p-0 m-0">
-                                <li class="breadcrumb-item">
-                                    {{-- <h4 class="text-left">Edit Question</h4> --}}
-                                </li>
-                            </ol>
+
                         </div>
                         <div class="clearfix">
                             <h4 class="text-left">Edit Question</h4>
@@ -39,12 +35,10 @@
                         </div>
                         <div class="card-body">
 
-                            <form action="{{ route('flow.question.update', $editQuestion->id) }}" method="POST"
-                                enctype="multipart/form-data">
+                            <form action="{{ route('flow.question.update', $editQuestion->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-
                                 <div class="form-row">
-
+                                    <input type="hidden" name="question_id" value="{{ $editQuestion->id }}">
                                     {{-- error show --}}
                                     @if ($errors->any())
                                         <div class="alert alert-danger">
@@ -57,10 +51,9 @@
                                     @endif
                                     {{-- end error show --}}
                                     <div class="form-group col-md-12">
-                                        <input type="text" name="question_title" value= "{{ $editQuestion->question_title }} "required 
-                                            class="form-control" placeholder="Enter Question title">
-
-                                            {{-- <input type="text" name="question_title" value="{{ $editQuestion->question_title }}" required class="form-control" placeholder="Enter Queation Title"> --}}
+                                        <input type="text" name="question_title"
+                                            value="{{ $editQuestion->question_title }} " required class="form-control"
+                                            placeholder="Enter Question title">
 
                                     </div>
 
@@ -82,41 +75,40 @@
                                     <br>
                                     <br>
 
-                                    <div class="col-md-12">
-                                        <div class="selectMultiple" style="display: none">
-                                            <div class="add_item">
-                                                <div class="row">
-                                                    <div class="form-group col-md-11">
-                                                        <label for="">Multiple Answer</label>
-                                                        <input type="text" name="answer[]" class="form-control"
-                                                            placeholder="Enter Multiple Answer">
-                                                    </div>
-                                                    <div class="form-group col-md-1" style="margin-top: 30px">
-                                                        <span class="btn btn-success addQuestion"><i
-                                                                class="fa fa-plus-circle"></i></span>
+                                    @foreach ($editQuestion->answers as $ans)
+                                        {{-- add multiple question --}}
+                                        <div class="col-md-12">
+                                            <div class="selectMultiple">
+                                                <div class="add_item">
+                                                    <div class="row">
+                                                        <div class="form-group col-md-11">
+                                                            <label for="">Multiple Answer</label>
+                                                            <input type="text" name="answer[]"
+                                                                value="{{ $ans->answer }}" class="form-control"
+                                                                placeholder="Enter Multiple Answer">
+                                                        </div>
+                                                        <div class="form-group col-md-1" style="margin-top: 30px">
+                                                            <span class="btn btn-success addQuestion"><i
+                                                                    class="fa fa-plus-circle"></i></span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    {{-- end add-item --}}
 
-                                    <div class="form-group col-md-12 selectType" style="display: none">
-                                        <label for="">Input Answer</label>
-                                        <input type="text" class="form-control" name="input_answer"
-                                            placeholder="Enter Answer here">
-                                    </div>
-
+                                        {{-- end  multiple question --}}
+                                    @endforeach
 
                                 </div>
                                 <div class="modal-footer">
-                                 
+
                                     <button type="submit" class="btn btn-info waves-effect waves-light">Update</button>
                                 </div>
                             </form>
 
                             {{-- add more multiple question --}}
-                            <div class="col-lg-12" style="visibility: hidden">
+
+                            <div class="col-lg-12" style="display: none">
                                 <div class="whole_extra_item_add" id="whole_extra_item_add">
                                     <div class="delete_whole_extra_item" id="delete_whole_extra_item">
                                         <div class="form-row">
@@ -141,7 +133,6 @@
 
                             {{-- end multiple question --}}
 
-
                         </div>
                     </div>
                 </div>
@@ -153,31 +144,12 @@
     </div>
 
 
-    <!-- MODAL start-->
-
-    {{-- <div  class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;"> --}}
-
-    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-        aria-hidden="true" style="display: none;">
-
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"> Add Question</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                {{-- @include('rapidflow.question.question-create') --}}
-            </div>
-        </div>
     </div>
 
 
 @endsection
 
 @section('script')
-    {{-- @include('rolePermission.script') --}}
 
     <script>
         $(document).on('change', '#ans_Type', function() {
