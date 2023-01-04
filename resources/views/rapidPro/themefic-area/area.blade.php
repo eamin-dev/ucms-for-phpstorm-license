@@ -53,6 +53,7 @@
                                     <thead>
                                     <tr>
                                         <th>Sl</th>
+                                        <th>Code</th>
                                         <th>Name</th>
                                         <th>Action</th>
                                     </tr>
@@ -79,6 +80,10 @@
                                                         @csrf
                                                         @method("POST")
                                                         <div class="row">
+                                                            <div class="form-group col-12">
+                                                                <label for="name">Code <span class="text-danger">*</span></label>
+                                                                <input id="code" placeholder="Code" value="" type="text" name="code" class="form-control">
+                                                            </div>
                                                             <div class="form-group col-12">
                                                                 <label for="name">Name <span class="text-danger">*</span></label>
                                                                 <input id="name" placeholder="Name" value="" type="text" name="name" class="form-control">

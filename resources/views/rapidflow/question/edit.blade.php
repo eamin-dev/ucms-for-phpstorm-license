@@ -83,7 +83,7 @@
                                                     <div class="row">
                                                         <div class="form-group col-md-11">
                                                             <label for="">Multiple Answer</label>
-                                                            <input type="text" name="answer[]"
+                                                            <input type="text" name="answer[]" required
                                                                 value="{{ $ans->answer }}" class="form-control"
                                                                 placeholder="Enter Multiple Answer">
                                                         </div>
@@ -114,7 +114,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-11">
                                                 <label for="">Multiple Answer</label>
-                                                <input type="text" name="answer[]" class="form-control"
+                                                <input type="text" name="answer[]" required class="form-control"
                                                     placeholder="Enter Multiple Answer">
                                             </div>
                                             <div class="form-group col-md-1" style="margin-top: 30px">

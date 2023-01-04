@@ -16,7 +16,7 @@ class ThemeficAreaController extends Controller
         if (!$request->ajax()) {
             return view('rapidPro.themefic-area.area');
         }
-        $data = ThemeficArea::query()->select('id','name');
+        $data = ThemeficArea::query()->select('id','name','code');
         return $this->renderViewDataTable($data);
     }
 
@@ -41,6 +41,7 @@ class ThemeficAreaController extends Controller
 
         $area = new ThemeficArea();
         $area->name = $request->name;
+        $area->code = $request->code;
         if (!$area->save())
             return  response()->json(['message' => 'Themefic-Area Failed to Save!'], Response::HTTP_BAD_REQUEST);
 
@@ -52,22 +53,26 @@ class ThemeficAreaController extends Controller
 
         if ($type === 'add') {
             $rules = [
+                'code'=>'required',
                 'name' => ['required', Rule::unique('themefic_areas')],
             ];
 
             $customMessages = [
+                'code.required'=> 'Code Field is required',
                 'name.required' => 'Name field is required.',
-                'name.unique' => 'The Name has already been taken.',
+                'name.unique' => ' Name has already been taken.',
             ];
         }
 
         if (!is_null($id)) {
 
             $rules = [
+                'code'=>'required',
                 'name' => ['required', Rule::unique('themefic_areas')->ignore($id)],
             ];
 
             $customMessages = [
+                'code.required'=> 'Code Field is required',
                 'name.required' => 'Name field is required.',
                 'name.unique' => 'The Name(En) has already been taken.',
             ];
@@ -87,6 +92,7 @@ class ThemeficAreaController extends Controller
         }
 
         $area->name = $request->name;
+        $area->code = $request->code;
 
         if (!$area->save())
             return  response()->json(['message' => 'Themefic Area Failed to Update!'], Response::HTTP_BAD_REQUEST);

@@ -41,7 +41,7 @@
                         <div class="row">
                             <div class="form-group col-md-11">
                                 <label for="multiple_ans">Multiple Answer</label>
-                                <input id="multiple_ans" type="text" name="answer[]" class="form-control"
+                                <input id="multiple_ans" type="text" required name="answer[]" class="form-control"
                                        placeholder="Enter Multiple Answer">
                             </div>
                             <div class="form-group col-md-1" style="margin-top: 30px">
@@ -74,7 +74,7 @@
             <div class="form-row">
                 <div class="form-group col-md-11">
                     <label for="m_ans">Multiple Answer</label>
-                    <input id="m_ans" type="text" name="answer[]" class="form-control" placeholder="Enter Multiple Answer">
+                    <input id="m_ans" type="text" required name="answer[]" class="form-control" placeholder="Enter Multiple Answer">
                 </div>
                 <div class="form-group col-md-1" style="margin-top: 30px">
                     <div class="form-row">

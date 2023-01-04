@@ -218,7 +218,7 @@ class NewRapidFlowController extends Controller
         foreach ($flows as $flow) {
             $nodeUUIDCount = $flow->questions->count();
             $nodeUUIDlist = [];
-            for ($i =0; $i< $nodeUUIDCount; $i++){
+            for ($i = 0; $i < $nodeUUIDCount; $i++) {
                 $nodeUUIDlist[] = Str::uuid();
             }
 
