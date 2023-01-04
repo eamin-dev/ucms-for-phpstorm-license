@@ -9,8 +9,7 @@ use App\Http\Controllers\NewRapidFlowController;
 use App\Http\Controllers\NewThemeficController;
 use App\Http\Controllers\ProfileManageController;
 use App\Http\Controllers\QuestionManageController;
-use App\Http\Controllers\RapidProController;
-use App\Http\Controllers\RapidProFlowController;
+use App\Http\Controllers\RegionController;
 use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\ThemeficAreaController;
 use App\Http\Controllers\UserController;
@@ -63,16 +62,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/role-update', 'updateRoleInfo')->name('role.update');
     });
 
-
-    Route::controller(RapidProController::class)->group(function () {
-
-        // Route::get('rapidpro','createRapidPro')->name('rapid.pro.create');
-        Route::get('rapidpro/flow', 'rapidFlow')->name('rapid.pro.flow');
-        Route::post('rapidpro/flow/store', 'storeTRapidFlow')->name('store.rapid.pro.flow');
-        Route::get('rapidpro/json/{id}', 'rapidProJson')->name('store.rapid.pro.json');
-
-    });
-
     Route::controller(IogtController::class)->group(function () {
 
         Route::get('iogt', 'index')->name('iogt.index');
@@ -100,13 +89,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     });
 
-    Route::controller(RapidProFlowController::class)->group(function () {
-
-        Route::get('rapidpro-flow', 'createRapidPro')->name('rapid.pro.create');
-        Route::post('rapidpro-flow/store', 'storeFlow')->name('rapid.flow.store');
-
-    });
-
     Route::controller(NewRapidFlowController::class)->group(function () {
 
         Route::get('rapid-pro/flow','view')->name('rapid.flow.view');
@@ -121,7 +103,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     });
 
-
     Route::controller(QuestionManageController::class)->group(function () {
 
         Route::get('flow/question/edit/{id}', 'editQuestion')->name('flow.question.edit');
@@ -129,7 +110,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('flow/question/delete/{id}', 'delete')->name('flow.question.delete');
 
     });
-
 
     Route::controller(ProfileManageController::class)->group(function(){
 
@@ -147,6 +127,16 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/store', 'store')->name('country.offices.store');
         Route::patch('/update/{area}', 'update')->name('country.offices.update');
         Route::delete('/officeDelete', 'officedeleteById')->name('country.offices.officedeleteById');
+
+    });
+
+    Route::controller(RegionController::class)->prefix('regions')->group(function () {
+
+        Route::get('/', 'view')->name('regions.view');
+        Route::get('/{region}', 'getregionById')->name('regions.getregionById');
+        Route::post('/store', 'store')->name('regions.store');
+        Route::patch('/update/{region}', 'update')->name('regions.update');
+        Route::delete('/regionDelete', 'regiondeleteById')->name('regions.regiondeleteById');
 
     });
 

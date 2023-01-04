@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Region extends Model
 {
     use HasFactory;
+
+
+    public function  creator(){
+
+        return $this->belongsTo(User::class,'created_by', 'id')->select('id','name');
+    }
 }
