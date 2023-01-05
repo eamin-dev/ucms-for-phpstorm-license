@@ -35,12 +35,12 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title float-left pt-2">All Themefic-area</h3>
+                        <h3 class="card-title float-left pt-2">All Region</h3>
 
                         <div class="card-tools float-right">
                             <ul class="nav nav-pills ml-auto">
                                 <li class="nav-item">
-                                  <button id="addNew" name="addNew" class="btn btn-primary  text-white"><i class="fa fa-plus-circle"></i> Add ThemeficArea</button>
+                                  <button id="addNew" name="addNew" class="btn btn-primary  text-white"><i class="fa fa-plus-circle"></i> Add Region</button>
                                 </li>
                             </ul>
                         </div>
@@ -49,12 +49,12 @@
                         <div class="row">
                             <!-- Content Table Start-->
                             <div class="col-md-12 col-sm-12 col-12">
-                                <table id="userTable" class="table table-striped table-bordered text-center" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <table id="userTable" class="table table-striped table-bordered table-hover text-center" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead>
                                     <tr>
                                         <th>Sl</th>
-                                        <th>Code</th>
                                         <th>Name</th>
+                                        <th>Created-by</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -80,10 +80,7 @@
                                                         @csrf
                                                         @method("POST")
                                                         <div class="row">
-                                                            <div class="form-group col-12">
-                                                                <label for="name">Code <span class="text-danger">*</span></label>
-                                                                <input id="code" placeholder="Code" value="" type="text" name="code" class="form-control">
-                                                            </div>
+                                                    
                                                             <div class="form-group col-12">
                                                                 <label for="name">Name <span class="text-danger">*</span></label>
                                                                 <input id="name" placeholder="Name" value="" type="text" name="name" class="form-control">
@@ -92,7 +89,7 @@
 
                                                             <div class="form-group col-md-12 text-center">
                                                                 <input type="hidden" name="action" id="action" value="addNew">
-                                                                <input type="hidden" name="area_id" id="area_id">
+                                                                <input type="hidden" name="region_id" id="region_id">
                                                                 <input type="submit" name="saveBtn" id="saveBtn" class="col-12 btn btn-success btn-md" value="Save">
                                                             </div>
 
@@ -116,7 +113,7 @@
                                         </div>
                                         <div class="modal-body">
                                           <!--  <h4 align="center" style="margin:0;color: indianred;">Are you sure you want to remove this data?</h4> -->
-                                          <h5 align="center" style="margin:0;color: indianred;">Are you sure you want to remove <span id="deleteValueName" class="text-secondary"></span> Themefic-area ?</h5>
+                                          <h5 align="center" style="margin:0;color: indianred;">Are you sure you want to remove <span id="deleteValueName" class="text-secondary"></span> Region ?</h5>
 
                                           <p id="deleteValueError" class="text-primary text-center text-16"></p>
                                         </div>
@@ -182,7 +179,7 @@
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script src="{{asset('assets/js/custom-toastr.min.js')}}"></script>
 
-  @include('rapidPro.themefic-area.area_script');
+  @include('rapidPro.region.region_script');
 
 
 @endsection

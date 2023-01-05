@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class ThemeficArea extends Model
 {
     use HasFactory;
+
+    protected $fileName = [
+        'code',
+        'name',
+    ];
 }

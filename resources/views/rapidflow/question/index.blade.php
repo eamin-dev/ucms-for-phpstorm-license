@@ -41,6 +41,7 @@
                                     <tr style="background-color: #a4bad0">
                                         <th class="text-center">#</th>
                                         <th class="text-center">Question Title</th>
+                                        <th class="text-center">Ans Type</th>
                                         <th class="text-center">Quick Answer</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
@@ -50,20 +51,16 @@
                                         <tr>
                                             <td class="text-center">{{ $key + 1 }}</td>
                                             <td class="text-center">{{ $data->question_title }}</td>
+                                            <td class="text-center"><span class="bg bg-info badge-pill">{{ $data->ans_Type }}</span> </td>
                                             <td class="text-center">
                                                 @foreach($data->answers as $answer)
                                                     <span
                                                         class="bg bg-success badge-pill">{{ $answer->answer }}</span>
                                                 @endforeach
                                             </td>
-                                            <td>
-                                                <button type="button" title="Edit " data-file-id="{{$data->id}}" class="edit btn btn-primary btn-sm"><i class="fa fa-pen"></i> </button>
-                                                <form action="{{ route("rapidpro.question.delete", $data->id) }}" method="post" class="deleteById" id="deleteById">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <input type="hidden" name="flowId" value="" id="flowId"/>
-                                                    <button type="submit" title="Delete" class="delete btn btn-danger btn-sm"><i class="fa fa-trash"></i> </button>
-                                                </form>
+                                            <td class="text-center">
+                                              <a href="{{ route('flow.question.edit',$data->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                              <a href="{{ route('flow.question.delete',$data->id) }}" id="delete" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </a>
                                             </td>
                                         <tr>
                                     @empty
@@ -108,15 +105,20 @@
     <script>
         $(document).on('change', '#ans_type', function () {
 
-            const ans_type = $(this).val();
+            var ans_type = $(this).val();
 
-            if (ans_type === 'Input_answer') {
-                $('.selectMultiple').hide();
-            }else if (ans_type === 'multiple_Choice') {
-                $('.selectMultiple').show();
-            } else {
-                $('.selectMultiple').hide();
-            }
+                if (ans_type == 'Input_answer') {
+                    $('.selectType').show();
+                } else {
+                    $('.selectType').hide();
+                }
+
+                if (ans_type == 'multiple_Choice') {
+                    $('.selectMultiple').show();
+                } else {
+                    $('.selectMultiple').hide();
+                }
+
 
         });
     </script>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateThemeficAreasTable extends Migration
+class CreateRegionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateThemeficAreasTable extends Migration
      */
     public function up()
     {
-        Schema::create('themefic_areas', function (Blueprint $table) {
+        Schema::create('regions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('code');
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateThemeficAreasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('themefic_areas');
+        Schema::dropIfExists('regions');
     }
 }

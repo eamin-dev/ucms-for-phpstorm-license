@@ -21,7 +21,7 @@
 
         $('#addNew').click(function() {
             myFormReset();
-            $('.modal-title').text('Add New ThemeFic Area');
+            $('.modal-title').text('Add New  Region');
             $('#action').val('addNew');
             $('#myForm input[name="_method"]').val('POST');
             $('#myModal').modal('show');
@@ -33,7 +33,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: "{{ route('themefic-area.view') }}",
+                url: "{{ route('regions.view') }}",
             },
             columns: [
                 {
@@ -42,10 +42,10 @@
                     bSortable:false,
                 },
                 {
-                    data: 'code',
+                    data:'name',
                 },
                 {
-                    data:'name',
+                    data:'creator.name', 
                 },
 
                 {
@@ -65,12 +65,12 @@
         $('#myForm').on('submit', function(e) {
             e.preventDefault();
 
-            let url = "{{route('themefic-area.store')}}"
+            let url = "{{route('regions.store')}}"
 
             if ($('#action').val() === 'edit') {
-                let areaId = $('#area_id').val();
-                url = "{{ route('themefic-area.update',['area'=> '__areaId']) }}"
-                url = url.replace("__areaId", areaId);
+                let regionId = $('#region_id').val();
+                url = "{{ route('regions.update',['region'=> '__regionId']) }}"
+                url = url.replace("__regionId", regionId);
             }
 
             let formData = new FormData(this);
@@ -111,24 +111,23 @@
 
     function showModalShow() {
         $(document).on('click', '.showDetails', function() {
-            let areaId = $(this).data('area-id');
+            let regionId = $(this).data('region-id');
             myFormReset();
             let showTable = $('#showTable');
             showTable.html('');
-            let url = "{{ route('themefic-area.getAreaById',['area' => '__areaId']) }}";
-            url = url.replace("__areaId", areaId);
+            let url = "{{ route('regions.getregionById',['region' => '__regionId']) }}";
+            url = url.replace("__regionId", regionId);
 
             $.ajax({
                 url: url,
                 type: "get",
                 dataType: "json",
                 complete: function(data) {
-                    var area = data.responseJSON.area;
-                    var html = '<tr> <th> Code </th><td>' +area.code + '</td> </tr>';
-                    var html = '<tr><th> Name</th><td>' + area.name + '</td></tr>';
+                    var region = data.responseJSON.region;
+                    var html = '<tr><th> Name</th><td>' + region.name + '</td></tr>';
                     showTable.html(html);
 
-                    $('.modal-title').text('Themefic Area Details');
+                    $('.modal-title').text('Region Area Details');
                     // $('#showModal').modal({
                     //     backdrop: 'static',
                     //     keyboard: false,
@@ -142,23 +141,22 @@
 
     function editModalShow() {
         $(document).on('click', '.edit', function() {
-            let areaId = $(this).data('area-id');
+            let regionId = $(this).data('region-id');
 
-            let url = "{{ route('themefic-area.getAreaById',['area' => '__areaId']) }}";
-            url = url.replace("__areaId", areaId);
+            let url = "{{ route('regions.getregionById',['region' => '__regionId']) }}";
+            url = url.replace("__regionId", regionId);
 
             $.ajax({
                 url: url,
                 type: "get",
                 dataType: "json",
                 complete: function(data) {
-                    let area = data.responseJSON.area;
+                    let region = data.responseJSON.region;
                     $('#myForm input[name="_method"]').val('PATCH');
-                    $('#name').val(area.name);
-                    $('#code').val(area.code);
-                    $('#area_id').val(areaId);
+                    $('#name').val(region.name);
+                    $('#region_id').val(regionId);
                     $('#action').val('edit');
-                    $('.modal-title').text('Edit Themefic-Area Data');
+                    $('.modal-title').text('Edit Region Data');
                     $('#myModal').modal('show');
                 }
             })
@@ -169,10 +167,10 @@
 
     function confirmDeleteModalShow() {
         $(document).on('click', '.delete', function() {
-            let areaId = $(this).data('area-id');
-            let areaName = $(this).data('area-name');
-            $('#areaId').val(areaId);
-            $('#deleteValueName').html(areaName);
+            let regionId = $(this).data('region-id');
+            let regionName = $(this).data('area-name');
+            $('#areaId').val(regionId);
+            $('#deleteValueName').html(regionName);
             $('#deleteValueError').html('');
             $('.modal-title').text('Confirmation');
             $('#confirmModal').modal('show');
@@ -185,7 +183,7 @@
 
             $.ajax({
                 type: 'post',
-                url: '{{route("themefic-area.areaDeleteById")}}',
+                url: '{{route("regions.regiondeleteById")}}',
                 data: $(this).serialize(),
                 dataType: 'json',
                 beforeSend: function() {
