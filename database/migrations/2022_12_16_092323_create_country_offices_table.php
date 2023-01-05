@@ -16,6 +16,8 @@ class CreateCountryOfficesTable extends Migration
         Schema::create('country_offices', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
             $table->timestamps();
         });
     }

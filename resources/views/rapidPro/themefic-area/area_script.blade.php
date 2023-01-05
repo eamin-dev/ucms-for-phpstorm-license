@@ -42,10 +42,10 @@
                     bSortable:false,
                 },
                 {
-                    data: 'code',
+                    data: 'name',
                 },
                 {
-                    data:'name',
+                    data:'code',
                 },
 
                 {

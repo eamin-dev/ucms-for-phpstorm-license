@@ -3,70 +3,121 @@
 namespace App\Http\Controllers;
 
 use App\Models\CountryOffice;
+use App\Models\Flow;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+use Yajra\DataTables\Facades\DataTables;
 
 class CountryOfficeController extends Controller
 {
 
-    public function index()
+    public function view(Request $request)
     {
-
-        $officeNames = CountryOffice::select('id', 'name')->orderBy('id', 'desc')->get();
-        return view('rapidPro.countryOffice.office', compact('officeNames'));
-
+        if (!$request->ajax()) {
+            return view('rapidPro.countryOffice.office');
+        }
+        $data = CountryOffice::query()->with('creator');
+        return $this->renderViewDataTable($data);
     }
+
+    private function renderViewDataTable($data)
+    {
+        return DataTables::eloquent($data)
+            ->addIndexColumn()
+            ->addColumn('actionBtn', 'rapidPro.countryOffice.actionBtn')
+            ->rawColumns(['actionBtn'])
+            ->toJson();
+    }
+
     public function store(Request $request)
     {
+        list($rules, $customMessages) = $this->validationRulesAndMessages('add', null);
 
-        $this->validate($request, [
-            'name' => 'required|unique:country_offices,name,' . $request->id,
-        ]);
+        $error = Validator::make($request->all(), $rules, $customMessages);
 
-        $data = new CountryOffice();
-        $data->name = $request->name;
-        $data->save();
-        $notification = array(
-            'message' => 'CountryOffice Successfully Added',
-            'alert-type' => 'success',
-        );
-        return redirect()->route('get.country.office')->with($notification);
+        if ($error->fails()) {
+            return response()->json(['errors' => $error->errors()->all()], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
 
+        $region = new CountryOffice();
+        $region->name = $request->name;
+        $region->created_by = Auth::user()->id;
+        if (!$region->save()) {
+            return response()->json(['message' => 'Themefic-Area Failed to Save!'], Response::HTTP_BAD_REQUEST);
+        }
+
+        return response()->json(['message' => 'Themefic-Area Saved Successfully!']);
     }
 
-    public function edit(Request $request)
+    private function validationRulesAndMessages($type, $id)
     {
 
-        $editData = CountryOffice::findorFail($request->id);
-        $officeNames = CountryOffice::select('id', 'name')->orderBy('id', 'desc')->get();
-        return view('rapidPro.countryOffice.office-edit', compact('editData', 'officeNames'));
+        if ($type === 'add') {
+            $rules = [
+                'name' => ['required', Rule::unique('country_offices')],
+            ];
 
+            $customMessages = [
+                'name.required' => 'Name field is required.',
+                'name.unique' => ' Name has already been taken.',
+            ];
+        }
+
+        if (!is_null($id)) {
+
+            $rules = [
+                'name' => ['required', Rule::unique('country_offices')->ignore($id)],
+            ];
+
+            $customMessages = [
+                'name.required' => 'Name field is required.',
+                'name.unique' => 'The Name(En) has already been taken.',
+            ];
+        }
+
+        return [$rules, $customMessages];
     }
 
-    public function update(Request $request)
+    public function update(Request $request, CountryOffice $office)
     {
+        list($rules, $customMessages) = $this->validationRulesAndMessages(null, $office->id);
 
-        $this->validate($request, [
-            'name' => 'required|unique:country_offices,name,' . $request->id,
-        ]);
+        $error = Validator::make($request->all(), $rules, $customMessages);
 
-        $data = CountryOffice::findorfail($request->id);
-        $data->name = $request->name;
-        $data->save();
-        $notification = array(
-            'message' => 'CountryOffice Successfully Updated',
-            'alert-type' => 'success',
-        );
-        return redirect()->route('get.country.office')->with($notification);
+        if ($error->fails()) {
+            return response()->json(['errors' => $error->errors()->all()], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
 
+        $office->name = $request->name;
+        $office->updated_by = Auth::user()->id;
+
+        if (!$office->save()) {
+            return response()->json(['message' => 'Country Office Failed to Update!'], Response::HTTP_BAD_REQUEST);
+        }
+
+        return response()->json(['message' => 'Country Office Updated Successfully!']);
     }
-    public function delete($id)
+
+    public function getOffice(CountryOffice $office)
     {
-        $data = CountryOffice::findorfail($id);
-        $data->delete();
-        $notification = array(
-            'message' => 'CountryOffice deleted  successfully',
-            'alert-type' => 'danger',
-        );
-        return redirect()->route('get.country.office')->with($notification);
+        return response()->json(['office' => $office]);
+    }
+
+    public function delete(Request $request)
+    {
+        $office = CountryOffice::findOrFail($request->officeId);
+
+        $flow = Flow::where('country_office_id',$office->id)->first();
+        if (!empty($flow)) {
+            return response()->json(['message' => 'This Office can not be delete,this Area attached with Flow'], Response::HTTP_BAD_REQUEST);
+        }
+        if (!$office->delete()) {
+            return response()->json(['message' => 'Country Office Failed to Delete!'], Response::HTTP_BAD_REQUEST);
+        }
+
+        return response()->json(['message' => 'Country Office Deleted Successfully!']);
     }
 }
