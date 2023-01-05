@@ -21,9 +21,9 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-// Route::get('check', function(){
-//     return \App\Models\User::all();
-// });
+ Route::get('test', function(){
+     return phpinfo();
+ });
 Route::view('/login', 'auth.login');
 
 Route::get('/clear-cache', function () {

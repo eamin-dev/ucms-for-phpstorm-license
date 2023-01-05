@@ -35,7 +35,7 @@
                     </a>
                 </li>
                 @endcan
-                
+
 
                 @can('rapid_pro')
                 {{-- <li>
@@ -45,7 +45,7 @@
                     </a>
                 </li> --}}
                @endcan
-            
+
             @can('rapid_pro')
 
             <li>
@@ -55,17 +55,17 @@
                     <span class="menu-arrow"></span>
                 </a>
                 <ul class="nav-second-level" aria-expanded="false">
-                    <li><a href="{{route('rapid.flow.view')}}">Rapid Pro</a></li>
+                    <li><a href="{{route('rapid.flow.view')}}">Flows</a></li>
                     {{-- <li><a href="{{route('rapid.pro.create')}}">Rapid Pro(Old)</a></li> --}}
                     <li><a href="{{ route('get.country.office') }}">Country Office</a></li>
                     <li><a href="{{ route('themefic-area.view') }}">Themefic Area</a></li>
 
                 </ul>
             </li>
-                
+
             @endcan
-               
-        
+
+
                @can('iogt')
                 <li>
                     <a href="{{route('iogt.index') }}" class="waves-effect">

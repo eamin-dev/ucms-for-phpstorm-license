@@ -15,7 +15,7 @@ class CreateFlowQuestionAnswersTable extends Migration
     {
         Schema::create('flow_question_answers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('flow_question_id');
+            $table->foreignId('flow_question_id')->constrained('flow_question_answers')->cascadeOnDelete();
             $table->string('answer')->nullable();
             $table->timestamps();
         });

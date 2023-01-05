@@ -15,11 +15,9 @@ class CreateFlowQuestionsTable extends Migration
     {
         Schema::create('flow_questions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->uuid('uuid')->nullable(false);
-            $table->unsignedBigInteger('flow_id');
+            $table->foreignId('flow_id')->constrained('flows')->cascadeOnDelete();
             $table->string('question_title');
             $table->string('ans_Type')->comment('1=input_answer,2=multiple_answer');
-            $table->string('input_answer')->nullable();
             $table->timestamps();
         });
     }

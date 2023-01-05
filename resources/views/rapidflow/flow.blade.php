@@ -35,13 +35,13 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title float-left pt-2">RapidPro Flow</h3>
+                            <h3 class="card-title float-left pt-2">Flow List</h3>
 
                             <div class="card-tools float-right">
                                 <ul class="nav nav-pills ml-auto">
                                     <li class="nav-item">
                                         <button id="addNew" name="addNew" class="btn btn-primary  text-white"><i
-                                                class="fa fa-plus-circle"></i> Add Rapid-Pro
+                                                class="fa fa-plus-circle"></i> Create Flow
                                         </button>
                                     </li>
                                 </ul>
