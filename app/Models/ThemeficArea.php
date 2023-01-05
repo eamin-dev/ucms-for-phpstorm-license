@@ -9,5 +9,8 @@ class ThemeficArea extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['code', 'name'];
+    protected $fileName = [
+        'code',
+        'name',
+    ];
 }

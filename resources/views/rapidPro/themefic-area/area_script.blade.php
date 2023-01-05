@@ -42,7 +42,10 @@
                     bSortable:false,
                 },
                 {
-                    data: 'name',
+                    data: 'code',
+                },
+                {
+                    data:'name',
                 },
 
                 {
@@ -121,6 +124,7 @@
                 dataType: "json",
                 complete: function(data) {
                     var area = data.responseJSON.area;
+                    var html = '<tr> <th> Code </th><td>' +area.code + '</td> </tr>';
                     var html = '<tr><th> Name</th><td>' + area.name + '</td></tr>';
                     showTable.html(html);
 
@@ -151,6 +155,7 @@
                     let area = data.responseJSON.area;
                     $('#myForm input[name="_method"]').val('PATCH');
                     $('#name').val(area.name);
+                    $('#code').val(area.code);
                     $('#area_id').val(areaId);
                     $('#action').val('edit');
                     $('.modal-title').text('Edit Themefic-Area Data');

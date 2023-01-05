@@ -15,13 +15,12 @@ class AdminSeeder extends Seeder
     public function run()
     {
         User::create([
-                'name'=>'Amirul Islam',
-                'email'=>'amirul@admin.com',
-                'password'=> bcrypt(12345678),
-                'role_id'=>1,
-                'platform'=>3,
-                'status'=>1,
-
+            'name' => 'Super Admin',
+            'email' => 'admin@ucms.com',
+            'password' => bcrypt(12345678),
+            'role_id' => 1,
+            'platform' => 3,
+            'status' => 1,
         ]);
     }
 }

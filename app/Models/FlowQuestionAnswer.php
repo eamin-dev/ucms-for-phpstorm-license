@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class FlowQuestionAnswer extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['flow_question_id','answer'];
 }

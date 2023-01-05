@@ -1,7 +1,6 @@
 <script>
 
     $(document).ready(function() {
-        $('.select2').select2();
         addNewModalShow();
         renderViewDataTable();
         submitForm();
@@ -13,7 +12,6 @@
 
     function myFormReset() {
         $('#myForm')[0].reset();
-        $('#country_office_id').val('').trigger('change');
         $('#myModal').modal('hide');
         $('#showModal').modal('hide');
         $('#confirmModal').modal('hide');
@@ -23,7 +21,7 @@
 
         $('#addNew').click(function() {
             myFormReset();
-            $('.modal-title').text('Add New Flow');
+            $('.modal-title').text('Add New  Region');
             $('#action').val('addNew');
             $('#myForm input[name="_method"]').val('POST');
             $('#myModal').modal('show');
@@ -35,7 +33,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: "{{ route('rapid.flow.view') }}",
+                url: "{{ route('regions.view') }}",
             },
             columns: [
                 {
@@ -44,10 +42,10 @@
                     bSortable:false,
                 },
                 {
-                    data: 'file_id',
+                    data:'name',
                 },
                 {
-                    data: 'created_at',
+                    data:'creator.name', 
                 },
 
                 {
@@ -57,26 +55,25 @@
                 },
             ]
         });
+
         $('#btnSearch').click(function(){
             $('#userTable').DataTable().draw(true);
         });
-
     }
 
     function submitForm() {
         $('#myForm').on('submit', function(e) {
             e.preventDefault();
 
-            let url = "{{route('rapid.flow.store')}}"
+            let url = "{{route('regions.store')}}"
 
             if ($('#action').val() === 'edit') {
-                let flowId = $('#flow_id').val();
-                url = "{{ route('rapid.flow.update',['flow' => '__flowId']) }}";
-                url = url.replace("__flowId", flowId);
+                let regionId = $('#region_id').val();
+                url = "{{ route('regions.update',['region'=> '__regionId']) }}"
+                url = url.replace("__regionId", regionId);
             }
 
             let formData = new FormData(this);
-
 
             $.ajax({
                 url: url,
@@ -114,25 +111,27 @@
 
     function showModalShow() {
         $(document).on('click', '.showDetails', function() {
-            let flowId = $(this).data('file-id');
+            let regionId = $(this).data('region-id');
             myFormReset();
             let showTable = $('#showTable');
             showTable.html('');
-            let url = "{{ route('rapid.flow.getRapidFlowId',['flow' => '__flowId']) }}";
-            url = url.replace("__flowId", flowId);
+            let url = "{{ route('regions.getregionById',['region' => '__regionId']) }}";
+            url = url.replace("__regionId", regionId);
 
             $.ajax({
                 url: url,
                 type: "get",
                 dataType: "json",
                 complete: function(data) {
-                    var district = data.responseJSON.district;
-                    var html = '<tr><th>Zone </th><td>' + district.zone.name + '</td></tr>';
-                    html += '<tr><th> Name(En)</th><td>' + district.name + '</td></tr>';
-                    html += '<tr><th> Name(Bn)</th><td>' + district.bn_name + '</td></tr>';
+                    var region = data.responseJSON.region;
+                    var html = '<tr><th> Name</th><td>' + region.name + '</td></tr>';
                     showTable.html(html);
 
-                    $('.modal-title').text('District Details');
+                    $('.modal-title').text('Region Area Details');
+                    // $('#showModal').modal({
+                    //     backdrop: 'static',
+                    //     keyboard: false,
+                    // },'show');
                     $('#showModal').modal('show');
                 }
             })
@@ -142,28 +141,23 @@
 
     function editModalShow() {
         $(document).on('click', '.edit', function() {
-            let flowId = $(this).data('file-id');
+            let regionId = $(this).data('region-id');
 
-            let url = "{{ route('rapid.flow.getRapidFlowId',['flow' => '__flowId']) }}";
-            url = url.replace("__flowId", flowId);
+            let url = "{{ route('regions.getregionById',['region' => '__regionId']) }}";
+            url = url.replace("__regionId", regionId);
 
             $.ajax({
                 url: url,
                 type: "get",
                 dataType: "json",
                 complete: function(data) {
-                    let flow = data.responseJSON.flow;
+                    let region = data.responseJSON.region;
                     $('#myForm input[name="_method"]').val('PATCH');
-                    $('#region_id').val(flow.region_id).trigger('change');
-                    $('#country_office_id').val(flow.country_office_id).trigger('change');
-                    $('#themefic_area_id').val(flow.themefic_area_id).trigger('change');
-                    // $('#date').val(flow.date);
-                    $('#file_id').val(flow.file_id);
-                    $('#flow_id').val(flowId);
+                    $('#name').val(region.name);
+                    $('#region_id').val(regionId);
                     $('#action').val('edit');
-                    $('.modal-title').text('Edit RapidPro Flow Data');
+                    $('.modal-title').text('Edit Region Data');
                     $('#myModal').modal('show');
-                   // console.log(flow);
                 }
             })
         });
@@ -173,10 +167,10 @@
 
     function confirmDeleteModalShow() {
         $(document).on('click', '.delete', function() {
-            let flowId = $(this).data('file-id');
-            let fileName = $(this).data('file_id');
-            $('#flowId').val(flowId);
-            $('#deleteValueName').html(fileName);
+            let regionId = $(this).data('region-id');
+            let regionName = $(this).data('area-name');
+            $('#areaId').val(regionId);
+            $('#deleteValueName').html(regionName);
             $('#deleteValueError').html('');
             $('.modal-title').text('Confirmation');
             $('#confirmModal').modal('show');
@@ -189,7 +183,7 @@
 
             $.ajax({
                 type: 'post',
-                url: '{{route("rapid.flow.flowDeleteById")}}',
+                url: '{{route("regions.regiondeleteById")}}',
                 data: $(this).serialize(),
                 dataType: 'json',
                 beforeSend: function() {
@@ -212,16 +206,6 @@
             })
 
         });
-    }
-
-    function newPage($id){
-
-        //let flowId = $(this).data('file-id');
-        //alert($id);
-
-        let url = "{{ route('rapid.view-flow',['flow' => '__flowId']) }}";
-            url = url.replace("__flowId", $id);
-        window.location.href = url;
     }
 
     function successMessage(message) {

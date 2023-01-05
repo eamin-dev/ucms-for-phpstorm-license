@@ -98,8 +98,11 @@
         </li>
 
         <li class="dropdown notification-list">
+            @php
+                $UserImage=App\Models\User::where('id',Auth::user()->id)->select('id','image')->first();
+            @endphp
             <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                <img src="{{ asset('assets/images/users/avatar-1.jpg') }}" alt="user-image" class="rounded-circle">
+                <img src="{{ !empty($UserImage->image)?url($UserImage->image):url('upload/user_image/no-image.png')}}" alt="user-image" class="rounded-circle">
             </a>
             <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
 {{--                <!-- item-->--}}

@@ -27,26 +27,26 @@
 {{--            </div>--}}
 
             <ul class="metismenu" id="side-menu">
-                @can('dashboard')
+{{--                @can('dashboard')--}}
                 <li>
                     <a href="{{route('dashboard')}}" class="waves-effect">
                         <i class="mdi mdi-home"></i>
                         <span> Dashboard </span>
                     </a>
                 </li>
-                @endcan
+{{--                @endcan--}}
 
 
-                @can('rapid_pro')
+{{--                @can('rapid_pro')--}}
                 {{-- <li>
                     <a href="{{route('rapid.pro.flow') }}" class="waves-effect">
                         <i class="mdi mdi-box-shadow"></i>
                         <span> RapidPro Flow </span>
                     </a>
                 </li> --}}
-               @endcan
+{{--               @endcan--}}
 
-            @can('rapid_pro')
+{{--            @can('rapid_pro')--}}
 
             <li>
                 <a href="javascript: void(0);" class="waves-effect">
@@ -58,40 +58,41 @@
                     <li><a href="{{route('rapid.flow.view')}}">Flows</a></li>
                     {{-- <li><a href="{{route('rapid.pro.create')}}">Rapid Pro(Old)</a></li> --}}
                     <li><a href="{{ route('get.country.office') }}">Country Office</a></li>
+                    <li><a href="{{ route('regions.view') }}">Region</a></li>
                     <li><a href="{{ route('themefic-area.view') }}">Themefic Area</a></li>
 
                 </ul>
             </li>
 
-            @endcan
+{{--            @endcan--}}
 
 
-               @can('iogt')
+{{--               @can('iogt')--}}
                 <li>
                     <a href="{{route('iogt.index') }}" class="waves-effect">
                         <i class="mdi mdi-translate"></i>
                         <span> IoGT </span>
                     </a>
                 </li>
-                @endcan
+{{--                @endcan--}}
 
-                @can('user')
+{{--                @can('user')--}}
                 <li>
                     <a href="{{route('users.index')}}" class="waves-effect">
                         <i class="fas fa-user"></i>
                         <span> User </span>
                     </a>
                 </li>
-                @endcan
+{{--                @endcan--}}
 
-                @can('role')
+{{--                @can('role')--}}
                 <li>
                     <a href="{{route('roles.index')}}" class="waves-effect">
                         <i class="fas fa-user"></i>
                         <span> Role & Permission </span>
                     </a>
                 </li>
-                @endcan
+{{--                @endcan--}}
 
                 <li>
                     <a href="{{route('user.profile.view')}}" class="waves-effect">

@@ -56,7 +56,7 @@
                                         <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>FileId</th>
+                                            <th>File ID</th>
                                             <th>Date</th>
                                             <th>Action</th>
                                         </tr>
@@ -85,10 +85,22 @@
                                                             @csrf
                                                             @method("POST")
                                                             <div class="row">
-                                                                <div class="form-group col-md-6">
-
+                                                                <div class="form-group col-md-12">
+                                                                    <label for="region_id">Region</label>
+                                                                    <select name="region_id" id="region_id"
+                                                                            class="form-control select2">
+                                                                        <option value="">Select Region</option>
+                                                                        @foreach($regions as $region)
+                                                                            <option
+                                                                                value="{{ $region->id }}">{{ $region->name }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group col-md-12">
+                                                                    <labe>Country Office</labe>
                                                                     <select name="country_office_id"
-                                                                            class="form-control" id="country_office_id">
+                                                                            class="form-control select2"
+                                                                            id="country_office_id">
                                                                         <option value="">Select Country office</option>
                                                                         @forelse ($countryOffices as $office)
                                                                             <option
@@ -100,30 +112,27 @@
                                                                     </select>
 
                                                                 </div>
-                                                                <div class="form-group col-md-6">
-                                                                    <input name="date" type="date" class="form-control"
-                                                                           id="date" placeholder="Enter Date">
-                                                                </div>
-                                                                <div class="form-group col-md-6">
-
-                                                                    <select name="themefic_area_id" class="form-control"
+                                                                <div class="form-group col-md-12">
+                                                                    <label for="themefic_area_id">Themefic Area</label>
+                                                                    <select name="themefic_area_id"
+                                                                            class="form-control select2"
                                                                             id="themefic_area_id">
                                                                         <option value="">Select Themetic Area</option>
                                                                         @forelse ($themeficAreas as $area)
                                                                             <option
-                                                                                value="{{$area->id}}">{{ $area->name }}</option>
+                                                                                value="{{$area->id}}">{{ $area->code }}
+                                                                                - {{ $area->name }}</option>
                                                                         @empty
                                                                             <option value="">No Themetic Area</option>
                                                                         @endforelse
                                                                     </select>
-
                                                                 </div>
-                                                                <div class="form-group col-md-6">
+                                                                <div class="form-group col-md-12">
+                                                                    <label for="file_id">Flow Name</label>
                                                                     <input name="file_id" type="text"
                                                                            class="form-control" id="file_id"
-                                                                           placeholder="File Id">
+                                                                           placeholder="Flow name">
                                                                 </div>
-
                                                                 <div class="form-group col-md-12 text-center">
                                                                     <input type="hidden" name="action" id="action"
                                                                            value="addNew">
@@ -132,7 +141,6 @@
                                                                            class="col-12 btn btn-success btn-md"
                                                                            value="Save">
                                                                 </div>
-
                                                             </div>
                                                         </form>
                                                     </div>

@@ -6,7 +6,9 @@ use App\Models\CountryOffice;
 use App\Models\Flow;
 use App\Models\FlowQuestion;
 use App\Models\FlowQuestionAnswer;
+use App\Models\Region;
 use App\Models\ThemeficArea;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -21,9 +23,10 @@ class NewRapidFlowController extends Controller
     public function view(Request $request)
     {
         if (!$request->ajax()) {
+            $regions = Region::select('id', 'name')->get();
             $countryOffices = CountryOffice::select('id', 'name')->get();
-            $themeficAreas = ThemeficArea::select('id', 'name')->get();
-            return view('rapidflow.flow', compact('countryOffices', 'themeficAreas'));
+            $themeficAreas = ThemeficArea::select('id', 'name', 'code')->get();
+            return view('rapidflow.flow', compact('countryOffices', 'themeficAreas', 'regions'));
         }
         $data = Flow::latest();
         return $this->renderViewDataTable($data);
@@ -33,6 +36,9 @@ class NewRapidFlowController extends Controller
     {
         return DataTables::eloquent($data)
             ->addIndexColumn()
+            ->editColumn('created_at', function ($data) {
+                return Carbon::parse($data->created_at)->format('m-d-Y h:i a');
+            })
             ->addColumn('actionBtn', 'rapidflow.actionBtn')
             ->rawColumns(['actionBtn'])
             ->toJson();
@@ -49,11 +55,12 @@ class NewRapidFlowController extends Controller
         }
 
         $flow = new Flow();
+        $flow->region_id = $request->region_id;
         $flow->country_office_id = $request->country_office_id;
-        $flow->date = $request->date;
+//        $flow->date = $request->date;
         $flow->file_id = $request->file_id;
         $flow->themefic_area_id = $request->themefic_area_id;
-        $flow->uuid = Str::uuid();
+        $flow->created_by = auth()->user()->id;
         if (!$flow->save()) {
             return response()->json(['message' => 'Rapid-Pro Flow Failed to Save!'], Response::HTTP_BAD_REQUEST);
         }
@@ -65,15 +72,16 @@ class NewRapidFlowController extends Controller
     {
         if ($type === 'add') {
             $rules = [
+                'region_id' => 'required',
                 'country_office_id' => 'required',
-                'date' => 'required',
+//                'date' => 'required',
                 'themefic_area_id' => 'required',
                 'file_id' => ['required', Rule::unique('flows')],
             ];
 
             $customMessages = [
                 'country_office_id.required' => 'Country office Field is required.',
-                'date.required' => 'Date  Field is required.',
+//                'date.required' => 'Date  Field is required.',
                 'themefic_area_id.required' => 'Themefic Area is required.',
                 'file_id.required' => 'File Id is required.',
                 'file_id.unique' => 'File Id has already been taken.',
@@ -84,14 +92,14 @@ class NewRapidFlowController extends Controller
 
             $rules = [
                 'country_office_id' => 'required',
-                'date' => 'required',
+//                'date' => 'required',
                 'themefic_area_id' => 'required',
                 'file_id' => ['required', Rule::unique('flows')->ignore($id)],
             ];
 
             $customMessages = [
                 'country_office_id.required' => 'Country office Field is required.',
-                'date.required' => 'Date  Field is required.',
+//                'date.required' => 'Date  Field is required.',
                 'themefic_area_id.required' => 'Themefic Area is required.',
                 'file_id.required' => 'File Id is required.',
                 'file_id.unique' => 'File Id has already been taken.',
@@ -111,9 +119,11 @@ class NewRapidFlowController extends Controller
             return response()->json(['errors' => $error->errors()->all()], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
+        $flow->region_id = $request->region_id;
         $flow->country_office_id = $request->country_office_id;
-        $flow->date = $request->date;
+//        $flow->date = $request->date;
         $flow->file_id = $request->file_id;
+        $flow->updated_by = auth()->user()->id;
         $flow->themefic_area_id = $request->themefic_area_id;
 
         if (!$flow->save()) {
@@ -157,25 +167,18 @@ class NewRapidFlowController extends Controller
         try {
 
             $flowQuestion = new FlowQuestion();
-            // $flowQuestion->uuid = Str::uuid();
             $flowQuestion->flow_id = $request->flow_id;
             $flowQuestion->question_title = $request->question_title;
-            $flowQuestion->ans_Type = $request->ans_type;
-            $flowQuestion->input_answer = $request->input_answer;
+            $flowQuestion->ans_type = $request->ans_type;
             $flowQuestion->save();
 
             if ($request->ans_type == 'multiple_Choice') {
-
-                //$length = count($request->answer);
                 for ($i = 0; $i < count($request->answer); $i++) {
-
                     $ans = new FlowQuestionAnswer();
                     $ans->flow_question_id = $flowQuestion->id;
-                    // $ans->uuid = Str::uuid();
                     $ans->answer = $request->answer[$i];
                     $ans->save();
                 }
-
             }
 
             DB::commit();
@@ -218,7 +221,7 @@ class NewRapidFlowController extends Controller
         foreach ($flows as $flow) {
             $nodeUUIDCount = $flow->questions->count();
             $nodeUUIDlist = [];
-            for ($i =0; $i< $nodeUUIDCount; $i++){
+            for ($i = 0; $i < $nodeUUIDCount; $i++) {
                 $nodeUUIDlist[] = Str::uuid();
             }
 

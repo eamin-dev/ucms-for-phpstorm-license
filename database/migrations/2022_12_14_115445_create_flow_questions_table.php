@@ -17,7 +17,7 @@ class CreateFlowQuestionsTable extends Migration
             $table->bigIncrements('id');
             $table->foreignId('flow_id')->constrained('flows')->cascadeOnDelete();
             $table->string('question_title');
-            $table->string('ans_Type')->comment('1=input_answer,2=multiple_answer');
+            $table->string('ans_type')->comment('1=input_answer,2=multiple_answer');
             $table->timestamps();
         });
     }

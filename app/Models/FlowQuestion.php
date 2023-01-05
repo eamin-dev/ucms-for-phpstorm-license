@@ -9,6 +9,8 @@ class FlowQuestion extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['flow_id', 'question_title', 'ans_type'];
+
     public function questionanswer()
     {
         return $this->hasMany(FlowQuestionAnswer::class, 'flow_question_id', 'id');
@@ -16,6 +18,6 @@ class FlowQuestion extends Model
 
     public function answers()
     {
-        return $this->hasMany(FlowQuestionAnswer::class, 'flow_question_id', 'id')->select('id','flow_question_id','answer');
+        return $this->hasMany(FlowQuestionAnswer::class, 'flow_question_id', 'id')->select('id', 'flow_question_id', 'answer');
     }
 }
