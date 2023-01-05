@@ -4,7 +4,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CountryOfficeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IogtController;
-use App\Http\Controllers\NewCountryOfficeController;
 use App\Http\Controllers\NewRapidFlowController;
 use App\Http\Controllers\NewThemeficController;
 use App\Http\Controllers\ProfileManageController;
@@ -69,13 +68,13 @@ Route::group(['middleware' => ['auth']], function () {
 
     });
 
-    Route::controller(CountryOfficeController::class)->group(function () {
+    Route::controller(CountryOfficeController::class)->prefix('country-offices')->group(function () {
 
-        Route::get('country/office', 'index')->name('get.country.office');
-        Route::post('country-office/store', 'store')->name('country.office.store');
-        Route::get('country-office/edit/{id}', 'edit')->name('country.office.edit');
-        Route::post('country-office/update/{id}', 'update')->name('country-office.update');
-        Route::get('country-office/delete/{id}', 'delete')->name('country.office.delete');
+        Route::get('/', 'view')->name('offices.view');
+        Route::get('/{office}', 'getOffice')->name('offices.getOffice');
+        Route::post('/store', 'store')->name('offices.store');
+        Route::patch('/update/{office}', 'update')->name('offices.update');
+        Route::delete('/officedelete', 'delete')->name('offices.delete');
 
     });
 
@@ -119,17 +118,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('user/password/update','passwordUpdate')->name('user.password.update');
 
     });
-
-    Route::controller(NewCountryOfficeController::class)->prefix('country-offices')->group(function () {
-
-        Route::get('/', 'view')->name('country.offices.view');
-        Route::get('/{area}', 'getCountryById')->name('country.offices.getCountryById');
-        Route::post('/store', 'store')->name('country.offices.store');
-        Route::patch('/update/{area}', 'update')->name('country.offices.update');
-        Route::delete('/officeDelete', 'officedeleteById')->name('country.offices.officedeleteById');
-
-    });
-
+    
     Route::controller(RegionController::class)->prefix('regions')->group(function () {
 
         Route::get('/', 'view')->name('regions.view');

@@ -10,4 +10,10 @@ class CountryOffice extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
+
+    public function creator(){
+
+        return $this->belongsTo(User::class, 'created_by', 'id')->select('id','name');
+    }
+
 }

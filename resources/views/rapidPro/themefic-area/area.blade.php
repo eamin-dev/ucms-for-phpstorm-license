@@ -53,8 +53,8 @@
                                     <thead>
                                     <tr>
                                         <th>Sl</th>
-                                        <th>Code</th>
                                         <th>Name</th>
+                                        <th>Code</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>

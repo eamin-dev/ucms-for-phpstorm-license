@@ -58,7 +58,7 @@
                                         <th>Action</th>
                                     </tr>
                                     </thead>
-                                </table>
+                                </tabQle>
                             </div>
                             <!-- Content Table End-->
 
