@@ -20,7 +20,6 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('image')->nullable();
-            $table->integer('role_id')->default(1);
             $table->integer('platform')->nullable()->comment('1=rapidPro, 2=loGT, 3=both');
             $table->integer('status')->default(1)->comment('1=active, 2=inactive');
             $table->rememberToken();

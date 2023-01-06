@@ -58,7 +58,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/role-create', 'createNewRole')->name('role.store');
         Route::get('/role-delete/{role_id}', 'deleteRole')->name('role.delete');
         Route::get('/role-edit/{role_id}', 'getRolePermissions')->name('role.edit');
-        Route::post('/role-update', 'updateRoleInfo')->name('role.update');
+        Route::post('/role-update', 'editRolePermission')->name('role.update');
     });
 
     Route::controller(IogtController::class)->group(function () {
@@ -118,7 +118,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('user/password/update','passwordUpdate')->name('user.password.update');
 
     });
-    
+
     Route::controller(RegionController::class)->prefix('regions')->group(function () {
 
         Route::get('/', 'view')->name('regions.view');
