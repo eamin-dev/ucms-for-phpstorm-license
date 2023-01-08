@@ -1,4 +1,4 @@
-<form action="{{ route('rapidpro.question.store') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('rapidpro.question.store') }}" id="myform" method="POST">
     @csrf
     <div class="modal-body">
         <input type="hidden" name="flow_id" id="flow_id" value="{{ $flowData->id }}">
@@ -18,7 +18,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="question_title">Question Title</label>
-                    <input type="text" name="question_title" required id="question_title" class="form-control"
+                    <input type="text" name="question_title" id="question_title" class="form-control"
                                                                placeholder="Enter Question title">
                 </div>
             </div>
@@ -41,7 +41,7 @@
                         <div class="row">
                             <div class="form-group col-md-11">
                                 <label for="multiple_ans">Multiple Answer</label>
-                                <input id="multiple_ans" type="text"  name="answer[]" class="form-control"
+                                <input id="answer" type="text"  name="answer[]" class="form-control"
                                        placeholder="Enter Multiple Answer">
                             </div>
                             <div class="form-group col-md-1" style="margin-top: 30px">
@@ -74,7 +74,7 @@
             <div class="form-row">
                 <div class="form-group col-md-11">
                     <label for="m_ans">Multiple Answer</label>
-                    <input id="m_ans" type="text" required name="answer[]" class="form-control" placeholder="Enter Multiple Answer">
+                    <input id="answer" type="text" name="answer[]" class="form-control" placeholder="Enter Multiple Answer">
                 </div>
                 <div class="form-group col-md-1" style="margin-top: 30px">
                     <div class="form-row">
