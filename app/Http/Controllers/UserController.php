@@ -41,7 +41,7 @@ class UserController extends Controller
 
     public function index()
     {
-       // abort_if($this->isAuthorized('user'), Response::HTTP_FORBIDDEN, $this->message);
+//        abort_if($this->isAuthorized('user'), Response::HTTP_FORBIDDEN, $this->message);
         try {
             $search = request()->input('search');
             $filter = request()->input('status');

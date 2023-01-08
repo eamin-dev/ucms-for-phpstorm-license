@@ -28,18 +28,13 @@
             <div class="card-box">
                 <div class="media">
                     <div class="avatar-md rounded-circle mr-2">
-                        <i class="fas fa-user-plus" style="width: 100%"></i>
+                        <i class="fas fa-user-circle"></i>
                     </div>
                     <div class="media-body align-self-center">
                         <div class="text-left">
                             <h4 class="">Total User</h4>
                             <p class="mb-0 mt-1 text-truncate"> <strong> {{ $totalActiveUsers }} </strong> </p>
                         </div>
-                    </div>
-                </div>
-                <div class="mt-4">
-                    <div class="progress ">
-
                     </div>
                 </div>
             </div>
@@ -50,18 +45,13 @@
             <div class="card-box">
                 <div class="media">
                     <div class="avatar-md rounded-circle mr-2">
-                        <i class="fas fa-user-plus" style="width: 100%"></i>
+                        <i class="fas fa-user-circle"></i>
                     </div>
                     <div class="media-body align-self-center">
                         <div class="text-left">
                             <h4 class="">Total Admin</h4>
                             <p class="mb-0 mt-1 text-truncate"> <strong> {{ $totalActiveUsers }} </strong> </p>
                         </div>
-                    </div>
-                </div>
-                <div class="mt-4">
-                    <div class="progress ">
-
                     </div>
                 </div>
             </div>
@@ -82,11 +72,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="mt-4">
-                    <div class="progress ">
-
-                    </div>
-                </div>
             </div>
             <!-- end card-box-->
         </div>
@@ -99,7 +84,7 @@
             <div class="page-title-box">
                 <h2 class="page-title"> <b><strong class="text-info">Rapid Pro</strong></b> </h2>
             </div>
-        
+
         </div>
     </div>
 
@@ -119,11 +104,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="mt-4">
-                    <div class="progress ">
-
-                    </div>
-                </div>
             </div>
             <!-- end card-box-->
         </div>
@@ -139,12 +119,6 @@
                             <h4 class="">Active RapidPro Access</h4>
                             <p class="mb-0 mt-1 text-truncate"> {{ $totalRapidActiveUser ?? 0 }}</p>
                         </div>
-                    </div>
-                </div>
-                <div class="mt-4">
-
-                    <div class="progress">
-
                     </div>
                 </div>
             </div>
@@ -164,20 +138,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="mt-4">
-
-                    <div class="progress">
-
-                    </div>
-                </div>
             </div>
             <!-- end card-box-->
         </div>
-
-
     </div>
     <!-- end 2nd row -->
-
 
     <div class="row">
         <div class="col-12">
@@ -205,15 +170,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="mt-4">
-                    <div class="progress ">
-
-                    </div>
-                </div>
             </div>
             <!-- end card-box-->
         </div>
-
         <div class="col-md-4">
             <div class="card-box">
                 <div class="media">
@@ -227,17 +186,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="mt-4">
-
-                    <div class="progress">
-
-                    </div>
-                </div>
             </div>
             <!-- end card-box-->
         </div>
 
-    
         <div class="col-md-4">
             <div class="card-box">
                 <div class="media">
@@ -251,16 +203,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="mt-4">
-
-                    <div class="progress">
-
-                    </div>
-                </div>
             </div>
             <!-- end card-box-->
         </div>
-
     </div>
 
     {{-- end third row --}}

@@ -42,18 +42,25 @@
                                             <h3 class="card-title text-dark">{{$role->name}}</h3>
                                         </div>
                                         <div class="col-md-6">
-                                            <button type="button" class="btn btn-sm btn-info float-right" data-id="{{$role->id}}" id="roleEditBtn">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
+                                            @if($role->name != 'super admin')
+                                                <button type="button" class="btn btn-sm btn-info float-right" data-id="{{$role->id}}" id="roleEditBtn">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="card-body border-2">
                                         <p class="mb-0">
-                                            @forelse($role->permissions as $permission)
-                                                <span class="badge badge-primary">{{strtoupper($permission->name)}}</span>
-                                            @empty
-                                                <span class="text-danger">No Permission Set</span>
-                                            @endforelse
+                                            @if($role->name == 'super admin')
+                                                <span class="text-info">Have All Permission</span>
+                                            @else
+                                                @forelse($role->permissions as $permission)
+                                                    <span class="badge badge-primary">{{strtoupper($permission->name)}}</span>
+                                                @empty
+                                                    <span class="text-danger">No Permission Set</span>
+                                                @endforelse
+                                            @endif
+
                                         </p>
                                     </div>
                                 </div> &nbsp;&nbsp;

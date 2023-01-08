@@ -98,9 +98,9 @@
             success: function(data) {
                 if (data.status === 'success'){
                     successMessage(data.message);
-                    $('#userEditForm')[0].reset();
-                    $('#user-edit-modal').modal('hide');
-                    $('.table').load(location.href + ' .table');
+                    $('#roleEditForm')[0].reset();
+                    $('#role-edit-modal').modal('hide');
+                    $('.roleData').load(location.href + ' .roleData');
                     console.log(data.data)
                 } else {
                     $.each(data.errors, function(key, value){

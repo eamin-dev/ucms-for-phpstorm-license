@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -17,30 +16,24 @@ class RolePermissionSeeder extends Seeder
     public function run()
     {
         //Create Roles
-        $roleAdmin = Role::create(['name' => 'Admin', 'guard_name' => 'web']);
-        $roleSuperAdmin = Role::create(['name' => 'Super Admin', 'guard_name' => 'web']);
-        $roleEditor = Role::create(['name' => 'Editor', 'guard_name' => 'web']);
-        $roleUser = Role::create(['name' => 'User', 'guard_name' => 'web']);
+        $roleArray = [
+            ['name' => 'super admin', 'guard_name' => 'web'],
+            ['name' => 'admin', 'guard_name' => 'web'],
+            ['name' => 'editor', 'guard_name' => 'web']
+        ];
+        $roles = Role::insert($roleArray);
 
         //Permission List as Array
-        $all_permissions = [
-            'dashboard', 'rapid_pro', 'iogt', 'user', 'role'
+        $permissionArray = [
+            ['name' => 'dashboard', 'guard_name' => 'web'],
+            ['name' => 'rapid_pro', 'guard_name' => 'web'],
+            ['name' => 'iogt', 'guard_name' => 'web'],
+            ['name' => 'user', 'guard_name' => 'web'],
+            ['name' => 'role', 'guard_name' => 'web'],
         ];
+        $permissions = Permission::insert($permissionArray);
 
-        //Create and Assign Permission
-        for ($i = 0; $i < count($all_permissions); $i++) {
-            $permission = new Permission();
-            $permission->name = $all_permissions[$i];
-            $permission->guard_name = 'web';
-            $permission->save();
-            $roleSuperAdmin->givePermissionTo($permission);
-            $permission->assignRole($roleSuperAdmin);
-        }
+        Role::where('name', 'admin')->first()->givePermissionTo(Permission::all()->pluck('name'));
 
-        $superAdmin = User::where('email', 'admin@ucms.com')->first();
-
-        if ($superAdmin) {
-            $superAdmin->assignRole($roleSuperAdmin);
-        }
     }
 }
