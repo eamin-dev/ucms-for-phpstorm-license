@@ -1,6 +1,6 @@
-<div class="left-side-menu">
+<div class="left-side-menu" style="background-color: #1DAAE2">
 
-    <div class="slimscroll-menu">
+    <div class="slimscroll-menu" >
 
         <!--- Sidemenu -->
         <div id="sidebar-menu">
@@ -30,8 +30,8 @@
 {{--                @can('dashboard')--}}
                 <li>
                     <a href="{{route('dashboard')}}" class="waves-effect">
-                        <i class="mdi mdi-home"></i>
-                        <span> Dashboard </span>
+                        <i class="mdi mdi-home text-white"></i>
+                        <span class="text-white"> Dashboard </span>
                     </a>
                 </li>
 {{--                @endcan--}}
@@ -50,16 +50,16 @@
 
             <li>
                 <a href="javascript: void(0);" class="waves-effect">
-                    <i class="mdi mdi-widgets"></i>
-                    <span> Rapid Pro </span>
+                    <i class="mdi mdi-widgets text-white"></i>
+                    <span class="text-white"> Rapid Pro </span>
                     <span class="menu-arrow"></span>
                 </a>
                 <ul class="nav-second-level" aria-expanded="false">
-                    <li><a href="{{route('rapid.flow.view')}}">Flows</a></li>
+                    <li><a href="{{route('rapid.flow.view')}}" class="text-white">Flows</a></li>
                     {{-- <li><a href="{{route('rapid.pro.create')}}">Rapid Pro(Old)</a></li> --}}
-                    <li><a href="{{ route('offices.view') }}">Country Office</a></li>
-                    <li><a href="{{ route('regions.view') }}">Region</a></li>
-                    <li><a href="{{ route('themefic-area.view') }}">Themefic Area</a></li>
+                    <li><a href="{{ route('offices.view') }}" class="text-white">Country Office</a></li>
+                    <li><a href="{{ route('regions.view') }}" class="text-white">Region</a></li>
+                    <li><a href="{{ route('themefic-area.view') }}" class="text-white">Themefic Area</a></li>
 
                 </ul>
             </li>
@@ -70,8 +70,8 @@
 {{--               @can('iogt')--}}
                 <li>
                     <a href="{{route('iogt.index') }}" class="waves-effect">
-                        <i class="mdi mdi-translate"></i>
-                        <span> IoGT </span>
+                        <i class="mdi mdi-translate  text-white"></i>
+                        <span class="text-white"> IoGT </span>
                     </a>
                 </li>
 {{--                @endcan--}}
@@ -79,8 +79,8 @@
 {{--                @can('user')--}}
                 <li>
                     <a href="{{route('users.index')}}" class="waves-effect">
-                        <i class="fas fa-user"></i>
-                        <span> User </span>
+                        <i class="fas fa-user  text-white"></i>
+                        <span class="text-white"> User </span>
                     </a>
                 </li>
 {{--                @endcan--}}
@@ -88,16 +88,16 @@
 {{--                @can('role')--}}
                 <li>
                     <a href="{{route('roles.index')}}" class="waves-effect">
-                        <i class="fas fa-user"></i>
-                        <span> Role & Permission </span>
+                        <i class="fas fa-user  text-white"></i>
+                        <span class="text-white"> Role & Permission </span>
                     </a>
                 </li>
 {{--                @endcan--}}
 
                 <li>
                     <a href="{{route('user.profile.view')}}" class="waves-effect">
-                        <i class="fas fa-wrench"></i>
-                        <span> Settings </span>
+                        <i class="fas fa-wrench  text-white"></i>
+                        <span class="text-white"> Settings </span>
                     </a>
                 </li>
 
@@ -108,8 +108,8 @@
             <ul class="metismenu align-bottom" id="side-menu">
                 <li>
                     <a href="{{route('logout')}}" class="waves-effect">
-                        <i class="mdi mdi-power-settings"></i>
-                        <span> Logout </span>
+                        <i class="mdi mdi-power-settings  text-white"></i>
+                        <span class="text-white"> Logout </span>
                     </a>
                 </li>
             </ul>

@@ -1,8 +1,8 @@
 <div class="navbar-custom">
     <ul class="list-unstyled topnav-menu float-right mb-0">
 
-        <li class="dropdown notification-list d-none d-md-inline-block">
-            <strong class="nav-link waves-effect waves-light">{{Auth::user()->name}}</strong>
+        <li  class="dropdown notification-list d-none d-md-inline-block" >
+            <strong class="nav-link waves-effect waves-light text-dark"> {{Auth::user()->name}}</strong>
         </li>
 
         <li class="dropdown notification-list">

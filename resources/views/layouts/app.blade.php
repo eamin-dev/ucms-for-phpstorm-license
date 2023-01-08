@@ -32,10 +32,29 @@
     <!--Toastr CDN -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
     <style>
-        .navbar-custom {
-            background-color: #182941;
+        
+    .navbar-custom {
+        background-color: #eaeff1;
 
-        }
+    }
+
+    #sidebar-menu>ul>li>a.active {
+    color: #317eeb;
+    background: #0f1936;
+}
+
+    .logo span.logo-lg {
+        display: block;
+        BACKGROUND-COLOR: #115290;
+
+    }
+
+.element.style {
+    background-color: #115290;
+    overflow: hidden;
+    width: auto;
+    height: 366px;
+}
     </style>
     @yield('css')
 
