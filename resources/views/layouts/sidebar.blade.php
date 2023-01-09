@@ -52,7 +52,7 @@
                 <a href="javascript: void(0);" class="waves-effect">
                     <i class="mdi mdi-widgets text-white"></i>
                     <span class="text-white"> Rapid Pro </span>
-                    <span class="menu-arrow"></span>
+                    <span class="menu-arrow text-white"></span>
                 </a>
                 <ul class="nav-second-level" aria-expanded="false">
                     <li><a href="{{route('rapid.flow.view')}}" class="text-white">Flows</a></li>
