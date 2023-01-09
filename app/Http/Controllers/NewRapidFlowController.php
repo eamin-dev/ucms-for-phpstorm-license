@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\storeQuestionRequest;
 use App\Models\CountryOffice;
 use App\Models\Flow;
 use App\Models\FlowQuestion;
@@ -163,9 +164,11 @@ class NewRapidFlowController extends Controller
         return view('rapidflow.question.index', compact('flowData'));
     }
 
-    public function storeQuestion(Request $request)
+    public function storeQuestion(storeQuestionRequest $request)
     {
+
         DB::beginTransaction();
+    
 
         try {
 

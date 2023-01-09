@@ -19,16 +19,21 @@
     <style>
         .bg{
 
-            background-image: url(/assets/images/ucms-logo.png);
+            background-image: url(/assets/images/login-page.png);
             background-repeat: round
 
         }
+
+        /* element.style {
+            background-color: blue;
+        } */
+
     </style>
 
 </head>
 
 
-<body class="authentication-page bg">
+<body class="authentication-page bg" style="background-color: #1D">
 
 @yield('content')
 

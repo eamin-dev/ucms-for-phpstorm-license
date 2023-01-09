@@ -34,10 +34,10 @@ class UserController extends Controller
         });
     }
 
-    private function isAuthorized(string $permission): bool
-    {
-        return  is_null($this->user) || !$this->user->can($permission);
-    }
+    // private function isAuthorized(string $permission): bool
+    // {
+    //     return  is_null($this->user) || !$this->user->can($permission);
+    // }
 
     public function index()
     {
@@ -55,7 +55,7 @@ class UserController extends Controller
 
     public function createNewUser(UserCreateRequest $request)
     {
-        abort_if($this->isAuthorized('user'), Response::HTTP_FORBIDDEN, $this->message);
+        //abort_if($this->isAuthorized('user'), Response::HTTP_FORBIDDEN, $this->message);
         try {
             $this->userRepository->storeUser($request->validated());
             return AppHelper::successResponse('User created successfully');
@@ -66,7 +66,7 @@ class UserController extends Controller
 
     public function deleteUser($user_id)
     {
-        abort_if($this->isAuthorized('user'), Response::HTTP_FORBIDDEN, $this->message);
+        //abort_if($this->isAuthorized('user'), Response::HTTP_FORBIDDEN, $this->message);
         try {
             $user = $this->userRepository->getUser($user_id);
             //need to check if user has dependency
@@ -79,7 +79,7 @@ class UserController extends Controller
 
     public function editUser($user_id)
     {
-        abort_if($this->isAuthorized('user'), Response::HTTP_FORBIDDEN, $this->message);
+       // abort_if($this->isAuthorized('user'), Response::HTTP_FORBIDDEN, $this->message);
         try {
             $user = $this->userRepository->getUser($user_id);
             $roles = $this->rolePermissionRepository->allRoles();
@@ -91,7 +91,7 @@ class UserController extends Controller
 
     public function updateUserInfo(UserUpdateRequest $request)
     {
-        abort_if($this->isAuthorized('user'), Response::HTTP_FORBIDDEN, $this->message);
+      //  abort_if($this->isAuthorized('user'), Response::HTTP_FORBIDDEN, $this->message);
         try {
             $user_id = AppHelper::decrypt($request->user_id);
             $user = $this->userRepository->getUser($user_id);
@@ -104,7 +104,7 @@ class UserController extends Controller
 
     public function changeUserStatus($user_id, $status)
     {
-        abort_if($this->isAuthorized('user'), Response::HTTP_FORBIDDEN, $this->message);
+       // abort_if($this->isAuthorized('user'), Response::HTTP_FORBIDDEN, $this->message);
         try {
             $user = $this->userRepository->getUser($user_id);
             $this->userRepository->statusUpdate($user,$status);

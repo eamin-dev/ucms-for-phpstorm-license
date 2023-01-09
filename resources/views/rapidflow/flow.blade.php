@@ -59,7 +59,7 @@
                                 <!-- Content Table End-->
 
                                 <!-- Add  Modal Start --->
-                                <div id="myModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
+                                <div id="myModal" class="modal fade bs-example-modal" tabindex="-1" role="dialog"
                                      aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
@@ -90,7 +90,7 @@
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group col-md-12">
-                                                                    <labe>Country Office</labe>
+                                                                    <label> Country Office</label >
                                                                     <select name="country_office_id"
                                                                             class="form-control select2"
                                                                             id="country_office_id">

@@ -9,7 +9,7 @@ class CountryOffice extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name','created_by','updated_by'];
 
     public function creator(){
 
