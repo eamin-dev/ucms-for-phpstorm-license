@@ -40,16 +40,22 @@
             columns: [
                 {
                     data: 'DT_RowIndex',
+                    title: 'SL',
                     searchable: false,
                     bSortable:false,
                 },
                 {
                     data: 'file_id',
+                    title: 'File ID',
                 },
                 {
-                    data: 'created_at',
+                    data: 'date',
+                    title: 'Date',
                 },
-
+                {
+                    data: 'time',
+                    title: 'Time',
+                },
                 {
                     data: 'actionBtn',
                     searchable: false,

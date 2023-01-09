@@ -37,8 +37,11 @@ class NewRapidFlowController extends Controller
     {
         return DataTables::eloquent($data)
             ->addIndexColumn()
-            ->editColumn('created_at', function ($data) {
-                return Carbon::parse($data->created_at)->format('m-d-Y h:i a');
+            ->addColumn('date', function ($data) {
+                return Carbon::parse($data->created_at)->format('d M, y');
+            })
+            ->addColumn('time', function ($data) {
+                return Carbon::parse($data->created_at)->format('h:i A');
             })
             ->addColumn('actionBtn', 'rapidflow.actionBtn')
             ->rawColumns(['actionBtn'])

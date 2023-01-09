@@ -35,7 +35,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title float-left pt-2">Flow List</h3>
+                            <h3 class="card-title float-left pt-2">RapidPro Flow Creation</h3>
 
                             <div class="card-tools float-right">
                                 <ul class="nav nav-pills ml-auto">
@@ -53,14 +53,7 @@
                                 <div class="col-md-12 col-sm-12 col-12">
                                     <table id="userTable" class="table table-striped table-bordered text-center"
                                            style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                        <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>File ID</th>
-                                            <th>Date</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        </thead>
+
                                     </table>
                                 </div>
                                 <!-- Content Table End-->
