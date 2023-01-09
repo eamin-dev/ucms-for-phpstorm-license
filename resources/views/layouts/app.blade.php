@@ -40,7 +40,7 @@
 
     #sidebar-menu>ul>li>a.active {
     color: #317eeb;
-    background: #0f1936;
+    background: #051955;
 }
 
     .logo span.logo-lg {

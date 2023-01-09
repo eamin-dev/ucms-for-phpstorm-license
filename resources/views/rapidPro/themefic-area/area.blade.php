@@ -93,7 +93,7 @@
                                                             <div class="form-group col-md-12 text-center">
                                                                 <input type="hidden" name="action" id="action" value="addNew">
                                                                 <input type="hidden" name="area_id" id="area_id">
-                                                                <input type="submit" name="saveBtn" id="saveBtn" class="col-12 btn btn-success btn-md" value="Save">
+                                                                <input type="submit" name="saveBtn" id="saveBtn" class="col-12 btn btn-info btn-md" value="Save">
                                                             </div>
 
                                                         </div>

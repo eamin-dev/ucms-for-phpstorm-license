@@ -36,7 +36,23 @@ class AdminSeeder extends Seeder
             'password' => bcrypt(12345678),
             'platform' => 3
         ]);
-        $user->assignRole('editor');
+        $user->assignRole('both');
+        
+        $user = User::create([
+            'name' => 'RapidPro',
+            'email' => 'rqapidpro@ucms.com',
+            'password' => bcrypt(12345678),
+            'platform' => 3
+        ]);
+        $user->assignRole('rapidpro');
+
+        $user = User::create([
+            'name' => 'iogt',
+            'email' => 'iogt@ucms.com',
+            'password' => bcrypt(12345678),
+            'platform' => 3
+        ]);
+        $user->assignRole('iogt');
 
     }
 }
