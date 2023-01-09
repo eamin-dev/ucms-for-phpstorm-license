@@ -40,8 +40,11 @@
                                     <thead>
                                     <tr>
                                         <th>SL</th>
-                                        <th>Full Name</th>
+                                        <th class="text-center">Name</th>
                                         <th data-priority="1">Email</th>
+                                        <th data-priority="1">Date</th>
+                                        <th data-priority="1">Country</th>
+                                        <th data-priority="1">Platform</th>
                                         <th data-priority="2">Status</th>
                                         <th data-priority="3">Role</th>
                                     </tr>
@@ -52,6 +55,9 @@
                                             <td>{{$loop->iteration}}</td>
                                             <td>{{$user->name}}</td>
                                             <td>{{$user->email}}</td>
+                                            <td>{{$user->created_at}}</td>
+                                            <td>{{$user->country_office_id}}</td>
+                                            <td>{{$user->platform}}</td>
                                             <td>{{\App\Models\Setting::status()[$user->status]}} </td>
                                             <td>
                                                 {{$roles->where('id', $user->role_id)->first()->name ?? $roles->where('id', $user->role_id)->first()}}
@@ -83,7 +89,7 @@
                                                         </li>
                                                     </ul>
                                                 </div>
-                                                
+
                                             </td>
                                         </tr>
                                     @empty
