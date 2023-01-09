@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box">
-                    <h2 class="page-title"> <strong class="text-info">Dashboard</strong> </h2>
+                    <h2 class="page-title"><strong class="text-info">Dashboard</strong> </h2>
                     {{-- <ol class="breadcrumb p-0 m-0">
                             <li class="breadcrumb-item"><a href="#">DCMS</a></li>
                             <li class="breadcrumb-item active">Dashboard</li>
