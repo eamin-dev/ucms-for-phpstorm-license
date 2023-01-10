@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Traits\Serialization;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,7 +12,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles,Serialization;
 
     /**
      * The attributes that are mass assignable.
@@ -22,7 +23,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'platform',
+        'image',
+        'region_id',
+        'country_office_id',
         'status'
     ];
 
@@ -44,5 +47,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function countryOffice(){
+
+        return $this->belongsTo(CountryOffice::class,'country_office_id','id');
+    }
+
+    public function region(){
+
+        return $this->belongsTo(Region::class, 'region_id', 'id');
+    }
 
 }

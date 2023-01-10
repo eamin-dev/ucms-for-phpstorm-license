@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
+use App\Models\CountryOffice;
 use App\Models\Setting;
 use App\Repositories\RolePermissionRepository;
 use App\Repositories\UserRepository;
@@ -46,8 +47,9 @@ class UserController extends Controller
             $search = request()->input('search');
             $filter = request()->input('status');
             $users = $this->userRepository->paginate('id', [], 10, ['status' => $filter], $search);
+          //  $countryOffices = CountryOffice::select('id', 'name')->get();
             $roles = $this->rolePermissionRepository->allRoles();
-            return view('user.index', compact('users','roles'));
+            return view('user.index', compact('users','roles','countryOffices'));
         } catch (\Exception $e) {
             return AppHelper::errorRedirect($e);
         }

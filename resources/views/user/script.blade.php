@@ -6,7 +6,7 @@
     }
 
     function generatePass(){
-        document.getElementById("password").value = randomString(6, '0123456789');
+        document.getElementById("password").value = randomString(8, '0123456789');
     }
 
     //Show Edit User Modal

@@ -39,11 +39,14 @@
                                     <table class="table table-striped table-bordered " style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead>
                                     <tr>
-                                        <th>SL</th>
-                                        <th>Full Name</th>
+                                        <th class="text-center">SL</th>
+                                        <th class="text-center"> Name</th>
                                         <th data-priority="1">Email</th>
+                                        <th class="text-center">Date</th>
+                                        <th class="text-center">Country</th>
+                                        <th class="text-center">User Type</th>
                                         <th data-priority="2">Status</th>
-                                        <th data-priority="3">Role</th>
+                                        <th data-priority="3">Actions</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -52,6 +55,9 @@
                                             <td>{{$loop->iteration}}</td>
                                             <td>{{$user->name}}</td>
                                             <td>{{$user->email}}</td>
+                                            <td>{{$user->created_at}}</td>
+                                            <td>{{$user->countryOffice}}</td>
+                                            <td>{{$user->platform}}</td>
                                             <td>{{\App\Models\Setting::status()[$user->status]}} </td>
                                             <td>
                                                 {{$roles->where('id', $user->role_id)->first()->name ?? $roles->where('id', $user->role_id)->first()}}

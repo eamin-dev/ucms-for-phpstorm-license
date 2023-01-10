@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <input name="name" type="text" class="form-control" id="field-1" placeholder="User's full name">
+                    <input name="name" type="text" class="form-control" id="field-1" placeholder="Full name">
                 </div>
             </div>
         </div>
