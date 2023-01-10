@@ -5,13 +5,14 @@ use App\Http\Controllers\CountryOfficeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IogtController;
 use App\Http\Controllers\NewRapidFlowController;
-use App\Http\Controllers\NewThemeficController;
 use App\Http\Controllers\ProfileManageController;
 use App\Http\Controllers\QuestionManageController;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\ThemeficAreaController;
 use App\Http\Controllers\UserController;
+use Database\Seeders\AdminSeeder;
+use Database\Seeders\RolePermissionSeeder;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -20,7 +21,8 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
  Route::get('test', function(){
-     return phpinfo();
+     $code =  Http::get('ucms.local/rapid-pro/flow');
+     return $code->status();
  });
 Route::view('/login', 'auth.login');
 
