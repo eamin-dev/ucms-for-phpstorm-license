@@ -24,14 +24,17 @@
                 </div>
             </div>
         </div><br>
+
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <select name="platform" class="form-control">
-                        <option value="">Select Platform</option>
-                        @foreach(\App\Models\Setting::platform() as $platform)
-                        <option value="{{$platform['id']}}" @if($user->platform == $platform['id']) selected @endif>{{$platform['name']}}</option>
-                        @endforeach
+                    <select name="country_office_id" class="form-control">
+                        <option value="">Select Country Ofice</option>
+                        @forelse($countryOffices as $office)
+                            <option value="{{$office->id}}" @if($user->country_office_id == $office->id) selected @endif>{{$office->name}}</option>
+                        @empty
+                            <option value="">No Role Found</option>
+                        @endforelse
                     </select>
                 </div>
             </div>
@@ -39,10 +42,10 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <select name="role_id" class="form-control">
-                        <option value="">Select Role</option>
+                    <select name="role" class="form-control">
+                        <option value="">Select Platform</option>
                         @forelse($roles as $role)
-                            <option value="{{$role->id}}" @if($user->role_id == $role->id) selected @endif>{{$role->name}}</option>
+                            <option value="{{$role->id}}" @if($user->role == $role->id) selected @endif>{{$role->name}}</option>
                         @empty
                             <option value="">No Role Found</option>
                         @endforelse

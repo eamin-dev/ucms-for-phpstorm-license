@@ -27,7 +27,9 @@ class RolePermissionSeeder extends Seeder
         $roleArray = [
             ['name' => 'super admin', 'guard_name' => 'web'],
             ['name' => 'admin', 'guard_name' => 'web'],
-            ['name' => 'editor', 'guard_name' => 'web']
+            ['name' => 'iogt', 'guard_name' => 'web'],
+            ['name' => 'rapidpro', 'guard_name' => 'web'],
+            ['name' => 'both', 'guard_name' => 'web']
         ];
         $roles = Role::insert($roleArray);
 

@@ -20,36 +20,54 @@
     </div>
     <!-- end page title -->
 
+
+    <style>
+        .card-box {
+            background-image: linear-gradient(to left, rgba(0, 0, 0, .6), rgba(0, 0, 0, 0.3));
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            --style-box-size: 140px;
+            --bg-style-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .card-box::after,
+        .card-box::before {
+            content: '';
+            display: block;
+            position: absolute;
+            bottom: 0%;
+            right: 0;
+            transform: translate(calc(var(--style-box-size) / 2), 5%);
+            width: var(--style-box-size);
+            height: var(--style-box-size);
+            border-radius: 100%;
+            background-color: var(--bg-style-color);
+            z-index: -10;
+        }
+
+        .card-box::before {
+            background-color: var(--bg-style-color);
+            right: calc(0% + 20px);
+            transform: translateY(50px);
+        }
+    </style>
     <!--Widget-4 -->
     {{-- first row --}}
     <div class="row">
 
         <div class="col-md-4">
-            <div class="card-box">
-                <div class="media">
-                    <div class="avatar-md rounded-circle mr-2">
-                        <i class="fas fa-user-circle"></i>
-                    </div>
+            <div class="card-box"
+                style="background: linear-gradient(284.59deg, #FF3535 0%, rgba(252, 180, 114, 0.88) 87.75%);
+                border-radius: 20px;">
+                <div class="media-card text-light pl-3">
+                    <i class="fas display-4 fa-user-circle mb-2"></i>
                     <div class="media-body align-self-center">
                         <div class="text-left">
-                            <h4 class="">Total User</h4>
-                            <p class="mb-0 mt-1 text-truncate"> <strong> {{ $totalActiveUsers }} </strong> </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end card-box-->
-        </div>
-
-        <div class="col-md-4">
-            <div class="card-box">
-                <div class="media">
-                    <div class="avatar-md rounded-circle mr-2">
-                        <i class="fas fa-user-circle"></i>
-                    </div>
-                    <div class="media-body align-self-center">
-                        <div class="text-left">
-                            <h4 class="">Total Admin</h4>
+                            <h2 class="text-light">Total User  </h4>
                             <p class="mb-0 mt-1 text-truncate"> <strong> {{ $totalActiveUsers }} </strong> </p>
                         </div>
                     </div>
@@ -60,21 +78,43 @@
 
 
         <div class="col-md-4">
-            <div class="card-box">
-                <div class="media">
-                    <div class="avatar-md rounded-circle mr-2">
-                        <i class="fas fa-user-plus" style="width: 100%"></i>
-                    </div>
+            <div class="card-box"
+                style="background: linear-gradient(282.59deg, #38ACFF 4.55%, rgba(191, 224, 255, 0.97) 120.48%);
+                border-radius: 20px;">
+                <div class="media-card text-light pl-3">
+                    <i class="fas display-4 fa-user-circle mb-2"></i>
                     <div class="media-body align-self-center">
                         <div class="text-left">
-                            <h4 class="">Total Themefic Area</h4>
-                            <p class="mb-0 mt-1 text-truncate"> <strong> {{ $totalThemeficAreas }} </strong> </p>
+                            <h2 class="text-light">Total Admin  </h4>
+                            <p class="mb-0 mt-1 text-truncate"> <strong> {{ $totalActiveUsers }} </strong> </p>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- end card-box-->
         </div>
+
+
+
+
+
+            <div class="col-md-4">
+                <div class="card-box"
+                    style="background: linear-gradient(283.84deg, #6119BC 2.94%, rgba(148, 111, 255, 0.74) 98.65%);
+border-radius: 20px;">
+                    <div class="media-card text-light pl-3">
+                        <i class="fas display-4 fa-user-circle mb-2"></i>
+                        <div class="media-body align-self-center">
+                            <div class="text-left">
+                                <h2 class="text-light">Total Themefic Area </h4>
+                                <p class="mb-0 mt-1 text-truncate"> <strong> {{ $totalThemeficAreas }} </strong> </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end card-box-->
+            </div>
+            <!-- end card-box-->
 
     </div>
     <!-- end fist row -->
@@ -91,16 +131,17 @@
     {{-- Second row --}}
     <div class="row">
 
-        <div class="col-md-4 ">
-            <div class="card-box">
-                <div class="media">
-                    <div class="avatar-md rounded-circle mr-2">
-                        <i class="fas fa-user-plus" style="width: 100%"></i>
-                    </div>
+
+        <div class="col-md-4">
+            <div class="card-box"
+                style="background: linear-gradient(107.58deg, #12D519 0%, #009106 92.27%);
+                border-radius: 20px;">
+                <div class="media-card text-light pl-3">
+                    <i class="fas display-4 fa-user-circle mb-2"></i>
                     <div class="media-body align-self-center">
                         <div class="text-left">
-                            <h4 class="">Total RapidPro Access</h4>
-                            <p class="mb-0 mt-1 text-truncate"> <strong> {{ $totalRapidProUser }} </strong> </p>
+                            <h2 class="text-light">Total RapidPro Access</h4>
+                            <p class="mb-0 mt-1 text-truncate"> <strong> {{ $totalRapidProUser ?? 0 }} </strong> </p>
                         </div>
                     </div>
                 </div>
@@ -109,15 +150,15 @@
         </div>
 
         <div class="col-md-4">
-            <div class="card-box">
-                <div class="media">
-                    <div class="avatar-md rounded-circle">
-                        <i class=" fas fa-list-alt"></i>
-                    </div>
+            <div class="card-box"
+                style="background: linear-gradient(107.58deg, #A4C8FF 0%, #6B68FF 92.27%);
+                border-radius: 20px;">
+                <div class="media-card text-light pl-3">
+                    <i class="fas display-4 fa-user-circle mb-2"></i>
                     <div class="media-body align-self-center">
                         <div class="text-left">
-                            <h4 class="">Active RapidPro Access</h4>
-                            <p class="mb-0 mt-1 text-truncate"> {{ $totalRapidActiveUser ?? 0 }}</p>
+                            <h2 class="text-light">Active RapidPro Access</h4>
+                            <p class="mb-0 mt-1 text-truncate"> <strong> {{ $totalRapidActiveUser ?? 0 }} </strong> </p>
                         </div>
                     </div>
                 </div>
@@ -126,21 +167,23 @@
         </div>
 
         <div class="col-md-4">
-            <div class="card-box">
-                <div class="media">
-                    <div class="avatar-md rounded-circle">
-                        <i class=" fas fa-list-alt"></i>
-                    </div>
+            <div class="card-box"
+                style="background: linear-gradient(107.58deg, #E8D9A4 0%, #D0A200 92.27%);
+                border-radius: 20px;">
+                <div class="media-card text-light pl-3">
+                    <i class="fas display-4 fa-user-circle mb-2"></i>
                     <div class="media-body align-self-center">
                         <div class="text-left">
-                            <h4 class="">Total Json Extract  </h4>
-                            <p class="mb-0 mt-1 text-truncate"> {{ $totalRapidActiveUser ?? 0 }}</p>
+                            <h2 class="text-light">Total Json Extract </h4>
+                            <p class="mb-0 mt-1 text-truncate"> <strong> {{ $totalRapidActiveUser ?? 0 }} </strong> </p>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- end card-box-->
         </div>
+
+
     </div>
     <!-- end 2nd row -->
 
@@ -157,32 +200,17 @@
 
     <div class="row">
 
+        {{-- new --}}
         <div class="col-md-4">
-            <div class="card-box">
-                <div class="media">
-                    <div class="avatar-md rounded-circle mr-2">
-                        <i class="fas fa-user-plus" style="width: 100%"></i>
-                    </div>
+            <div class="card-box"
+                style="background: linear-gradient(107.58deg, #FF855F 0%, #FE9800 92.27%);
+                border-radius: 20px;">
+                <div class="media-card text-light pl-3">
+                    <i class="fas display-4 fa-user-circle mb-2"></i>
                     <div class="media-body align-self-center">
                         <div class="text-left">
-                            <h4 class="">Total IOGT Access</h4>
-                            <p class="mb-0 mt-1 text-truncate"> <strong> {{ $totalRapidProUser }} </strong> </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end card-box-->
-        </div>
-        <div class="col-md-4">
-            <div class="card-box">
-                <div class="media">
-                    <div class="avatar-md rounded-circle">
-                        <i class=" fas fa-list-alt"></i>
-                    </div>
-                    <div class="media-body align-self-center">
-                        <div class="text-left">
-                            <h4 class="">Active IOGT Access</h4>
-                            <p class="mb-0 mt-1 text-truncate"> {{ $totalRapidActiveUser ?? 0 }}</p>
+                            <h2 class="text-light">Total  IOGT Access</h4>
+                            <p class="mb-0 mt-1 text-truncate"> <strong> {{ $totalRapidProUser ?? 0 }} </strong> </p>
                         </div>
                     </div>
                 </div>
@@ -191,21 +219,41 @@
         </div>
 
         <div class="col-md-4">
-            <div class="card-box">
-                <div class="media">
-                    <div class="avatar-md rounded-circle">
-                        <i class=" fas fa-list-alt"></i>
-                    </div>
+            <div class="card-box"
+                style="background: linear-gradient(107.58deg, #266C3E 0%, #35D994 92.27%);
+                border-radius: 20px;">
+                <div class="media-card text-light pl-3">
+                    <i class="fas display-4 fa-user-circle mb-2"></i>
                     <div class="media-body align-self-center">
                         <div class="text-left">
-                            <h4 class="">Total Push to IOGT</h4>
-                            <p class="mb-0 mt-1 text-truncate"> 0</p>
+                            <h2 class="text-light"> IOGT Access</h4>
+                            <p class="mb-0 mt-1 text-truncate"> <strong> {{ $totalRapidActiveUser ?? 0 }} </strong> </p>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- end card-box-->
         </div>
+
+        <div class="col-md-4">
+            <div class="card-box"
+                style="background: linear-gradient(107.58deg, #FFA9A9 0%, #D01900 92.27%);
+                border-radius: 20px;">
+                <div class="media-card text-light pl-3">
+                    <i class="fas display-4 fa-user-circle mb-2"></i>
+                    <div class="media-body align-self-center">
+                        <div class="text-left">
+                            <h2 class="text-light">Push to IOGT</h4>
+                            <p class="mb-0 mt-1 text-truncate"> <strong> {{ $totalRapidActiveUser ?? 0 }} </strong> </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end card-box-->
+        </div>
+
+        {{-- end new --}}
+
     </div>
 
     {{-- end third row --}}

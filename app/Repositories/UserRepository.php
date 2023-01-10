@@ -75,7 +75,8 @@ class UserRepository extends BaseRepository
             $user->email = $data['email'];
             $user->password = Hash::make($data['password']);
             $user->platform = $data['platform'];
-            $user->role_id = $data['role_id'];
+            $user->assignRole($data('role'));
+            $user->type = 2;
             $user->save();
             DB::commit();
             return $user;
@@ -98,8 +99,9 @@ class UserRepository extends BaseRepository
                 throw new \Exception('User not found');
             }
             $user->name = $data['name'];
-            $user->platform = $data['platform'];
-            $user->role_id = $data['role_id'];
+            //$user->platform = $data['platform'];
+                $user->country_office_id = $data['country_office_id'];
+           $user->assignRole($data('role'));
             if (in_array('email',$data) && $data['email'] != $user->email){
                 $user->email = $data['email'];
             }

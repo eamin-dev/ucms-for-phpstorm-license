@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Rapid Flow ')
+@section('title', 'Admin ')
 @section('css')
     <!-- DataTable CSS Start -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
@@ -35,13 +35,13 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title float-left pt-2">RapidPro Flow Creation</h3>
+                            <h3 class="card-title float-left pt-2">Admin Creation</h3>
 
                             <div class="card-tools float-right">
                                 <ul class="nav nav-pills ml-auto">
                                     <li class="nav-item">
                                         <button id="addNew" name="addNew" class="btn btn-primary  text-white"><i
-                                                class="fa fa-plus-circle"></i> Create Flow
+                                                class="fa fa-plus-circle"></i> Create Admin
                                         </button>
                                     </li>
                                 </ul>
@@ -53,6 +53,16 @@
                                 <div class="col-md-12 col-sm-12 col-12">
                                     <table id="userTable" class="table table-striped table-bordered text-center"
                                         style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+
+                                        <thead>
+                                            <tr>
+                                                <th>Sl</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Region</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            </thead>
 
                                     </table>
                                 </div>
@@ -78,6 +88,28 @@
                                                             @csrf
                                                             @method('POST')
                                                             <div class="row">
+
+                                                                <div class="form-group col-md-12">
+                                                                    <label for="Name"> Name</label>
+                                                                    <input name="name" type="text"
+                                                                        class="form-control" id="name"
+                                                                        placeholder="Full name">
+                                                                </div>
+                                                                <div class="form-group col-md-12">
+                                                                    <label for="email">Email</label>
+                                                                    <input name="email" type="email"
+                                                                        class="form-control" id="email"
+                                                                        placeholder="Email">
+                                                                </div>
+                                                                    <div class="form-group col-md-12">
+                                                                        <div class="input-group">
+                                                                            <input id="password" type="text" name="password" class="form-control" placeholder="Password">
+                                                                            <span class="input-group-append">
+                                                                                            <button type="button" class="btn waves-effect waves-light btn-primary " onclick="generatePass()">Generate Password</button>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                               
                                                                 <div class="form-group col-md-12">
                                                                     <label for="region_id">Region</label>
                                                                     <select name="region_id" id="region_id"
@@ -89,47 +121,12 @@
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
-                                                                <div class="form-group col-md-12">
-                                                                    <label> Country Office</label>
-                                                                    <select name="country_office_id"
-                                                                        class="form-control select2" id="country_office_id">
-                                                                        <option value="">Select Country office
-                                                                        </option>
-                                                                        @forelse ($countryOffices as $office)
-                                                                            <option value="{{ $office->id }}">
-                                                                                {{ $office->name }}</option>
-                                                                        @empty
-                                                                            <option value="">No Country office
-                                                                            </option>
-                                                                        @endforelse
 
-                                                                    </select>
-
-                                                                </div>
-                                                                <div class="form-group col-md-12">
-                                                                    <label for="themefic_area_id">Themefic Area</label>
-                                                                    <select name="themefic_area_id"
-                                                                        class="form-control select2" id="themefic_area_id">
-                                                                        <option value="">Select Themetic Area</option>
-                                                                        @forelse ($themeficAreas as $area)
-                                                                            <option value="{{ $area->id }}">
-                                                                                {{ $area->code }}
-                                                                                - {{ $area->name }}</option>
-                                                                        @empty
-                                                                            <option value="">No Themetic Area</option>
-                                                                        @endforelse
-                                                                    </select>
-                                                                </div>
-                                                                <div class="form-group col-md-12">
-                                                                    <label for="file_id">Flow Name</label>
-                                                                    <input name="file_id" type="text"
-                                                                        class="form-control" id="file_id"
-                                                                        placeholder="Flow name">
-                                                                </div>
+                                                          
                                                                 <div class="form-group col-md-12 text-center">
                                                                     <input type="hidden" name="action" id="action"
                                                                         value="addNew">
-                                                                    <input type="hidden" name="flow_id" id="flow_id">
+                                                                    <input type="hidden" name="admin_id" id="admin_id">
                                                                     <input type="submit" name="saveBtn" id="saveBtn"
                                                                         class="col-12 btn btn-info btn-md" value="Save">
                                                                 </div>
@@ -159,7 +156,7 @@
                                                 <!--  <h4 align="center" style="margin:0;color: indianred;">Are you sure you want to remove this data?</h4> -->
                                                 <h5 align="center" style="margin:0;color: indianred;">Are you sure you
                                                     want to remove <span id="deleteValueName"
-                                                        class="text-secondary"></span> Rapid-Flow ?
+                                                        class="text-secondary"></span> Admin ?
                                                 </h5>
 
                                                 <p id="deleteValueError" class="text-primary text-center text-16"></p>
@@ -168,8 +165,8 @@
                                                 <form class="deleteById" id="deleteById">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <input type="hidden" name="flowId" value=""
-                                                        id="flowId" />
+                                                    <input type="hidden" name="adminId" value=""
+                                                        id="adminId" />
                                                     <button id="okBtn" type="submit" name="edit"
                                                         class="delete btn btn-danger">OK
                                                     </button>
@@ -234,6 +231,6 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="{{ asset('assets/js/custom-toastr.min.js') }}"></script>
 
-    @include('rapidflow.flow_script');
+    @include('admin.script');
 
 @endsection

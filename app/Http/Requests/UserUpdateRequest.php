@@ -29,10 +29,10 @@ class UserUpdateRequest extends FormRequest
         return [
             'name' => 'required|string|max:100',
             'user_id' => 'required',
-//            'email' => 'email:rfc,dns|unique:users|email|max:100',
+            'email' => 'email:rfc,dns|unique:users|email|max:100,'.$this->user->id,
 //            'password' => 'string|min:6|max:100',
-            'platform' => 'required|integer',
-            'role_id' => 'required|integer',
+            //'platform' => 'required|integer',
+           // 'role_id' => 'required|integer',
         ];
     }
 
@@ -55,9 +55,9 @@ class UserUpdateRequest extends FormRequest
             'password.string' => 'Password must be string',
             'password.min' => 'Password must be at least 6 characters',
             'password.max' => 'Password must be less than 100 characters',
-            'platform.required' => 'Platform is required',
-            'platform.integer' => 'Platform value is invalid',
-            'role_id.integer' => 'Role value is invalid',
+            // 'platform.required' => 'Platform is required',
+            // 'platform.integer' => 'Platform value is invalid',
+            // 'role_id.integer' => 'Role value is invalid',
         ];
     }
 

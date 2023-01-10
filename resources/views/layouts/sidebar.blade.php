@@ -34,6 +34,13 @@
                         <span class="text-white"> Dashboard </span>
                     </a>
                 </li>
+
+                <li>
+                    <a href="{{route('rapid.flow.view')}}" class="waves-effect">
+                        <i class="mdi mdi-home text-white"></i>
+                        <span class="text-white"> Rapid Pro Flow </span>
+                    </a>
+                </li>
 {{--                @endcan--}}
 
 
@@ -48,21 +55,6 @@
 
 {{--            @can('rapid_pro')--}}
 
-            <li>
-                <a href="javascript: void(0);" class="waves-effect">
-                    <i class="mdi mdi-widgets text-white"></i>
-                    <span class="text-white"> Rapid Pro </span>
-                    <span class="menu-arrow"></span>
-                </a>
-                <ul class="nav-second-level" aria-expanded="false">
-                    <li><a href="{{route('rapid.flow.view')}}" class="text-white">Flows</a></li>
-                    {{-- <li><a href="{{route('rapid.pro.create')}}">Rapid Pro(Old)</a></li> --}}
-                    <li><a href="{{ route('offices.view') }}" class="text-white">Country Office</a></li>
-                    <li><a href="{{ route('regions.view') }}" class="text-white">Region</a></li>
-                    <li><a href="{{ route('themefic-area.view') }}" class="text-white">Themefic Area</a></li>
-
-                </ul>
-            </li>
 
 {{--            @endcan--}}
 
@@ -77,28 +69,51 @@
 {{--                @endcan--}}
 
 {{--                @can('user')--}}
-                <li>
-                    <a href="{{route('users.index')}}" class="waves-effect">
-                        <i class="fas fa-user  text-white"></i>
-                        <span class="text-white"> User </span>
-                    </a>
-                </li>
+                  <li>
+                <a href="javascript: void(0);" class="waves-effect">
+                    <i class="mdi mdi-widgets text-white"></i>
+                    <span class="text-white"> User </span>
+                    <span class="menu-arrow text-white"></span>
+                </a>
+                <ul class="nav-second-level" aria-expanded="false">
+                    <li><a href="{{ route('admins.view') }}" class="text-white">Admin</a></li>
+                    <li><a href="{{route('users.index')}}" class="text-white">Editor </a></li>
+                </ul>
+            </li>
+
 {{--                @endcan--}}
 
 {{--                @can('role')--}}
-                <li>
+                {{-- <li>
                     <a href="{{route('roles.index')}}" class="waves-effect">
                         <i class="fas fa-user  text-white"></i>
                         <span class="text-white"> Role & Permission </span>
                     </a>
-                </li>
+                </li> --}}
 {{--                @endcan--}}
-
+{{-- 
                 <li>
                     <a href="{{route('user.profile.view')}}" class="waves-effect">
                         <i class="fas fa-wrench  text-white"></i>
                         <span class="text-white"> Settings </span>
                     </a>
+                </li> --}}
+
+
+                <li>
+                    <a href="javascript: void(0);" class="waves-effect">
+                        <i class="mdi mdi-widgets text-white"></i>
+                        <span class="text-white"> Settings </span>
+                        <span class="menu-arrow text-white"></span>
+                    </a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li><a href="{{route('user.profile.view')}}" class="text-white">User Profile</a></li>
+                        {{-- <li><a href="{{route('rapid.pro.create')}}">Rapid Pro(Old)</a></li> --}}
+                        <li><a href="{{ route('offices.view') }}" class="text-white">Country Office</a></li>
+                        <li><a href="{{ route('regions.view') }}" class="text-white">Region</a></li>
+                        <li><a href="{{ route('themefic-area.view') }}" class="text-white">Themefic Area</a></li>
+    
+                    </ul>
                 </li>
 
 

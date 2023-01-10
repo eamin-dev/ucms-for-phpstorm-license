@@ -18,6 +18,7 @@ class AdminSeeder extends Seeder
             'name' => 'Super Admin',
             'email' => 'superadmin@ucms.com',
             'password' => bcrypt(12345678),
+            'type'=> 1,
             'platform' => 3
         ]);
         $admin->assignRole('super admin');
@@ -26,6 +27,7 @@ class AdminSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@ucms.com',
             'password' => bcrypt(12345678),
+            'type'=> 1,
             'platform' => 3
         ]);
         $admin->assignRole('admin');
@@ -34,9 +36,28 @@ class AdminSeeder extends Seeder
             'name' => 'Editor',
             'email' => 'editor@ucms.com',
             'password' => bcrypt(12345678),
+            'type'=> 2,
             'platform' => 3
         ]);
-        $user->assignRole('editor');
+        $user->assignRole('both');
+        
+        $user = User::create([
+            'name' => 'RapidPro',
+            'email' => 'rqapidpro@ucms.com',
+            'password' => bcrypt(12345678),
+            'type'=> 2,
+            'platform' => 3
+        ]);
+        $user->assignRole('rapidpro');
+
+        $user = User::create([
+            'name' => 'iogt',
+            'email' => 'iogt@ucms.com',
+            'password' => bcrypt(12345678),
+            'type'=> 2,
+            'platform' => 3
+        ]);
+        $user->assignRole('iogt');
 
     }
 }
