@@ -34,6 +34,13 @@
                         <span class="text-white"> Dashboard </span>
                     </a>
                 </li>
+
+                <li>
+                    <a href="{{route('rapid.flow.view')}}" class="waves-effect">
+                        <i class="mdi mdi-home text-white"></i>
+                        <span class="text-white"> Rapid Pro Flow </span>
+                    </a>
+                </li>
 {{--                @endcan--}}
 
 
@@ -48,21 +55,6 @@
 
 {{--            @can('rapid_pro')--}}
 
-            <li>
-                <a href="javascript: void(0);" class="waves-effect">
-                    <i class="mdi mdi-widgets text-white"></i>
-                    <span class="text-white"> Rapid Pro </span>
-                    <span class="menu-arrow text-white"></span>
-                </a>
-                <ul class="nav-second-level" aria-expanded="false">
-                    <li><a href="{{route('rapid.flow.view')}}" class="text-white">Flows</a></li>
-                    {{-- <li><a href="{{route('rapid.pro.create')}}">Rapid Pro(Old)</a></li> --}}
-                    <li><a href="{{ route('offices.view') }}" class="text-white">Country Office</a></li>
-                    <li><a href="{{ route('regions.view') }}" class="text-white">Region</a></li>
-                    <li><a href="{{ route('themefic-area.view') }}" class="text-white">Themefic Area</a></li>
-
-                </ul>
-            </li>
 
 {{--            @endcan--}}
 
@@ -99,12 +91,29 @@
                     </a>
                 </li> --}}
 {{--                @endcan--}}
-
+{{-- 
                 <li>
                     <a href="{{route('user.profile.view')}}" class="waves-effect">
                         <i class="fas fa-wrench  text-white"></i>
                         <span class="text-white"> Settings </span>
                     </a>
+                </li> --}}
+
+
+                <li>
+                    <a href="javascript: void(0);" class="waves-effect">
+                        <i class="mdi mdi-widgets text-white"></i>
+                        <span class="text-white"> Settings </span>
+                        <span class="menu-arrow text-white"></span>
+                    </a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li><a href="{{route('user.profile.view')}}" class="text-white">User Profile</a></li>
+                        {{-- <li><a href="{{route('rapid.pro.create')}}">Rapid Pro(Old)</a></li> --}}
+                        <li><a href="{{ route('offices.view') }}" class="text-white">Country Office</a></li>
+                        <li><a href="{{ route('regions.view') }}" class="text-white">Region</a></li>
+                        <li><a href="{{ route('themefic-area.view') }}" class="text-white">Themefic Area</a></li>
+    
+                    </ul>
                 </li>
 
 

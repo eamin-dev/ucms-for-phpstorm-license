@@ -99,8 +99,9 @@ class UserRepository extends BaseRepository
                 throw new \Exception('User not found');
             }
             $user->name = $data['name'];
-           // $user->platform = $data['platform'];
-            $user->assignRole($data('role'));
+            //$user->platform = $data['platform'];
+                $user->country_office_id = $data['country_office_id'];
+           $user->assignRole($data('role'));
             if (in_array('email',$data) && $data['email'] != $user->email){
                 $user->email = $data['email'];
             }

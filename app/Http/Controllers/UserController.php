@@ -17,6 +17,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -71,7 +72,16 @@ class UserController extends Controller
     {
         //abort_if($this->isAuthorized('user'), Response::HTTP_FORBIDDEN, $this->message);
         try {
-            $this->userRepository->storeUser($request->validated());
+           // $this->userRepository->storeUser($request->validated());
+           $user = new User();
+           $user->name =  $request->name;
+           $user->email = $request->email;
+           $user->password = Hash::make($request->password);
+            $user->country_office_id = $request->country_office_id;
+          // $user->platform = $data['platform'];
+           $user->assignRole($request->input('role'));
+           $user->type = 2;
+           $user->save();
             return AppHelper::successResponse('User created successfully');
         } catch (\Exception $e) {
             return AppHelper::errorResponse(null,$e);
@@ -97,7 +107,8 @@ class UserController extends Controller
         try {
             $user = $this->userRepository->getUser($user_id);
             $roles=Role::whereNotIn('id',[1,2])->get();
-            return view('user.user_edit_form', compact('user','roles'));
+            $countryOffices = CountryOffice::select('id', 'name')->get();
+            return view('user.user_edit_form', compact('user','roles','countryOffices'));
         } catch (\Exception $e) {
             return AppHelper::errorRedirect($e);
         }

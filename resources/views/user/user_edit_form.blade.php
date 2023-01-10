@@ -24,6 +24,21 @@
                 </div>
             </div>
         </div><br>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <select name="country_office_id" class="form-control">
+                        <option value="">Select Country Ofice</option>
+                        @forelse($countryOffices as $office)
+                            <option value="{{$office->id}}" @if($user->country_office_id == $office->id) selected @endif>{{$office->name}}</option>
+                        @empty
+                            <option value="">No Role Found</option>
+                        @endforelse
+                    </select>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">

@@ -25,7 +25,7 @@
         .card-box {
             background-image: linear-gradient(to left, rgba(0, 0, 0, .6), rgba(0, 0, 0, 0.3));
             position: relative;
-            height: 220px;
+            height: 180px;
             overflow: hidden;
             z-index: 10;
             display: flex;
