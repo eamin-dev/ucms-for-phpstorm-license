@@ -16,7 +16,8 @@
                         <div class="page-title-right">
                             <ol class="breadcrumb p-0 m-0">
                                 <li class="breadcrumb-item">
-                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#user-add-modal"><i class="fas fa-user-plus"></i> Add User</button>
+                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
+                                        data-target="#user-add-modal"><i class="fas fa-user-plus"></i> Add User</button>
                                 </li>
                             </ol>
                         </div>
@@ -31,78 +32,99 @@
                     <div class="card card-border card-primary">
 
                         <div class="card-header border-primary bg-transparent pb-0">
-{{--                            <h3 class="card-title text-primary">Lorem Ipsum .....</h3>--}}
+                            {{--                            <h3 class="card-title text-primary">Lorem Ipsum .....</h3> --}}
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-12">
-                                    <table class="table table-striped table-bordered " style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                    <thead>
-                                    <tr>
-                                        <th>SL</th>
-                                        <th class="text-center">Name</th>
-                                        <th data-priority="1">Email</th>
-                                        <th data-priority="1">Date</th>
-                                        <th data-priority="1">Country</th>
-                                        <th data-priority="1">Platform</th>
-                                        <th data-priority="2">Status</th>
-                                        <th data-priority="3">Actions</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @forelse($users as $user)
-                                        <tr>
-                                            <td>{{$loop->iteration}}</td>
-                                            <td>{{$user->name}}</td>
-                                            <td>{{$user->email}}</td>
-                                            <td>{{$user->created_at}}</td>
-                                            <td>{{$user->country_office_id}}</td>
-                                            <td>{{$user->platform}}</td>
-                                            <td>{{\App\Models\Setting::status()[$user->status]}} </td>
-                                            <td>
-                                                {{$roles->where('id', $user->role_id)->first()->name ?? $roles->where('id', $user->role_id)->first()}}
-                                                <div class=" float-right  btn-group mt-1 mr-1">
-                                                    <button type="button" class="btn btn-light btn-sm dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <i class="fas fa-ellipsis-v"></i>
-                                                    </button>
-                                                    <ul class="dropdown-menu">
-                                                        <li>
-                                                            <button data-id="{{$user->id}}" id="userEditBtn" type="button" class="dropdown-item text-info">
-                                                                <i class="fas fa-edit"></i> Edit
+                                    <table class="table table-striped table-bordered "
+                                        style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <th>SL</th>
+                                                <th class="text-center">Name</th>
+                                                <th data-priority="1">Email</th>
+                                                <th data-priority="1">Date</th>
+                                                <th data-priority="1">Country</th>
+                                                <th data-priority="1">Platform</th>
+                                                <th data-priority="2">Status</th>
+                                                <th data-priority="3">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse($users as $user)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $user->name }}</td>
+                                                    <td>{{ $user->email }}</td>
+                                                    <td>{{ $user->created_at }}</td>
+                                                    <td><span
+                                                            class="badge badge-primary badge-pill">{{ $user->countryOffice->name }}</span>
+                                                    </td>
+                                                    <td>
+                                                        @if (!empty($user->getRoleNames()))
+                                                            @foreach ($user->getRoleNames() as $v)
+                                                                <label
+                                                                    class="badge badge-success">{{ $v }}</label>
+                                                            @endforeach
+                                                        @endif
+                                                    </td>
+                                                    <td>{{ \App\Models\Setting::status()[$user->status] }} </td>
+                                                    <td>
+                                                        {{ $roles->where('id', $user->role_id)->first()->name ?? $roles->where('id', $user->role_id)->first() }}
+                                                        <div class=" float-right  btn-group mt-1 mr-1">
+                                                            <button type="button"
+                                                                class="btn btn-light btn-sm dropdown-toggle waves-effect waves-light"
+                                                                data-toggle="dropdown" aria-haspopup="true"
+                                                                aria-expanded="false">
+                                                                <i class="fas fa-ellipsis-v"></i>
                                                             </button>
-                                                        </li>
-                                                        <li>
-                                                            <button id="deleteUserBtn" data-id="{{$user->id}}" type="button" class="dropdown-item text-danger">
-                                                                <i class="fas fa-trash"></i> Delete
-                                                            </button>
-                                                        </li>
-                                                        <li>
-                                                            @if($user->status == 1)
-                                                                <button id="changeStatusBtn" data-id="{{$user->id}}" data-status="2" type="button" class="dropdown-item text-purple">
-                                                                    <i class="fas fa-pen-nib"></i> Inactive
-                                                                </button>
-                                                            @else
-                                                                <button id="changeStatusBtn" data-id="{{$user->id}}" data-status="1" type="button" class="dropdown-item text-success">
-                                                                    <i class="fas fa-pen-nib"></i> Active
-                                                                </button>
-                                                            @endif
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                                            <ul class="dropdown-menu">
+                                                                <li>
+                                                                    <button data-id="{{ $user->id }}" id="userEditBtn"
+                                                                        type="button" class="dropdown-item text-info">
+                                                                        <i class="fas fa-edit"></i> Edit
+                                                                    </button>
+                                                                </li>
+                                                                <li>
+                                                                    <button id="deleteUserBtn" data-id="{{ $user->id }}"
+                                                                        type="button" class="dropdown-item text-danger">
+                                                                        <i class="fas fa-trash"></i> Delete
+                                                                    </button>
+                                                                </li>
+                                                                <li>
+                                                                    @if ($user->status == 1)
+                                                                        <button id="changeStatusBtn"
+                                                                            data-id="{{ $user->id }}" data-status="2"
+                                                                            type="button"
+                                                                            class="dropdown-item text-purple">
+                                                                            <i class="fas fa-pen-nib"></i> Inactive
+                                                                        </button>
+                                                                    @else
+                                                                        <button id="changeStatusBtn"
+                                                                            data-id="{{ $user->id }}" data-status="1"
+                                                                            type="button"
+                                                                            class="dropdown-item text-success">
+                                                                            <i class="fas fa-pen-nib"></i> Active
+                                                                        </button>
+                                                                    @endif
+                                                                </li>
+                                                            </ul>
+                                                        </div>
 
-                                            </td>
-                                        </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="5" class="text-center">No data found</td>
-                                        </tr>
-                                    @endforelse
-                                    </tbody>
-                                </table>
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                                <tr>
+                                                    <td colspan="5" class="text-center">No data found</td>
+                                                </tr>
+                                            @endforelse
+                                        </tbody>
+                                    </table>
                                 </div>
                                 @isset($users)
                                     <div class="col-md-12 col-sm-12 col-12 ">
-                                        {{$users->links()}}
+                                        {{ $users->links() }}
                                     </div>
                                 @endisset
                             </div>
@@ -119,7 +141,8 @@
 
     <!-- MODAL start-->
 
-    <div id="user-add-modal" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div id="user-add-modal" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true" style="display: none;">
         <div class="modal-dialog ">
             <div class="modal-content">
                 <div class="modal-header">
@@ -133,7 +156,8 @@
         </div>
     </div>
 
-    <div id="user-edit-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div id="user-edit-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true" style="display: none;">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

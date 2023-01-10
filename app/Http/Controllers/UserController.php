@@ -6,6 +6,7 @@ use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\CountryOffice;
 use App\Models\Setting;
+use App\Models\User;
 use App\Repositories\RolePermissionRepository;
 use App\Repositories\UserRepository;
 use App\Utilities\AppHelper;
@@ -16,6 +17,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
@@ -40,19 +42,29 @@ class UserController extends Controller
     //     return  is_null($this->user) || !$this->user->can($permission);
     // }
 
-    public function index()
-    {
-//        abort_if($this->isAuthorized('user'), Response::HTTP_FORBIDDEN, $this->message);
-        try {
-            $search = request()->input('search');
-            $filter = request()->input('status');
-            $users = $this->userRepository->paginate('id', [], 10, ['status' => $filter], $search);
-          //  $countryOffices = CountryOffice::select('id', 'name')->get();
-            $roles = $this->rolePermissionRepository->allRoles();
-            return view('user.index', compact('users','roles','countryOffices'));
-        } catch (\Exception $e) {
-            return AppHelper::errorRedirect($e);
-        }
+//     public function index()
+//     {
+// //        abort_if($this->isAuthorized('user'), Response::HTTP_FORBIDDEN, $this->message);
+//         try {
+//             $search = request()->input('search');
+//             $filter = request()->input('status');
+//             $users = $this->userRepository->paginate('id', [], 10, ['status' => $filter], $search);
+//           //  $countryOffices = CountryOffice::select('id', 'name')->get();
+//             $roles = $this->rolePermissionRepository->allRoles();
+//             return view('user.index', compact('users','roles','countryOffices'));
+//         } catch (\Exception $e) {
+//             return AppHelper::errorRedirect($e);
+//         }
+//     }
+
+
+    public function index(){
+
+        $users = User::with(['countryOffice'])->where('type', 2)->paginate(15);
+         $countryOffices = CountryOffice::select('id', 'name')->get();
+        $roles=Role::whereIn('name',['iogt','rapidpro','both'])->get();
+        return view('user.index', compact('users','roles','countryOffices'));
+
     }
 
     public function createNewUser(UserCreateRequest $request)
@@ -84,7 +96,7 @@ class UserController extends Controller
        // abort_if($this->isAuthorized('user'), Response::HTTP_FORBIDDEN, $this->message);
         try {
             $user = $this->userRepository->getUser($user_id);
-            $roles = $this->rolePermissionRepository->allRoles();
+            $roles=Role::whereNotIn('id',[1,2])->get();
             return view('user.user_edit_form', compact('user','roles'));
         } catch (\Exception $e) {
             return AppHelper::errorRedirect($e);

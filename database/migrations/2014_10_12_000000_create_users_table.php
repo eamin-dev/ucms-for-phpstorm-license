@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('image')->nullable();
+            $table->tinyInteger('type')->comment('1=Admin,2=Editor');
             $table->unsignedBigInteger('region_id')->nullable();
             $table->unsignedBigInteger('country_office_id')->nullable();
             $table->integer('platform')->nullable()->comment('1=rapidPro, 2=loGT, 3=both');

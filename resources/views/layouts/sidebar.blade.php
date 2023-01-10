@@ -84,7 +84,7 @@
                     <span class="menu-arrow text-white"></span>
                 </a>
                 <ul class="nav-second-level" aria-expanded="false">
-                    <li><a href="#" class="text-white">Admin</a></li>
+                    <li><a href="{{ route('admins.view') }}" class="text-white">Admin</a></li>
                     <li><a href="{{route('users.index')}}" class="text-white">Editor </a></li>
                 </ul>
             </li>
@@ -92,12 +92,12 @@
 {{--                @endcan--}}
 
 {{--                @can('role')--}}
-                <li>
+                {{-- <li>
                     <a href="{{route('roles.index')}}" class="waves-effect">
                         <i class="fas fa-user  text-white"></i>
                         <span class="text-white"> Role & Permission </span>
                     </a>
-                </li>
+                </li> --}}
 {{--                @endcan--}}
 
                 <li>

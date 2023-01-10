@@ -27,6 +27,20 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
+                    <select name="country_office_id" id="country_office_id" class="form-control">
+                        <option value="">Select Country</option>
+                        @forelse($countryOffices as $country)
+                            <option value="{{$country->id}}">{{$country->name}}</option>
+                        @empty
+                            <option value="">No Country office Found</option>
+                        @endforelse
+                    </select>
+                </div>
+            </div>
+        </div>
+        {{-- <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
                     <select name="platform" class="form-control">
                         <option value="">Select Platform</option>
                         @foreach(\App\Models\Setting::platform() as $platform)
@@ -35,12 +49,12 @@
                     </select>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <select name="role_id" class="form-control">
-                        <option value="">Select Role</option>
+                    <select name="role" class="form-control">
+                        <option value="">Select Platform</option>
                         @forelse($roles as $role)
                             <option value="{{$role->id}}">{{$role->name}}</option>
                         @empty
