@@ -77,24 +77,18 @@
 {{--                @endcan--}}
 
 {{--                @can('user')--}}
-                {{-- <li>
-                    <a href="{{route('users.index')}}" class="waves-effect">
-                        <i class="fas fa-user  text-white"></i>
-                        <span class="text-white"> User </span>
-                    </a>
-                </li> --}}
-                <li>
-                    <a href="javascript: void(0);" class="waves-effect">
-                        <i class="mdi mdi-widgets text-white"></i>
-                        <span class="text-white"> User </span>
-                        <span class="menu-arrow text-white"></span>
-                    </a>
-                    <ul class="nav-second-level" aria-expanded="false">
-                        <li><a href="#" class="text-white">Admin</a></li>
-                        <li><a href="{{route('users.index')}}" class="text-white">User</a></li>
-    
-                    </ul>
-                </li>
+                  <li>
+                <a href="javascript: void(0);" class="waves-effect">
+                    <i class="mdi mdi-widgets text-white"></i>
+                    <span class="text-white"> User </span>
+                    <span class="menu-arrow text-white"></span>
+                </a>
+                <ul class="nav-second-level" aria-expanded="false">
+                    <li><a href="#" class="text-white">Admin</a></li>
+                    <li><a href="{{route('users.index')}}" class="text-white">Editor </a></li>
+                </ul>
+            </li>
+
 {{--                @endcan--}}
 
 {{--                @can('role')--}}

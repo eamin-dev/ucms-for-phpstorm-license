@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CountryOfficeController;
 use App\Http\Controllers\DashboardController;
@@ -129,6 +130,15 @@ Route::group(['middleware' => ['auth']], function () {
 
     });
 
+      Route::controller(AdminController::class)->prefix('admins')->group(function () {
+
+        Route::get('/', 'view')->name('admin.view');
+        Route::get('/{admin}', 'getadminById')->name('admin.getadminById');
+        Route::post('/store', 'store')->name('admin.store');
+        Route::patch('/update/{admin}', 'update')->name('admin.update');
+        Route::delete('/admindelete', 'admindelete')->name('admin.admindeleteById');
+
+    });
+
 
 });
-
