@@ -86,7 +86,7 @@
                     <div class="media-body align-self-center">
                         <div class="text-left">
                             <h2 class="text-light">Total Admin  </h4>
-                            <p class="mb-0 mt-1 text-truncate"> <strong> {{ $totalActiveUsers }} </strong> </p>
+                            <p class="mb-0 mt-1 text-truncate"> <strong> {{ $totalAdmin }} </strong> </p>
                         </div>
                     </div>
                 </div>
@@ -141,7 +141,7 @@ border-radius: 20px;">
                     <div class="media-body align-self-center">
                         <div class="text-left">
                             <h2 class="text-light">Total RapidPro Access</h4>
-                            <p class="mb-0 mt-1 text-truncate"> <strong> {{ $totalRapidProUser ?? 0 }} </strong> </p>
+                            <p class="mb-0 mt-1 text-truncate"> <strong> {{ $totalRapidFlow ?? 0 }} </strong> </p>
                         </div>
                     </div>
                 </div>
