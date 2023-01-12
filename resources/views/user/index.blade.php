@@ -57,7 +57,7 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $user->name }}</td>
                                                     <td>{{ $user->email }}</td>
-                                                    <td>{{ $user->created_at }}</td>
+                                                    <td>{{  $user->created_at->translatedFormat('j F Y') }}</td>
                                                     <td><span
                                                             class="badge badge-primary badge-pill">{{ $user->countryOffice->name }}</span>
                                                     </td>
