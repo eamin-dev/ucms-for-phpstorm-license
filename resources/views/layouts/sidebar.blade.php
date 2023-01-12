@@ -27,7 +27,7 @@
 {{--            </div>--}}
 
             <ul class="metismenu" id="side-menu">
-{{--                @can('dashboard')--}}
+                @can('dashboard')
                 <li>
                     <a href="{{route('dashboard')}}" class="waves-effect">
                         <i class="mdi mdi-home text-white"></i>
@@ -41,22 +41,18 @@
                         <span class="text-white"> Rapid Pro Flow </span>
                     </a>
                 </li>
-{{--                @endcan--}}
+              @endcan
 
 
-{{--                @can('rapid_pro')--}}
+               @can('rapid_pro')
                 {{-- <li>
                     <a href="{{route('rapid.pro.flow') }}" class="waves-effect">
                         <i class="mdi mdi-box-shadow"></i>
                         <span> RapidPro Flow </span>
                     </a>
                 </li> --}}
-{{--               @endcan--}}
+               @endcan
 
-{{--            @can('rapid_pro')--}}
-
-
-{{--            @endcan--}}
 
 
 {{--               @can('iogt')--}}
@@ -68,7 +64,7 @@
                 </li>
 {{--                @endcan--}}
 
-{{--                @can('user')--}}
+               @can('user')
                   <li>
                 <a href="javascript: void(0);" class="waves-effect">
                     <i class="mdi mdi-widgets text-white"></i>
@@ -81,7 +77,7 @@
                 </ul>
             </li>
 
-{{--                @endcan--}}
+             @endcan
 
 {{--                @can('role')--}}
                 {{-- <li>
@@ -91,7 +87,7 @@
                     </a>
                 </li> --}}
 {{--                @endcan--}}
-{{-- 
+{{--
                 <li>
                     <a href="{{route('user.profile.view')}}" class="waves-effect">
                         <i class="fas fa-wrench  text-white"></i>
@@ -112,7 +108,7 @@
                         <li><a href="{{ route('offices.view') }}" class="text-white">Country Office</a></li>
                         <li><a href="{{ route('regions.view') }}" class="text-white">Region</a></li>
                         <li><a href="{{ route('themefic-area.view') }}" class="text-white">Themefic Area</a></li>
-    
+
                     </ul>
                 </li>
 
