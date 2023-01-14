@@ -13,7 +13,7 @@ class CountryOfficeControllerTest extends TestCase {
     *
     * @return void
     */
-
+    use RefreshDatabase;
     public function test_authenticate_user_access_country_office() {
         $user = User::factory()->create();
         $response = $this->post( 'login', [

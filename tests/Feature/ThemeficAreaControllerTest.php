@@ -14,6 +14,7 @@ class ThemeficAreaControllerTest extends TestCase {
     * @return void
     */
 
+    use RefreshDatabase;
     //passed
     public function test_loggedin_user_view_themeficarea() {
 

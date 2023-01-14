@@ -79,22 +79,14 @@
 
              @endcan
 
-               @can('role')
+               {{-- @can('role')
                <li>
                     <a href="{{route('roles.index')}}" class="waves-effect">
                         <i class="fas fa-user  text-white"></i>
                         <span class="text-white"> Role & Permission </span>
                     </a>
                 </li>
-                @endcan
-{{--
-                <li>
-                    <a href="{{route('user.profile.view')}}" class="waves-effect">
-                        <i class="fas fa-wrench  text-white"></i>
-                        <span class="text-white"> Settings </span>
-                    </a>
-                </li> --}}
-
+                @endcan --}}
 
                 <li>
                     <a href="javascript: void(0);" class="waves-effect">
