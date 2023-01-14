@@ -40,6 +40,7 @@ class RolePermissionSeeder extends Seeder
             ['name' => 'iogt', 'guard_name' => 'web'],
             ['name' => 'user', 'guard_name' => 'web'],
             ['name' => 'role', 'guard_name' => 'web'],
+            ['name'=>'settings','guard_name'=>'web'],
         ];
         $permissions = Permission::insert($permissionArray);
 

@@ -30,6 +30,7 @@ class UserCreateRequest extends FormRequest
             'name' => 'required|string|max:100',
             'email' => 'required|email:rfc,dns|unique:users|email|max:100',
             'password' => 'required|string|min:6|max:100',
+            'country_office_id'=>'required',
            // 'platform' => 'required|integer',
            // 'role_id' => 'required|integer',
         ];

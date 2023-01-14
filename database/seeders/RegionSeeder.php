@@ -26,6 +26,11 @@ class RegionSeeder extends Seeder
                 "created_by" => User::first()->id,
                 "created_at" => now()
             ],
+            [
+                "name" =>"North America",
+                "created_by"=>User::first()->id,
+                "created_at"=> now()
+            ]
         ];
 
         Region::insert($regions);

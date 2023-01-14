@@ -55,14 +55,14 @@
 
 
 
-{{--               @can('iogt')--}}
+               @can('iogt')
                 <li>
                     <a href="{{route('iogt.index') }}" class="waves-effect">
                         <i class="mdi mdi-translate  text-white"></i>
                         <span class="text-white"> IoGT </span>
                     </a>
                 </li>
-{{--                @endcan--}}
+                @endcan
 
                @can('user')
                   <li>
@@ -79,14 +79,14 @@
 
              @endcan
 
-{{--                @can('role')--}}
-                {{-- <li>
+               @can('role')
+               <li>
                     <a href="{{route('roles.index')}}" class="waves-effect">
                         <i class="fas fa-user  text-white"></i>
                         <span class="text-white"> Role & Permission </span>
                     </a>
-                </li> --}}
-{{--                @endcan--}}
+                </li>
+                @endcan
 {{--
                 <li>
                     <a href="{{route('user.profile.view')}}" class="waves-effect">
