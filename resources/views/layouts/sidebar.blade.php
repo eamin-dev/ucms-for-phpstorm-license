@@ -88,6 +88,8 @@
                 </li>
                 @endcan --}}
 
+                @can('settings')
+
                 <li>
                     <a href="javascript: void(0);" class="waves-effect">
                         <i class="mdi mdi-widgets text-white"></i>
@@ -103,6 +105,9 @@
 
                     </ul>
                 </li>
+                    
+                @endcan
+             
 
 
 

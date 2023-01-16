@@ -45,7 +45,7 @@ class ThemeficAreaControllerTest extends TestCase {
 
         $response = $this->from( route( 'themefic-area.view' ) )
         ->post( route( 'themefic-area.store' ), [
-            'name'=>' test Immunization area',
+            'name'=>'Immunization area creation test',
             'code'=> '29-05'
         ] );
 
