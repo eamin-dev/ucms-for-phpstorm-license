@@ -25,7 +25,7 @@ class LoginTest extends TestCase
         $response = $this->get(route('login.user'));
 
         $response->assertStatus(200);
-        $response->assertSeeText('Sign In');
+        $response->assertSeeText('Login');
     }
 
     public function test_guest_user_not_viewing_dashboard()
