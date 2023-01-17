@@ -2,54 +2,84 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
+use App\Models\ThemeficArea;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class ThemeficAreaControllerTest extends TestCase {
+class ThemeficAreaControllerTest extends TestCase
+{
     /**
-    * A basic feature test example.
-    *
-    * @return void
-    */
+     * A basic feature test example.
+     *
+     * @return void
+     */
 
     use RefreshDatabase;
-    //passed
-    public function test_loggedin_user_view_themeficarea() {
+    public function test_authenticate_user_view_themeficarea()
+    {
 
-        $user = User::factory()->create();
-        $response = $this->post( 'login', [
-            'email'=> $user->email,
-            'password'=>'password',
-        ] );
-        $this->assertAuthenticated();
-        $response = $this->get( '/themefic-area' );
+        $this->authentic_user();
 
-        $response->assertStatus( 200 );
+        $response = $this->get('/themefic-area');
+
+        $response->assertStatus(200);
+    }
+    public function test_authenticate_user_create_themeficarea()
+    {
+
+        $this->authentic_user();
+        //create themefic area
+        $response = $this->from(route('themefic-area.view'))
+            ->post(route('themefic-area.store'), [
+                'name' => 'Immunization area creation test',
+                'code' => '29-05',
+            ]);
+
+        $response->assertStatus(200);
+
     }
 
+    public function test_authenticate_user_update_themeficarea()
+    {
 
-    //passed
+        $this->authentic_user();
 
-    //Create e new Themefic Area
-    public function test_loggedin_user_create_themeficarea() {
+        $response = $this->from(route('themefic-area.view'))
+            ->post(route('themefic-area.store'), [
+                'name' => 'Immunization area creation test',
+                'code' => '30-01',
+            ]);
 
-        //factory user
-        $user = User::factory()->create();
-        $response = $this->post( 'login', [
-            'email'=> $user->email,
-            'password'=>'password',
-        ] );
-        $this->assertAuthenticated();
+        $area = ThemeficArea::first();
 
-        $response = $this->from( route( 'themefic-area.view' ) )
-        ->post( route( 'themefic-area.store' ), [
-            'name'=>'Immunization area creation test',
-            'code'=> '29-05'
-        ] );
+        $response = $this->patch(route('themefic-area.update', $area->id), [
 
-        $response->assertStatus( 200 );
+            'name' => 'New Immunization area',
+            'code' => '31-01',
+        ]);
+
+        $update_area = ThemeficArea::first();
+
+        $this->assertEquals('New Immunization area', $update_area->name);
+        $this->assertEquals('31-01', $update_area->code);
+
+    }
+
+    public function test_authenticate_user_can_delete_themeficarea()
+    {
+        $this->authentic_user();
+
+        $response = $this->from(route('themefic-area.view'))
+        ->post(route('themefic-area.store'), [
+            'name' => 'Immunization area creation test',
+            'code' => '30-01',
+        ]);
+
+        $area = ThemeficArea::first();
+
+        $response = $this->delete(route('themefic-area.areaDeleteById', $area->id));
+
+        $this->assertEquals(1, ThemeficArea::count());
 
     }
 

@@ -13,12 +13,12 @@ class AdminTest extends TestCase
      *
      * @return void
      */
-    public function test_view_data()
+    public function test_authenticate_user_can_access_admin_data()
     {
-
+        $this->authentic_user();
         //direct view to a specific route
         $response = $this->get('/admins/index');
 
-        $response->assertStatus(302);
+        $response->assertStatus(200);
     }
 }
