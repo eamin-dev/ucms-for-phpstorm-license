@@ -168,7 +168,6 @@ class NewRapidFlowController extends Controller
     {
 
         DB::beginTransaction();
-    
 
         try {
 

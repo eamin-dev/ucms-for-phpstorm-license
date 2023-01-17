@@ -18,18 +18,17 @@ class NewRapidFlowControllerTest extends TestCase
     use RefreshDatabase;
     public function test_authenticate_user_can_view_rapidflow()
     {
-         $user = User::factory()->create();
 
-        $response = $this->post('login', [
-            'email'=> $user->email,
-            'password'=>'password',
-
-        ]);
-
-        $this->assertAuthenticated();
+        $this->authentic_user();
 
         $response = $this->get(route('rapid.flow.view'));
 
         $response->assertStatus(200);
+    }
+
+    public function test_authenticate_user_can_create_rapidflow(){
+
+        $this->authentic_user();
+        
     }
 }

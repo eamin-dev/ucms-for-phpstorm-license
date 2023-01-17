@@ -1,4 +1,4 @@
-<div class="navbar-custom">
+<div class="navbar-custom" style="box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.12);">
     <ul class="list-unstyled topnav-menu float-right mb-0">
 
         <li  class="dropdown notification-list d-none d-md-inline-block" >
@@ -24,14 +24,14 @@
 
     <!-- LOGO -->
     <div class=" logo-box">
-   
+
 
         <a href="#" class="logo text-center logo-light">
                             <span class="logo-lg">
-                               <img src="assets/images/logo.png"  alt="" height="40">
+                               <img src="{{ asset('assets/images/ulogo.png') }} " style="height: 100%"  alt="" height="40">
                                 {{-- <span class="logo-lg-text-light">UCMS</span> --}}
                             </span>
-          
+
         </a>
     </div>
 
