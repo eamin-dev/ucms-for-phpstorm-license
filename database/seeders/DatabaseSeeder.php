@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ThemeficAreaSeeder::class);
         $this->call(RegionSeeder::class);
         $this->call(CountryOfficeSeeder::class);
+        $this->call(CountrySeeder::class);
     }
 }

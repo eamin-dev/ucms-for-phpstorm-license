@@ -22,12 +22,32 @@ class RegionSeeder extends Seeder
                 "created_at" => now()
             ],
             [
-                "name" => "Europe",
+                "name" => "Africa",
                 "created_by" => User::first()->id,
                 "created_at" => now()
             ],
             [
                 "name" =>"North America",
+                "created_by"=>User::first()->id,
+                "created_at"=> now()
+            ],
+            [
+                "name" => " South America",
+                "created_by" => User::first()->id,
+                "created_at" => now()
+            ],
+            [
+                "name" => "Antarctica",
+                "created_by" => User::first()->id,
+                "created_at" => now()
+            ],
+            [
+                "name" =>"Europe",
+                "created_by"=>User::first()->id,
+                "created_at"=> now()
+            ],
+            [
+                "name" =>"Australia",
                 "created_by"=>User::first()->id,
                 "created_at"=> now()
             ]

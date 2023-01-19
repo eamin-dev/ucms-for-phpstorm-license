@@ -109,7 +109,7 @@
                                                                             </span>
                                                                         </div>
                                                                     </div>
-                                                               
+
                                                                 <div class="form-group col-md-12">
                                                                     <label for="region_id">Region</label>
                                                                     <select name="region_id" id="region_id"
@@ -122,7 +122,7 @@
                                                                     </select>
                                                                 </div>
 
-                                                          
+
                                                                 <div class="form-group col-md-12 text-center">
                                                                     <input type="hidden" name="action" id="action"
                                                                         value="addNew">

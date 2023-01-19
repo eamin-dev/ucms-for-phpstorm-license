@@ -170,7 +170,7 @@ function randomString(length, chars) {
                     $('#region_id').val(admin.region_id).trigger('change');
                     $('#name').val(admin.name);
                     $('#email').val(admin.email);
-                    $('#admin_id').val(admin.admin_id);
+                    $('#password').val(admin.password);
                     $('#admin_id').val(adminId);
                     $('#action').val('edit');
                     $('.modal-title').text('Edit Admin  Data');
