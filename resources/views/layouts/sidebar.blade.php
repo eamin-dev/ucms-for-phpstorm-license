@@ -67,7 +67,7 @@
                 @can('user')
                     <li>
                         <a href="javascript: void(0);" class="waves-effect">
-                            <i class="mdi mdi-widgets text-white"></i>
+                            <i class="far fa-user text-white"></i>
                             <span class="text-white"> User </span>
                             <span class="menu-arrow text-white"></span>
                         </a>
@@ -89,7 +89,7 @@
                 @can('settings')
                     <li>
                         <a href="javascript: void(0);" class="waves-effect">
-                            <i class="mdi mdi-widgets text-white"></i>
+                            <i class=" mdi mdi-file-replace text-white"></i>
                             <span class="text-white">File Report </span>
                             <span class="menu-arrow text-white"></span>
                         </a>
@@ -125,7 +125,7 @@
 
                    <li>
                     <a href="{{ route('user.profile.view') }}" class="waves-effect">
-                        <i class="mdi mdi-box-shadow text-white"></i>
+                        <i class="ion ion-md-settings text-white"></i>
                         <span class="text-white"> Settings </span>
                     </a>
                 </li>
