@@ -17,38 +17,45 @@ class RegionSeeder extends Seeder
     {
         $regions = [
             [
+                'id' => 1,
                 "name" => "Asia",
-                "created_by" => User::first()->id,
+                'code' => 'AS',
                 "created_at" => now()
             ],
             [
+                'id' => 2,
                 "name" => "Africa",
-                "created_by" => User::first()->id,
+                "code" => 'AF',
                 "created_at" => now()
             ],
             [
-                "name" =>"North America",
-                "created_by"=>User::first()->id,
+                'id' => 3,
+                'code' => 'EU',
+                'name' => 'Europe',
                 "created_at"=> now()
             ],
             [
+                'id' => 4,
+                'code' => 'SA',
                 "name" => " South America",
-                "created_by" => User::first()->id,
                 "created_at" => now()
             ],
             [
+                'id' => 5,
+                'code' => 'NA',
+                "name" => " North America",
+                "created_at" => now()
+            ],
+            [
+                "id" => 6,
+                "code" => 'AN',
                 "name" => "Antarctica",
-                "created_by" => User::first()->id,
                 "created_at" => now()
             ],
             [
-                "name" =>"Europe",
-                "created_by"=>User::first()->id,
-                "created_at"=> now()
-            ],
-            [
+                'id' => 7,
+                'code' => 'AUS',
                 "name" =>"Australia",
-                "created_by"=>User::first()->id,
                 "created_at"=> now()
             ]
         ];

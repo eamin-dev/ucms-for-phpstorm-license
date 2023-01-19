@@ -15,6 +15,7 @@ class CreateCountriesTable extends Migration
     {
         Schema::create('countries', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->foreignId('region_id')->nullable()->constrained('regions')->onDelete('set null');
             $table->string('name');
             $table->string('code')->nullable();
             $table->timestamps();
