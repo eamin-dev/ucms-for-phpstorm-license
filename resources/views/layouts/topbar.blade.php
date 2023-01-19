@@ -1,7 +1,18 @@
 <div class="navbar-custom" style="box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.12);">
     <ul class="list-unstyled topnav-menu float-right mb-0">
 
+
+        <li class="dropdown notification-list" >
+            <a class="nav-link dropdown-toggle  waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                <i class="mdi mdi-bell noti-icon text-black-50"></i>
+
+            </a>
+
+        </li>
+
+
         <li  class="dropdown notification-list d-none d-md-inline-block" >
+
             <strong class="nav-link waves-effect waves-light text-dark"> {{Auth::user()->name}}</strong>
         </li>
 
