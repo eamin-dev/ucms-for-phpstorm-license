@@ -44,14 +44,14 @@
                 @endcan
 
 
-                @can('rapid_pro')
-                    {{-- <li>
+                {{-- @can('rapid_pro')
+                    <li>
                     <a href="{{route('rapid.pro.flow') }}" class="waves-effect">
                         <i class="mdi mdi-box-shadow"></i>
                         <span> RapidPro Flow </span>
                     </a>
-                </li> --}}
-                @endcan
+                </li>
+                @endcan --}}
 
 
 
@@ -95,8 +95,8 @@
                         </a>
                         <ul class="nav-second-level" aria-expanded="false">
                             <li><a href="{{ route('all.regions.list') }}" class="text-white">Regions</a></li>
-                            <li><a href="" class="text-white">Rapid Flow</a></li>
-                            <li><a href="" class="text-white">IOGT</a></li>
+                            <li><a href="#" class="text-white">Rapid Flow</a></li>
+                            <li><a href="#" class="text-white">IOGT</a></li>
 
                             {{-- <li><a href="{{ route('offices.view') }}" class="text-white">Country Office</a></li>
                             <li><a href="{{ route('regions.view') }}" class="text-white">Region</a></li>
@@ -135,7 +135,7 @@
             <ul class="metismenu align-bottom" id="side-menu">
                 <li>
                     <a href="{{ route('logout') }}" class="waves-effect">
-                        <i class="mdi mdi-power-settings  text-white"></i>
+                        <i class="fas fa-sign-out-alt text-white"></i>
                         <span class="text-white"> Logout </span>
                     </a>
                 </li>
