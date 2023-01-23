@@ -59,7 +59,7 @@
                                                     <td>{{ $user->email }}</td>
                                                     <td>{{  $user->created_at->translatedFormat('j F Y') }}</td>
                                                     <td><span
-                                                            class="badge badge-primary badge-pill">{{ $user->countryOffice->name }}</span>
+                                                            class="badge badge-primary badge-pill">{{ $user->country->name }}</span>
                                                     </td>
                                                     <td>
                                                         @if (!empty($user->getRoleNames()))

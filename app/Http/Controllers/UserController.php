@@ -63,7 +63,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::with(['countryOffice'])->role(['iogt', 'rapidpro', 'both'])->paginate(15);
+        $users = User::with(['country'])->role(['iogt', 'rapidpro', 'both'])->paginate(15);
         $regions = Region::select('id', 'name')->get();
         $countryOffices = Country::select('id', 'name')->get();
         $roles = Role::whereIn('name', ['iogt', 'rapidpro', 'both'])->get();
