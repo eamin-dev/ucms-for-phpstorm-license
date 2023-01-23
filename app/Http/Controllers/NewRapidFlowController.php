@@ -296,6 +296,8 @@ class NewRapidFlowController extends Controller
             /* nodes loop end */
 
             array_push($flowArray, $flowArray2);
+
+            $flow->increment('download_count');
         }
         /* flows loop end */
 
@@ -307,6 +309,7 @@ class NewRapidFlowController extends Controller
         $fileName = time() . '_datafile.json';
         $fileStorePath = public_path('/upload/json/' . $fileName);
         File::put($fileStorePath, $jsonData);
+
         return response()->download($fileStorePath);
     }
 

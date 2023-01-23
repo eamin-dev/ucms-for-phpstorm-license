@@ -143,7 +143,7 @@ border-radius: 20px;">
                     <div class="media-body align-self-center">
                         <div class="text-left">
                             <h1 class="mb-0 mt-1 text-truncate text-white"> <strong> {{ $totalRapidFlow ?? 0 }} </strong> </h1>
-                            <h2 class="text-light">Total RapidPro Access</h4>
+                            <h2 class="text-light">Total RapidPro Access</h2>
 
                         </div>
                     </div>
@@ -176,8 +176,8 @@ border-radius: 20px;">
                 <div class="media-card text-light pl-3">
                     <div class="media-body align-self-center">
                         <div class="text-left">
-                            <h1 class="mb-0 mt-1 text-truncate text-white"> <strong> {{ $totalRapidActiveUser ?? 0 }} </strong> </h1>
-                            <h2 class="text-light">Total Json Extract </h4>
+                            <h1 class="mb-0 mt-1 text-truncate text-white"> <strong> {{ $totalExtractedFlow ?? 0 }} </strong> </h1>
+                            <h2 class="text-light">Total Json Extract </h2>
 
                         </div>
                     </div>
