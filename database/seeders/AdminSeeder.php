@@ -18,8 +18,8 @@ class AdminSeeder extends Seeder
             'name' => 'Super Admin',
             'email' => 'superadmin@ucms.com',
             'password' => bcrypt(12345678),
-//            'type'=> 1,
-            'region_id'=>1,
+            'region_id' => 1,
+            'country_office_id' => 1,
 //            'platform' => 3
         ]);
         $admin->assignRole('super admin');
@@ -28,8 +28,8 @@ class AdminSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@ucms.com',
             'password' => bcrypt(12345678),
-//            'type'=> 1,
-            'region_id'=>1,
+            'region_id' => 1,
+            'country_office_id' => 1,
 //            'platform' => 3
         ]);
         $admin->assignRole('admin');
@@ -38,8 +38,8 @@ class AdminSeeder extends Seeder
             'name' => 'Editor',
             'email' => 'editor@ucms.com',
             'password' => bcrypt(12345678),
-//            'type'=> 2,
-            'country_office_id'=>1,
+            'region_id' => 1,
+            'country_office_id' => 1,
 //            'platform' => 3
         ]);
         $user->assignRole('both');
@@ -48,8 +48,8 @@ class AdminSeeder extends Seeder
             'name' => 'RapidPro',
             'email' => 'rqapidpro@ucms.com',
             'password' => bcrypt(12345678),
-//            'type'=> 2,
-            'country_office_id'=>1,
+            'region_id' => 1,
+            'country_office_id' => 1,
 //            'platform' => 3
         ]);
         $user->assignRole('rapidpro');
@@ -58,8 +58,8 @@ class AdminSeeder extends Seeder
             'name' => 'iogt',
             'email' => 'iogt@ucms.com',
             'password' => bcrypt(12345678),
-//            'type'=> 2,
-            'country_office_id'=>1,
+            'region_id' => 1,
+            'country_office_id' => 1,
 //            'platform' => 3
         ]);
         $user->assignRole('iogt');

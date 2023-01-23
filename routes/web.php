@@ -147,4 +147,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     });
 
+    Route::get('report/rapid-pro', [\App\Http\Controllers\ReportController::class, 'reportRapidPro'])->name('report.rapidpro');
+
 });

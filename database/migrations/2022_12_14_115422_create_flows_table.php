@@ -16,7 +16,7 @@ class CreateFlowsTable extends Migration
         Schema::create('flows', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->foreignId('region_id')->nullable()->constrained('regions')->nullOnDelete();
-            $table->foreignId('country_office_id')->nullable()->constrained('country_offices')->nullOnDelete();
+            $table->foreignId('country_id')->nullable()->constrained('countries')->nullOnDelete();
             $table->foreignId('themefic_area_id')->nullable()->constrained('themefic_areas')->nullOnDelete();
             $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignId('updated_by')->nullable()->constrained('users')->nullOnDelete();

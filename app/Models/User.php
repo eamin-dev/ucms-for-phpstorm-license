@@ -48,7 +48,7 @@ class User extends Authenticatable
     ];
 
 
-    public function countryOffice(){
+    public function country(){
 
         return $this->belongsTo(Country::class,'country_office_id','id');
     }

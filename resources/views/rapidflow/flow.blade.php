@@ -91,9 +91,9 @@
                                                                 </div>
                                                                 <div class="form-group col-md-12">
                                                                     <label> Country Office</label>
-                                                                    <select name="country_office_id"
-                                                                        class="form-control select2" id="country_office_id">
-                                                                        <option value="">Select Country office
+                                                                    <select name="country_id"
+                                                                        class="form-control select2" id="country_id">
+                                                                        <option value="">Select Country
                                                                         </option>
                                                                         @forelse ($countryOffices as $office)
                                                                             <option value="{{ $office->id }}">

@@ -11,16 +11,20 @@ class Flow extends Model
 
     public function countryOffice(){
 
-        return $this->belongsTo(CountryOffice::class,'country_office_id','id')->select('id','name');
+        return $this->belongsTo(Country::class,'country_id','id');
     }
 
     public function themeficArea(){
 
-        return $this->belongsTo(ThemeficArea::class,'themefic_area_id','id')->select('id','name');
+        return $this->belongsTo(ThemeficArea::class,'themefic_area_id','id');
     }
 
     public function questions()
     {
         return $this->hasMany(FlowQuestion::class,'flow_id');
+    }
+
+    public function creator(){
+        return $this->belongsTo(User::class,'created_by');
     }
 }

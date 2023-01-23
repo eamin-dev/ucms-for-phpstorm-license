@@ -61,7 +61,7 @@ class NewRapidFlowController extends Controller
 
         $flow = new Flow();
         $flow->region_id = $request->region_id;
-        $flow->country_office_id = $request->country_office_id;
+        $flow->country_id = $request->country_office_id;
 //        $flow->date = $request->date;
         $flow->file_id = $request->file_id;
         $flow->themefic_area_id = $request->themefic_area_id;
@@ -78,14 +78,14 @@ class NewRapidFlowController extends Controller
         if ($type === 'add') {
             $rules = [
                 'region_id' => 'required',
-                'country_office_id' => 'required',
+                'country_id' => 'required',
 //                'date' => 'required',
                 'themefic_area_id' => 'required',
                 'file_id' => ['required', Rule::unique('flows')],
             ];
 
             $customMessages = [
-                'country_office_id.required' => 'Country office Field is required.',
+                'country_id.required' => 'Country Field is required.',
 //                'date.required' => 'Date  Field is required.',
                 'themefic_area_id.required' => 'Themefic Area is required.',
                 'file_id.required' => 'File Id is required.',
@@ -96,14 +96,14 @@ class NewRapidFlowController extends Controller
         if (!is_null($id)) {
 
             $rules = [
-                'country_office_id' => 'required',
+                'country_id' => 'required',
 //                'date' => 'required',
                 'themefic_area_id' => 'required',
                 'file_id' => ['required', Rule::unique('flows')->ignore($id)],
             ];
 
             $customMessages = [
-                'country_office_id.required' => 'Country office Field is required.',
+                'country_id.required' => 'Country Field is required.',
 //                'date.required' => 'Date  Field is required.',
                 'themefic_area_id.required' => 'Themefic Area is required.',
                 'file_id.required' => 'File Id is required.',
@@ -125,7 +125,7 @@ class NewRapidFlowController extends Controller
         }
 
         $flow->region_id = $request->region_id;
-        $flow->country_office_id = $request->country_office_id;
+        $flow->country_id = $request->country_id;
 //        $flow->date = $request->date;
         $flow->file_id = $request->file_id;
         $flow->updated_by = auth()->user()->id;

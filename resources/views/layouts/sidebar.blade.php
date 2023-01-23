@@ -95,7 +95,7 @@
                         </a>
                         <ul class="nav-second-level" aria-expanded="false">
                             <li><a href="{{ route('all.regions.list') }}" class="text-white">Regions</a></li>
-                            <li><a href="#" class="text-white">Rapid Flow</a></li>
+                            <li><a href="{{ route('report.rapidpro') }}" class="text-white">RapidPro</a></li>
                             <li><a href="#" class="text-white">IOGT</a></li>
 
                             {{-- <li><a href="{{ route('offices.view') }}" class="text-white">Country Office</a></li>
