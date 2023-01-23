@@ -13,9 +13,14 @@ class UserControllerTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+
+    use RefreshDatabase;
+    public function test_authenticate_user_can_access_user_data()
     {
-        $response = $this->get('/');
+
+        $this->authentic_user();
+
+        $response = $this->get('/users');
 
         $response->assertStatus(200);
     }
