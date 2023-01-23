@@ -23,7 +23,7 @@
 
         $('#addNew').click(function() {
             myFormReset();
-            $('.modal-title').text('Add New Flow');
+            $('.modal-title').text('Create File');
             $('#action').val('addNew');
             $('#myForm input[name="_method"]').val('POST');
             $('#myModal').modal('show');

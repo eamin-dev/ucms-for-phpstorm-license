@@ -14,20 +14,26 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="input-group">
-                    <input id="password" type="text" name="password" class="form-control" placeholder="Password">
-                    <span class="input-group-append">
-                                    <button type="button" class="btn waves-effect waves-light btn-primary " onclick="generatePass()">Generate Password</button>
-                    </span>
-                </div>
-            </div>
-        </div><br>
+
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <select name="country_office_id" id="country_office_id" class="form-control">
+                    <select name="region_id" id="region_id" class="form-control">
+                        <option value="">Select Region</option>
+                        @forelse($regions as $region)
+                            <option value="{{$region->id}}">{{$region->name}}</option>
+                        @empty
+                            <option value="">No Country office Found</option>
+                        @endforelse
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <select name="country_office_id" id="country_office_id" class="form-control select2">
                         <option value="">Select Country</option>
                         @forelse($countryOffices as $country)
                             <option value="{{$country->id}}">{{$country->name}}</option>
@@ -38,18 +44,7 @@
                 </div>
             </div>
         </div>
-        {{-- <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <select name="platform" class="form-control">
-                        <option value="">Select Platform</option>
-                        @foreach(\App\Models\Setting::platform() as $platform)
-                            <option value="{{$platform['id']}}" @if($user->platform == $platform['id']) selected @endif>{{$platform['name']}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-        </div> --}}
+
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
@@ -64,9 +59,20 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="input-group">
+                    <input id="password" type="text" name="password" class="form-control" placeholder="Password">
+                    <span class="input-group-append">
+                                    <button type="button" class="btn waves-effect waves-light btn-primary " onclick="generatePass()">Generate Password</button>
+                    </span>
+                </div>
+            </div>
+        </div><br>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-info waves-effect waves-light">Save</button>
     </div>
 </form>
+

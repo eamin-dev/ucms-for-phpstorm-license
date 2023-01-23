@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
+use App\Models\Country;
 use App\Models\CountryOffice;
+use App\Models\Region;
 use App\Models\Setting;
 use App\Models\User;
 use App\Repositories\RolePermissionRepository;
@@ -59,32 +61,33 @@ class UserController extends Controller
 //     }
 
 
-    public function index(){
-
-        $users = User::with(['countryOffice'])->where('type', 2)->paginate(15);
-         $countryOffices = CountryOffice::select('id', 'name')->get();
-        $roles=Role::whereIn('name',['iogt','rapidpro','both'])->get();
-        return view('user.index', compact('users','roles','countryOffices'));
-
+    public function index()
+    {
+        $users = User::with(['countryOffice'])->role(['iogt', 'rapidpro', 'both'])->paginate(15);
+        $regions = Region::select('id', 'name')->get();
+        $countryOffices = Country::select('id', 'name')->get();
+        $roles = Role::whereIn('name', ['iogt', 'rapidpro', 'both'])->get();
+        return view('user.index', compact('users', 'roles', 'countryOffices','regions'));
     }
 
     public function createNewUser(UserCreateRequest $request)
     {
         //abort_if($this->isAuthorized('user'), Response::HTTP_FORBIDDEN, $this->message);
         try {
-           // $this->userRepository->storeUser($request->validated());
-           $user = new User();
-           $user->name =  $request->name;
-           $user->email = $request->email;
-           $user->password = Hash::make($request->password);
+            // $this->userRepository->storeUser($request->validated());
+            $user = new User();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
+            $user->region_id = $request->region_id;
             $user->country_office_id = $request->country_office_id;
-          // $user->platform = $data['platform'];
-           $user->assignRole($request->input('role'));
-           $user->type = 2;
-           $user->save();
+            // $user->platform = $data['platform'];
+            $user->assignRole($request->input('role'));
+//            $user->type = 2;
+            $user->save();
             return AppHelper::successResponse('User created successfully');
         } catch (\Exception $e) {
-            return AppHelper::errorResponse(null,$e);
+            return AppHelper::errorResponse(null, $e);
         }
     }
 
@@ -97,18 +100,18 @@ class UserController extends Controller
             $this->userRepository->destroyUser($user);
             return AppHelper::successResponse('User deleted successfully');
         } catch (\Exception $e) {
-            return AppHelper::errorResponse(null,$e);
+            return AppHelper::errorResponse(null, $e);
         }
     }
 
     public function editUser($user_id)
     {
-       // abort_if($this->isAuthorized('user'), Response::HTTP_FORBIDDEN, $this->message);
+        // abort_if($this->isAuthorized('user'), Response::HTTP_FORBIDDEN, $this->message);
         try {
             $user = $this->userRepository->getUser($user_id);
-            $roles=Role::whereNotIn('id',[1,2])->get();
+            $roles = Role::whereNotIn('id', [1, 2])->get();
             $countryOffices = CountryOffice::select('id', 'name')->get();
-            return view('user.user_edit_form', compact('user','roles','countryOffices'));
+            return view('user.user_edit_form', compact('user', 'roles', 'countryOffices'));
         } catch (\Exception $e) {
             return AppHelper::errorRedirect($e);
         }
@@ -116,30 +119,31 @@ class UserController extends Controller
 
     public function updateUserInfo(UserUpdateRequest $request)
     {
-      //  abort_if($this->isAuthorized('user'), Response::HTTP_FORBIDDEN, $this->message);
+        //  abort_if($this->isAuthorized('user'), Response::HTTP_FORBIDDEN, $this->message);
         try {
             $user_id = AppHelper::decrypt($request->user_id);
             $user = $this->userRepository->getUser($user_id);
-            $this->userRepository->updateUser($user,$request->validated());
+            $this->userRepository->updateUser($user, $request->validated());
             return AppHelper::successResponse('User updated successfully');
         } catch (\Exception $e) {
-            return AppHelper::errorResponse(null,$e);
+            return AppHelper::errorResponse(null, $e);
         }
     }
 
     public function changeUserStatus($user_id, $status)
     {
-       // abort_if($this->isAuthorized('user'), Response::HTTP_FORBIDDEN, $this->message);
+        // abort_if($this->isAuthorized('user'), Response::HTTP_FORBIDDEN, $this->message);
         try {
             $user = $this->userRepository->getUser($user_id);
-            $this->userRepository->statusUpdate($user,$status);
-            return AppHelper::successResponse('User status changed to '.Setting::status()[$status]);
+            $this->userRepository->statusUpdate($user, $status);
+            return AppHelper::successResponse('User status changed to ' . Setting::status()[$status]);
         } catch (\Exception $e) {
-            return AppHelper::errorResponse(null,$e);
+            return AppHelper::errorResponse(null, $e);
         }
     }
 
-    public function showUserSettings(){
+    public function showUserSettings()
+    {
         try {
             return view('setting.index');
         } catch (\Exception $e) {

@@ -35,13 +35,13 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title float-left pt-2">Admin Creation</h3>
+                            <h3 class="card-title float-left pt-2">All Admin</h3>
 
                             <div class="card-tools float-right">
                                 <ul class="nav nav-pills ml-auto">
                                     <li class="nav-item">
                                         <button id="addNew" name="addNew" class="btn btn-primary  text-white"><i
-                                                class="fa fa-plus-circle"></i> Create Admin
+                                                class="fa fa-plus-circle"></i> Add Admin
                                         </button>
                                     </li>
                                 </ul>
@@ -90,7 +90,7 @@
                                                             <div class="row">
 
                                                                 <div class="form-group col-md-12">
-                                                                    <label for="Name"> Name</label>
+                                                                    <label for="Name">Full Name</label>
                                                                     <input name="name" type="text"
                                                                         class="form-control" id="name"
                                                                         placeholder="Full name">
@@ -99,16 +99,9 @@
                                                                     <label for="email">Email</label>
                                                                     <input name="email" type="email"
                                                                         class="form-control" id="email"
-                                                                        placeholder="Email">
+                                                                        placeholder="Email address">
                                                                 </div>
-                                                                    <div class="form-group col-md-12">
-                                                                        <div class="input-group">
-                                                                            <input id="password" type="text" name="password" class="form-control" placeholder="Password">
-                                                                            <span class="input-group-append">
-                                                                                            <button type="button" class="btn waves-effect waves-light btn-primary " onclick="generatePass()">Generate Password</button>
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
+
 
                                                                 <div class="form-group col-md-12">
                                                                     <label for="region_id">Region</label>
@@ -121,14 +114,33 @@
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
-
+                                                                <div class="form-group col-md-12">
+                                                                    <label for="country_id">Country</label>
+                                                                    <select name="country_id" id="country_id"
+                                                                            class="form-control select2">
+                                                                        <option value="">Select Country</option>
+                                                                        @foreach ($countries as $country)
+                                                                            <option value="{{ $country->id }}">
+                                                                                {{ $country->name }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group col-md-12">
+                                                                    <div class="input-group">
+{{--                                                                        <label for="password">Password</label>--}}
+                                                                        <input id="password" type="text" name="password" class="form-control" placeholder="Password">
+                                                                        <span class="input-group-append">
+                                                                                            <button type="button" class="btn waves-effect waves-light btn-primary " onclick="generatePass()">Generate Password</button>
+                                                                            </span>
+                                                                    </div>
+                                                                </div>
 
                                                                 <div class="form-group col-md-12 text-center">
                                                                     <input type="hidden" name="action" id="action"
                                                                         value="addNew">
                                                                     <input type="hidden" name="admin_id" id="admin_id">
                                                                     <input type="submit" name="saveBtn" id="saveBtn"
-                                                                        class="col-12 btn btn-info btn-md" value="Save">
+                                                                        class="col-12 btn btn-info btn-md" value="Create">
                                                                 </div>
                                                             </div>
                                                         </form>

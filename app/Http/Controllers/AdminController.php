@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
 use App\Models\Region;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,13 +14,15 @@ use Yajra\DataTables\Facades\DataTables;
 
 class AdminController extends Controller
 {
-     public function view(Request $request)
+    public function view(Request $request)
     {
+//        return $data = User::with(['region'])->role(['super admin','admin'])->get();
         if (!$request->ajax()) {
             $regions = Region::select('id', 'name')->get();
-            return view('admin.index', compact('regions'));
+            $countries = Country::select('id', 'name')->get();
+            return view('admin.index', compact('regions','countries'));
         }
-        $data = User::query()->with(['region'])->where('type',1);
+        $data = User::with(['region'])->role(['super admin','admin']);
         return $this->renderViewDataTable($data);
     }
 
@@ -27,7 +30,9 @@ class AdminController extends Controller
     {
         return DataTables::eloquent($data)
             ->addIndexColumn()
-            ->addColumn('actionBtn', 'admin.actionBtn')
+            ->addColumn('actionBtn', function($data){
+                return view('admin.actionBtn',compact('data'));
+            })
             ->rawColumns(['actionBtn'])
             ->toJson();
     }
@@ -46,8 +51,9 @@ class AdminController extends Controller
         $admin->name = $request->name;
         $admin->email = $request->email;
         $admin->region_id = $request->region_id;
+        $admin->country_office_id = $request->country_id;
         $admin->password = bcrypt($request->password);
-        $admin->type = 1;
+//        $admin->type = 1;
         $admin->assignRole('admin');
         if (!$admin->save()) {
             return response()->json(['message' => 'Admin  Failed to Save!'], Response::HTTP_BAD_REQUEST);
@@ -64,7 +70,7 @@ class AdminController extends Controller
                 'email' => ['required', Rule::unique('users')],
                 'region_id' => 'required',
                 'password' => 'required',
-               
+
             ];
         }
 
@@ -119,5 +125,5 @@ class AdminController extends Controller
 
         return response()->json(['message' => 'Admin  Deleted Successfully!']);
 
-   }
+    }
 }

@@ -12,12 +12,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">User list</h4>
+                        <h4 class="page-title">All Editor</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb p-0 m-0">
                                 <li class="breadcrumb-item">
                                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
-                                        data-target="#user-add-modal"><i class="fas fa-user-plus"></i> Add User</button>
+                                        data-target="#user-add-modal"><i class="fas fa-user-plus"></i> Add Editor</button>
                                 </li>
                             </ol>
                         </div>
@@ -146,7 +146,7 @@
         <div class="modal-dialog ">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Add New User</h5>
+                    <h5 class="modal-title">Add Editor</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

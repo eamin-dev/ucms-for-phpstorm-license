@@ -34,7 +34,7 @@ function randomString(length, chars) {
 
         $('#addNew').click(function() {
             myFormReset();
-            $('.modal-title').text('Add New Admin');
+            $('.modal-title').text('Admin Create');
             $('#action').val('addNew');
             $('#myForm input[name="_method"]').val('POST');
             $('#myModal').modal('show');

@@ -35,13 +35,13 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title float-left pt-2">RapidPro Flow Creation</h3>
+                            <h4 class="card-titlee float-left pt-2">RapidPro Flow Creation</h4>
 
                             <div class="card-tools float-right">
                                 <ul class="nav nav-pills ml-auto">
                                     <li class="nav-item">
                                         <button id="addNew" name="addNew" class="btn btn-primary  text-white"><i
-                                                class="fa fa-plus-circle"></i> Create Flow
+                                                class="fa fa-plus-circle"></i> Create new
                                         </button>
                                     </li>
                                 </ul>
@@ -121,17 +121,17 @@
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group col-md-12">
-                                                                    <label for="file_id">Flow Name</label>
+                                                                    <label for="file_id">Project Name</label>
                                                                     <input name="file_id" type="text"
                                                                         class="form-control" id="file_id"
-                                                                        placeholder="Flow name">
+                                                                        placeholder="Project name">
                                                                 </div>
                                                                 <div class="form-group col-md-12 text-center">
                                                                     <input type="hidden" name="action" id="action"
                                                                         value="addNew">
                                                                     <input type="hidden" name="flow_id" id="flow_id">
                                                                     <input type="submit" name="saveBtn" id="saveBtn"
-                                                                        class="col-12 btn btn-info btn-md" value="Save">
+                                                                        class="col-12 btn btn-info btn-md" value="Create">
                                                                 </div>
                                                             </div>
                                                         </form>

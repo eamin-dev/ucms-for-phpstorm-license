@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\storeQuestionRequest;
+use App\Models\Country;
 use App\Models\CountryOffice;
 use App\Models\Flow;
 use App\Models\FlowQuestion;
@@ -25,7 +26,7 @@ class NewRapidFlowController extends Controller
     {
         if (!$request->ajax()) {
             $regions = Region::select('id', 'name')->get();
-            $countryOffices = CountryOffice::select('id', 'name')->get();
+            $countryOffices = Country::select('id', 'name')->get();
             $themeficAreas = ThemeficArea::select('id', 'name', 'code')->get();
             return view('rapidflow.flow', compact('countryOffices', 'themeficAreas', 'regions'));
         }
