@@ -22,7 +22,7 @@ class CreateFlowsTable extends Migration
             $table->foreignId('updated_by')->nullable()->constrained('users')->nullOnDelete();
             $table->string('file_id');
             $table->double('test',5,2);
-            $table->integer('download_count')->nullable();
+            $table->integer('download_count')->default(0);
             $table->timestamps();
         });
     }

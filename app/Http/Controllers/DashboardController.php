@@ -11,14 +11,15 @@ class DashboardController extends Controller
 {
     public function index()
     {
-//        return User::with('roles')->get();
+        $flows = Flow::all();
         $totalActiveUsers   = User::where('status', 1)->count('id');
         $totalAdmin   = User::role(['admin'])->count('id');
-        $totalRapidFlow = Flow::count('id');
+        $totalRapidFlow = $flows->count();
+        $totalExtractedFlow = $flows->where('download_count','!=', 0)->count();
         $totalThemeficAreas = ThemeficArea::count('id');
         $totalRapidProUser  = User::role(['rapidpro','both'])->count('id');
         $totalRapidActiveUser = User::role(['rapidpro','both'])->where('status',1)->count('id');
 
-        return view('dashboard.index', compact('totalActiveUsers','totalRapidFlow','totalAdmin', 'totalThemeficAreas', 'totalRapidProUser', 'totalRapidActiveUser'));
+        return view('dashboard.index', compact('totalActiveUsers','totalRapidFlow','totalAdmin', 'totalThemeficAreas', 'totalRapidProUser', 'totalRapidActiveUser','totalExtractedFlow'));
     }
 }
