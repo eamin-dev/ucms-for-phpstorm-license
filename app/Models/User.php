@@ -50,7 +50,7 @@ class User extends Authenticatable
 
     public function country(){
 
-        return $this->belongsTo(Country::class,'country_office_id','id');
+        return $this->belongsTo(Country::class,'country_id','id');
     }
 
     public function region(){
