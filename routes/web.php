@@ -170,7 +170,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::controller(NewRegionController::class)->group(
         function () {
-
+            //test
             Route::get('regions-list', 'viewRegion')->name('all.regions.list');
             Route::get('countrywise/details/{region}', 'getDetails')->name('country.wise.details');
 

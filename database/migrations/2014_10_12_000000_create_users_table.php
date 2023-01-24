@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('image')->nullable();
 //            $table->tinyInteger('type')->comment('1=Admin,2=Editor');
             $table->unsignedBigInteger('region_id');
-            $table->unsignedBigInteger('country_office_id');
+            $table->unsignedBigInteger('country_id');
 //            $table->integer('platform')->nullable()->comment('1=rapidPro, 2=loGT, 3=both');
             $table->integer('status')->default(1)->comment('1=active, 2=inactive');
             $table->rememberToken();
