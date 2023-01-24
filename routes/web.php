@@ -117,7 +117,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('rapidpro/json/{id}', 'exportJson')->name('rapidpro.question.json');
             Route::delete('rapidpro/question/delete/{id}', 'questionDelete')->name('rapidpro.question.delete');
 
-            //
+            //region wise country
             Route::get('region-wise-country', 'getCountry')->name('get.regionwise.country');
 
         }

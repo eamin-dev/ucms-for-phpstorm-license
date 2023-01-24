@@ -177,4 +177,27 @@
 
 @section('script')
     @include('user.script')
+
+
+
+    <script type="text/javascript">
+        $(function(){
+          $(document).on('change','#region_id',function(){
+            var region_id =$(this).val();
+            $.ajax({
+                url:"{{route('get.regionwise.country')}}",
+                type:"GET",
+                data:{region_id:region_id},
+                success:function(data){
+                  var html = '<option value="">Select Country </option>';
+                  $.each(data,function(key,v){
+                    html +='<option value="'+v.id+'">'+v.name+'</option>';
+                  });
+                  $('#country_id').html(html);
+                }
+            });
+          });
+      });
+      </script>
+
 @endsection

@@ -33,13 +33,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <select name="country_office_id" id="country_office_id" class="form-control select2">
+                    <select name="country_id" id="country_id" class="form-control select2">
                         <option value="">Select Country</option>
-                        @forelse($countryOffices as $country)
-                            <option value="{{$country->id}}">{{$country->name}}</option>
-                        @empty
-                            <option value="">No Country office Found</option>
-                        @endforelse
+
                     </select>
                 </div>
             </div>

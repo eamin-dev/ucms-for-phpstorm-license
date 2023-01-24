@@ -62,7 +62,7 @@ class NewRapidFlowController extends Controller
         $flow = new Flow();
         $flow->region_id = $request->region_id;
         $flow->country_id = $request->country_id;
-//        $flow->date = $request->date;
+        //        $flow->date = $request->date;
         $flow->file_id = $request->file_id;
         $flow->themefic_area_id = $request->themefic_area_id;
         $flow->created_by = auth()->user()->id;
@@ -79,35 +79,34 @@ class NewRapidFlowController extends Controller
             $rules = [
                 'region_id' => 'required',
                 'country_id' => 'required',
-//                'date' => 'required',
                 'themefic_area_id' => 'required',
                 'file_id' => ['required', Rule::unique('flows')],
             ];
 
             $customMessages = [
+                'region_id.required'=>'Region field is required',
                 'country_id.required' => 'Country Field is required.',
-//                'date.required' => 'Date  Field is required.',
                 'themefic_area_id.required' => 'Themefic Area is required.',
-                'file_id.required' => 'File Id is required.',
-                'file_id.unique' => 'File Id has already been taken.',
+                'file_id.required' => 'Project Name field is required.',
+                'file_id.unique' => 'Project Name has already been taken.',
             ];
         }
 
         if (!is_null($id)) {
 
             $rules = [
+                'region_id' => 'required',
                 'country_id' => 'required',
-//                'date' => 'required',
                 'themefic_area_id' => 'required',
                 'file_id' => ['required', Rule::unique('flows')->ignore($id)],
             ];
 
             $customMessages = [
+                'region_id.required' => 'Region field is required',
                 'country_id.required' => 'Country Field is required.',
-//                'date.required' => 'Date  Field is required.',
                 'themefic_area_id.required' => 'Themefic Area is required.',
-                'file_id.required' => 'File Id is required.',
-                'file_id.unique' => 'File Id has already been taken.',
+                'file_id.required' => 'Project Name field is required.',
+                'file_id.unique' => 'Project Name field has already been taken.',
             ];
         }
 
@@ -126,7 +125,7 @@ class NewRapidFlowController extends Controller
 
         $flow->region_id = $request->region_id;
         $flow->country_id = $request->country_id;
-//        $flow->date = $request->date;
+        //        $flow->date = $request->date;
         $flow->file_id = $request->file_id;
         $flow->updated_by = auth()->user()->id;
         $flow->themefic_area_id = $request->themefic_area_id;
@@ -251,17 +250,21 @@ class NewRapidFlowController extends Controller
                 $nodeArray = [];
                 $nodeArray['uuid'] = $nodeUUIDlist[$index];
 
-                $nodeArray['actions'] = [[
-                    'uuid' => Str::uuid(),
-                    'quick_replies' => $node->answers->pluck('answer'),
-                    'text' => $node->question_title,
-                    'type' => 'send_msg',
-                ]];
+                $nodeArray['actions'] = [
+                    [
+                        'uuid' => Str::uuid(),
+                        'quick_replies' => $node->answers->pluck('answer'),
+                        'text' => $node->question_title,
+                        'type' => 'send_msg',
+                    ]
+                ];
 
-                $nodeArray['exits'] = [[
-                    'uuid' => Str::uuid(),
-                    'destination_uuid' => $routerNodeUUID,
-                ]];
+                $nodeArray['exits'] = [
+                    [
+                        'uuid' => Str::uuid(),
+                        'destination_uuid' => $routerNodeUUID,
+                    ]
+                ];
                 //database node loop end
 
                 //router node loop start
@@ -283,10 +286,12 @@ class NewRapidFlowController extends Controller
                     "type" => "switch",
                     "wait" => ['type' => 'msg'],
                 ];
-                $routerNodeArray['exits'] = [[
-                    'uuid' => $routerNodeArrayExitUUID,
-                    'destination_uuid' => $nodeUUIDlist[$index + 1] ?? null,
-                ]];
+                $routerNodeArray['exits'] = [
+                    [
+                        'uuid' => $routerNodeArrayExitUUID,
+                        'destination_uuid' => $nodeUUIDlist[$index + 1] ?? null,
+                    ]
+                ];
                 array_push($allNodeArray, $nodeArray);
                 array_push($allNodeArray, $routerNodeArray);
 
@@ -319,10 +324,21 @@ class NewRapidFlowController extends Controller
 
         $question->delete();
         return back();
-//        return response()->json(['message' => 'Rapid Pro Flow Deleted Successfully!']);
+        //        return response()->json(['message' => 'Rapid Pro Flow Deleted Successfully!']);
     }
 
-    public function getCountry(Request $request){
+    public function getCountry(Request $request)
+    {
+
+        try {
+            $countries = Country::where('region_id', $request->region_id)->get();
+
+            return response()->json($countries);
+        }
+        catch (\Throwable $th) {
+            throw $th;
+        }
+
 
 
     }

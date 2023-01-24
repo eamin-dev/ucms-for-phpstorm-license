@@ -13,7 +13,7 @@
 
     function myFormReset() {
         $('#myForm')[0].reset();
-        $('#country_office_id').val('').trigger('change');
+        $('#region_id').val('').trigger('change');
         $('#myModal').modal('hide');
         $('#showModal').modal('hide');
         $('#confirmModal').modal('hide');
@@ -161,7 +161,7 @@
                     let flow = data.responseJSON.flow;
                     $('#myForm input[name="_method"]').val('PATCH');
                     $('#region_id').val(flow.region_id).trigger('change');
-                    $('#country_office_id').val(flow.country_office_id).trigger('change');
+                    $('#country_id').val(flow.country_id).trigger('change');
                     $('#themefic_area_id').val(flow.themefic_area_id).trigger('change');
                     // $('#date').val(flow.date);
                     $('#file_id').val(flow.file_id);

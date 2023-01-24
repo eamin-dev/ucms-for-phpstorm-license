@@ -119,10 +119,6 @@
                                                                     <select name="country_id" id="country_id"
                                                                             class="form-control select2">
                                                                         <option value="">Select Country</option>
-                                                                        @foreach ($countries as $country)
-                                                                            <option value="{{ $country->id }}">
-                                                                                {{ $country->name }}</option>
-                                                                        @endforeach
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group col-md-12">
@@ -244,5 +240,26 @@
     <script src="{{ asset('assets/js/custom-toastr.min.js') }}"></script>
 
     @include('admin.script');
+
+
+    <script type="text/javascript">
+        $(function(){
+          $(document).on('change','#region_id',function(){
+            var region_id =$(this).val();
+            $.ajax({
+                url:"{{route('get.regionwise.country')}}",
+                type:"GET",
+                data:{region_id:region_id},
+                success:function(data){
+                  var html = '<option value="">Select Country </option>';
+                  $.each(data,function(key,v){
+                    html +='<option value="'+v.id+'">'+v.name+'</option>';
+                  });
+                  $('#country_id').html(html);
+                }
+            });
+          });
+      });
+      </script>
 
 @endsection
