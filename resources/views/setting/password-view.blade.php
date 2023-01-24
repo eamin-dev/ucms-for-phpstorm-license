@@ -60,7 +60,7 @@
                                             <label for="exampleInputPassword1">Confirm Password</label>
                                             <input type="password" class="form-control" name="confirm_new_password" id="confirm_new_password" placeholder="Confirm Password">
                                         </div>
-
+                                        <br>
                                         <button type="submit" class="btn btn-info btn-block waves-effect waves-light">Update </button>
                                     </form>
                                 </div>

@@ -1,6 +1,14 @@
 @extends('layouts.app')
 @section('title', 'Rapid Pro ')
 @section('css')
+<style>
+
+.center-div {
+  position: absolute;
+  left: 32%;
+  top: 68%;
+}
+</style>
 @endsection
 @section('content')
     <div class="content roleData">
@@ -58,7 +66,7 @@
                                             </div>
                                         @endif
                                         <h4 class="text-lg-center">Profile Photo</h4>
-                                        <div class="form-group position-relative d-inline-block mb-4">
+                                        <div  class="form-group position-relative d-inline-block mb-4 center-div">
                                             <img src="{{ !empty($authData->image) ? url($authData->image) : url('upload/user_image/no-image.png') }}"
                                                 id="showImage"
                                                 style="width:200px; height : 200px; object-fit : cover; object-position:center"
