@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Rapid Pro ')
+@section('title', 'Password Change')
 @section('css')
 @endsection
 @section('content')
