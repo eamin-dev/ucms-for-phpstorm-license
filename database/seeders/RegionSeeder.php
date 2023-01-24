@@ -20,43 +20,43 @@ class RegionSeeder extends Seeder
                 'id' => 1,
                 "name" => "Asia",
                 'code' => 'AS',
-                "created_at" => now()
+                'image' => 'asia.png'
             ],
             [
                 'id' => 2,
                 "name" => "Africa",
                 "code" => 'AF',
-                "created_at" => now()
+                'image' => 'africa.svg'
             ],
             [
                 'id' => 3,
                 'code' => 'EU',
                 'name' => 'Europe',
-                "created_at"=> now()
+                'image' => 'europe.png'
             ],
             [
                 'id' => 4,
                 'code' => 'SA',
-                "name" => " South America",
-                "created_at" => now()
+                "name" => "South America",
+                'image' => 'north.svg'
             ],
             [
                 'id' => 5,
                 'code' => 'NA',
-                "name" => " North America",
-                "created_at" => now()
+                "name" => "North America",
+                'image' => 'north.svg'
             ],
             [
                 "id" => 6,
                 "code" => 'AN',
                 "name" => "Antarctica",
-                "created_at" => now()
+                'image' => 'ant.png'
             ],
             [
                 'id' => 7,
                 'code' => 'AUS',
-                "name" =>"Australia",
-                "created_at"=> now()
+                "name" => "Australia",
+                'image' => 'australia.png'
             ]
         ];
 

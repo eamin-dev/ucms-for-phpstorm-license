@@ -61,7 +61,7 @@ class NewRapidFlowController extends Controller
 
         $flow = new Flow();
         $flow->region_id = $request->region_id;
-        $flow->country_id = $request->country_office_id;
+        $flow->country_id = $request->country_id;
 //        $flow->date = $request->date;
         $flow->file_id = $request->file_id;
         $flow->themefic_area_id = $request->themefic_area_id;

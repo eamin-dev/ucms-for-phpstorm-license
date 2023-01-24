@@ -172,7 +172,7 @@ Route::group(['middleware' => ['auth']], function () {
         function () {
 
             Route::get('regions-list', 'viewRegion')->name('all.regions.list');
-            Route::get('countrywise/details', 'getDetails')->name('country.wise.details');
+            Route::get('countrywise/details/{region}', 'getDetails')->name('country.wise.details');
 
         }
     );
