@@ -5,9 +5,9 @@
                                 </div> --}}
         <div class="card-body">
             <ul class="list-group list-group-flush">
-                <a class="btn btn-primary btn-sm btn-block" href="{{ route('user.profile.view') }}"
+                <a class="btn btn-info btn-sm btn-block" href="{{ route('user.profile.view') }}"
                     {{ request()->routeIs('user.profile.view') ? 'active' : '' }}>Profile Settings</a>
-                <a class="btn btn-primary btn-sm btn-block" href="{{ route('user.change.password') }}"
+                <a class="btn btn-info btn-sm btn-block" href="{{ route('user.change.password') }}"
                     {{ request()->routeIs('user.profile.view') ? 'active' : '' }}>Security </a>
                 {{-- <a  class="btn btn-primary btn-sm btn-block" href="" {{ request()->routeIs('user.profile.view')?'active':'' }}>Security</a> --}}
 

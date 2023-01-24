@@ -16,7 +16,7 @@
                         <div class="page-title-right">
                             <ol class="breadcrumb p-0 m-0">
                                 <li class="breadcrumb-item">
-                                    
+
                                 </li>
                             </ol>
                         </div>
@@ -33,9 +33,12 @@
                         <!-- Basic example -->
                         @include('layouts.user-sidebar')
                         <!-- col-->
+                        <div class="col-xl-1">
+
+                        </div>
 
                         <!-- Horizontal form -->
-                        <div class="col-xl-9">
+                        <div class="col-xl-6">
                             <div class="card">
                                 {{-- <div class="card-header">
                                     <h3 class="card-title">Basic example</h3>
@@ -43,11 +46,11 @@
                                 <div class="card-body">
                                     <form method="POST" action="{{ route('user.password.update') }}" id="myform">
                                         @csrf
-                                        
-                                        
+
+
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Current Password</label>
-                                            <input type="password" class="form-control" name="current_password"  id="current_password" placeholder="Old Password">
+                                            <input type="password" class="form-control" name="current_password"  id="current_password" placeholder="Current Password">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">New Password</label>
@@ -57,8 +60,8 @@
                                             <label for="exampleInputPassword1">Confirm Password</label>
                                             <input type="password" class="form-control" name="confirm_new_password" id="confirm_new_password" placeholder="Confirm Password">
                                         </div>
-                                       
-                                        <button type="submit" class="btn btn-purple waves-effect waves-light">Update </button>
+
+                                        <button type="submit" class="btn btn-info btn-block waves-effect waves-light">Update </button>
                                     </form>
                                 </div>
                                 <!-- card-body -->
@@ -69,7 +72,7 @@
 
                     </div>
                     <!-- End row -->
-                  
+
                 </div>
             </div>
             <!-- end row -->
@@ -128,5 +131,5 @@
       });
     });
     </script>
-    
+
 @endsection

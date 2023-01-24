@@ -16,7 +16,7 @@
                         <div class="page-title-right">
                             <ol class="breadcrumb p-0 m-0">
                                 <li class="breadcrumb-item">
-                                    
+
                                 </li>
                             </ol>
                         </div>
@@ -33,15 +33,19 @@
                         <!-- Basic example -->
                         @include('layouts.user-sidebar')
                         <!-- col-->
+                        <div class="col-xl-1">
+
+                        </div>
 
                         <!-- Horizontal form -->
-                        <div class="col-xl-9">
+                        <div class="col-xl-6">
                             <div class="card">
                                 {{-- <div class="card-header">
                                     <h3 class="card-title">Basic example</h3>
                                 </div> --}}
                                 <div class="card-body">
-                                    <form method="POST" action="{{ route('user.profile.update') }}" enctype="multipart/form-data">
+                                    <form method="POST" action="{{ route('user.profile.update') }}"
+                                        enctype="multipart/form-data">
                                         @csrf
 
                                         @if ($errors->any())
@@ -53,25 +57,46 @@
                                                 </ul>
                                             </div>
                                         @endif
-                                        
-                                        <div class="form-group">
-                                            <img src="{{ !empty($authData->image)?url($authData->image):url('upload/user_image/no-image.png')}}" id="showImage"  width="200" height="200" class="img-rounded" alt="">
+                                        <h4 class="text-lg-center">Profile Photo</h4>
+                                        <div class="form-group position-relative d-inline-block mb-4">
+                                            <img src="{{ !empty($authData->image) ? url($authData->image) : url('upload/user_image/no-image.png') }}"
+                                                id="showImage"
+                                                style="width:200px; height : 200px; object-fit : cover; object-position:center"
+                                                class="rounded-circle border" alt="img">
+
+                                            <label for="imgUpload" class="btn btn-light rounded-circle"
+                                                style="position: absolute; top: 70%; right:0; width : 60px; height :60px; display:flex;
+                                                align-items:center; justify-content:center">
+                                                <i class=" fas fa-file-image"></i>
+                                                <input id="imgUpload" type="file" name="image"
+                                                    class="d-none form-control" placeholder="select Image">
+                                            </label>
+
                                         </div>
-                                     
+
                                         <div class="form-group">
-                                              <input type="file" name="image" class="form-control"  placeholder="select Image">
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">Full Name</label>
-                                            <input type="text" class="form-control" name="name" value="{{ $authData->name }}" id="" placeholder="Full Name">
+                                            {{-- <label for="exampleInputPassword1">Full Name</label> --}}
+                                            <input type="text" class="form-control" name="name"
+                                                value="{{ $authData->name }}" id="" placeholder="Full Name">
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleInputPassword1">Email</label>
-                                            <input type="text" class="form-control" name="email" value="{{$authData->email }}" id="" placeholder="Ener Email">
+                                            {{-- <label for="exampleInputPassword1">Email</label> --}}
+                                            <input type="text" class="form-control" name="email"
+                                                value="{{ $authData->email }}" id="" placeholder="Ener Email">
                                         </div>
-                                       
-                                        <button type="submit" class="btn btn-purple waves-effect waves-light">Update </button>
+                                        <div class="form-group">
+                                            {{-- <label for="exampleInputPassword1">Role</label> --}}
+                                            <select name="role" id="" disabled class="form-control">
+                                                @if (!empty($authData->getRoleNames()))
+                                                    @foreach ($authData->getRoleNames() as $role)
+                                                    @endforeach
+                                                @endif
+                                                <option value="">{{ $role }}</option>
+                                            </select>
+                                        </div>
+                                        <br>
+                                        <button type="submit"
+                                            class="btn btn-info btn-block waves-effect waves-light">Update </button>
                                     </form>
                                 </div>
                                 <!-- card-body -->
@@ -82,7 +107,7 @@
 
                     </div>
                     <!-- End row -->
-                  
+
                 </div>
             </div>
             <!-- end row -->
@@ -97,30 +122,9 @@
 
 @section('script')
 
-<script>
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                $('#imagePreview').css('background-image', 'url('+e.target.result +')');
-                $('#imagePreview').hide();
-                $('#imagePreview').fadeIn(650);
-            }
-            $("#avatar-btn").css('display','block');
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    //Image upload (Profile image- user)
-    $("#imageUpload").change(function() {
-        readURL(this);
-    });
-</script>
-
-
-<script>
-    $(document).ready(function(){
-            $('#image').change(function(e){
+    <script>
+           $(document).ready(function(){
+            $('#imgUpload').change(function(e){
                 var reader =new FileReader();
                 reader.onload =function(e){
                 $('#showImage').attr('src',e.target.result);
@@ -128,6 +132,6 @@
                 reader.readAsDataURL(e.target.files['0']);
             });
             });
-</script>
-    
+    </script>
+
 @endsection
